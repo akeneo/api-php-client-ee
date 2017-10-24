@@ -1,0 +1,30 @@
+{
+  "name": "akeneo/php-api-client-ee",
+  "description": "Akeneo PIM ENTERPRISE client for the API",
+  "license": "OSL-3.0",
+  "minimum-stability": "beta",
+  "authors": [
+    {
+      "name": "Akeneo",
+      "homepage": "http://www.akeneo.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Akeneo\\PimEnterprise\\": "src/",
+      "Akeneo\\PimEnterprise\\tests\\": "tests/"
+    }
+  },
+  "require": {
+    "akeneo/api-php-client": "^1.0@beta"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^v2.3",
+    "phpunit/phpunit": "5.7.*",
+    "phpspec/phpspec": "3.2.*",
+    "symfony/yaml": "^3.3"
+  },
+  "config": {
+    "bin-dir": "bin"
+  }
+}
