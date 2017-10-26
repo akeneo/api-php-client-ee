@@ -16,7 +16,8 @@
     }
   },
   "require": {
-    "akeneo/api-php-client": "^1.0@beta"
+    "akeneo/api-php-client": "^1.0@beta",
+    "php-http/guzzle6-adapter": "^1.1"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^v2.3",
