@@ -2,13 +2,9 @@
 
 namespace Akeneo\PimEnterprise\tests\Common\Api\PublishedProduct;
 
+//TODO
 class GetPublishedProductApiIntegration extends AbstractPublishedProductApiTestCase
 {
-//    public function testGet()
-//    {
-//        //TODO
-//    }
-
     /**
      * @expectedException \Akeneo\Pim\Exception\NotFoundHttpException
      */

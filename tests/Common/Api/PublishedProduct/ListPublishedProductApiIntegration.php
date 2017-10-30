@@ -4,6 +4,7 @@ namespace Akeneo\PimEnterprise\tests\Common\Api\PublishedProduct;
 
 use Akeneo\Pim\Pagination\PageInterface;
 
+//TODO
 class ListPublishedProductApiIntegration extends AbstractPublishedProductApiTestCase
 {
     public function testSearchHavingNoResults()
@@ -43,14 +44,4 @@ class ListPublishedProductApiIntegration extends AbstractPublishedProductApiTest
             ]
         ]);
     }
-
-//    public function testAllWithSelectedAttributes()
-//    {
-//        //TODO
-//    }
-
-//    public function testAllWithSelectedScope()
-//    {
-//        //TODO
-//    }
 }
