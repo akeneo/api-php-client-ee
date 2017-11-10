@@ -15,6 +15,8 @@ use Akeneo\PimEnterprise\AkeneoPimEnterpriseClientInterface;
  */
 abstract class ApiTestCase extends BaseApiTestCase
 {
+    protected const RELATIVE_PATH_TO_PARAMETERS_FILE = '/../../../etc/parameters.yml';
+
     /**
      * @return AkeneoPimEnterpriseClientInterface
      */
@@ -26,7 +28,11 @@ abstract class ApiTestCase extends BaseApiTestCase
             $generator = new DockerCredentialGenerator($config['pim']['docker_name']);
         }
 
-        $credentials = $generator->generate($config['pim']['install_path'], $config['pim']['bin_path'], $config['pim']['version']);
+        $credentials = $generator->generate(
+            $config['pim']['install_path'],
+            $config['pim']['bin_path'],
+            $config['pim']['version']
+        );
         $clientBuilder = new AkeneoPimEnterpriseClientBuilder($config['api']['baseUri']);
 
         return $clientBuilder->buildAuthenticatedByPassword(
@@ -35,5 +41,13 @@ abstract class ApiTestCase extends BaseApiTestCase
             $config['api']['credentials']['username'],
             $config['api']['credentials']['password']
         );
+    }
+
+    /**
+     * @return string
+     */
+    protected function getConfigurationFile()
+    {
+        return realpath(dirname(__FILE__)).'/../../../etc/parameters.yml';
     }
 }
