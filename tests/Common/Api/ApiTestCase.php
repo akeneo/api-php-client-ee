@@ -15,8 +15,6 @@ use Akeneo\PimEnterprise\AkeneoPimEnterpriseClientInterface;
  */
 abstract class ApiTestCase extends BaseApiTestCase
 {
-    protected const RELATIVE_PATH_TO_PARAMETERS_FILE = '/../../../etc/parameters.yml';
-
     /**
      * @return AkeneoPimEnterpriseClientInterface
      */

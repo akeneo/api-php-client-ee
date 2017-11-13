@@ -55,7 +55,13 @@ class PublishedProductApi implements PublishedProductApiInterface
      */
     public function listPerPage($limit = 10, $withCount = false, array $queryParameters = [])
     {
-        $data = $this->resourceClient->getResources(static::PUBLISHED_PRODUCTS_URI, [], $limit, $withCount, $queryParameters);
+        $data = $this->resourceClient->getResources(
+            static::PUBLISHED_PRODUCTS_URI,
+            [],
+            $limit,
+            $withCount,
+            $queryParameters
+        );
 
         return $this->pageFactory->createPage($data);
     }

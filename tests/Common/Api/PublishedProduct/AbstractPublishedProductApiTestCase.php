@@ -5,6 +5,8 @@ namespace Akeneo\PimEnterprise\tests\Common\Api\PublishedProduct;
 use Akeneo\PimEnterprise\tests\Common\Api\ApiTestCase;
 use Akeneo\Pim\tests\DateSanitizer;
 use Akeneo\Pim\tests\MediaSanitizer;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 /**
  * @author    Olivier Soulet <olivier.soulet@akeneo.com>
@@ -13,6 +15,32 @@ use Akeneo\Pim\tests\MediaSanitizer;
  */
 abstract class AbstractPublishedProductApiTestCase extends ApiTestCase
 {
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+
+        // Important: As "big_boot" is associated with "small_boot" and
+        // "medium_boot", those two must be published first.
+        $this->publishProducts([
+            'small_boot',
+            'medium_boot',
+            'big_boot',
+            'black_sneakers',
+            'dance_shoe',
+            'docks_black',
+            'docks_blue',
+            'docks_maroon',
+            'docks_red',
+            'docks_white',
+        ]);
+
+        // We need to wait that all published products are indexed.
+        sleep(5);
+    }
+
     /**
      * Replaces changing data by specified values.
      *
@@ -32,5 +60,40 @@ abstract class AbstractPublishedProductApiTestCase extends ApiTestCase
         }
 
         return $publishedProductData;
+    }
+
+    /**
+     * Publishes a list of product.
+     *
+     * @param string[] $identifiers
+     */
+    protected function publishProducts(array $identifiers)
+    {
+        foreach ($identifiers as $identifier) {
+            $process = new Process($this->getPublishCommand($identifier));
+            $process->mustRun();
+        }
+    }
+
+    /**
+     * @param string $identifier
+     *
+     * @return string
+     */
+    private function getPublishCommand($identifier)
+    {
+        $config = $this->getConfiguration();
+        $installPath = $config['pim']['install_path'];
+        $binPath = $config['pim']['bin_path'];
+
+        $publishCommand = sprintf('%s/%s/console pim:product:publish %s', $installPath, $binPath, $identifier);
+
+        if (true === $config['pim']['is_docker']) {
+            $container = $config['pim']['docker_name'];
+
+            return sprintf('docker exec %s %s', $container, $publishCommand);
+        }
+
+        return $publishCommand;
     }
 }
