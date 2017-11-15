@@ -6,7 +6,7 @@ api:
 
 pim:
     install_path: '/srv/pim'
-    is_docker: false
+    is_docker: true
     docker_name: akeneo-pim
-    bin_path: app
+    bin_path: bin
     version: '2.0'
