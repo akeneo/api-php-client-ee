@@ -40,14 +40,6 @@ use Akeneo\PimEnterprise\Api\PublishedProductApi;
 class AkeneoPimEnterpriseClientBuilder extends AkeneoPimClientBuilder
 {
     /**
-     * @param string $baseUri Base uri to request the API
-     */
-    public function __construct($baseUri)
-    {
-        parent::__construct($baseUri);
-    }
-
-    /**
      * @param Authentication $authentication
      *
      * @return AkeneoPimEnterpriseClientInterface
