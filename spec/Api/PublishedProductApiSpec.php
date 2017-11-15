@@ -37,7 +37,7 @@ class PublishedProductApiSpec extends ObjectBehavior
             'family' => 'tshirts',
             'enabled' => true,
             'categories' => [
-                'bar'
+                'bar',
             ],
         ];
 
@@ -48,8 +48,11 @@ class PublishedProductApiSpec extends ObjectBehavior
         $this->get($publishedProductCode)->shouldReturn($publishedProduct);
     }
 
-    function it_returns_a_list_of_published_products_with_default_parameters($resourceClient, $pageFactory, PageInterface $page)
-    {
+    function it_returns_a_list_of_published_products_with_default_parameters(
+        $resourceClient,
+        $pageFactory,
+        PageInterface $page
+    ) {
         $resourceClient
             ->getResources(PublishedProductApi::PUBLISHED_PRODUCTS_URI, [], 10, false, [])
             ->willReturn([]);
@@ -59,8 +62,11 @@ class PublishedProductApiSpec extends ObjectBehavior
         $this->listPerPage()->shouldReturn($page);
     }
 
-    function it_returns_a_list_of_published_products_with_limit_and_count($resourceClient, $pageFactory, PageInterface $page)
-    {
+    function it_returns_a_list_of_published_products_with_limit_and_count(
+        $resourceClient,
+        $pageFactory,
+        PageInterface $page
+    ) {
         $resourceClient
             ->getResources(PublishedProductApi::PUBLISHED_PRODUCTS_URI, [], 10, true, [])
             ->willReturn([]);
@@ -78,7 +84,13 @@ class PublishedProductApiSpec extends ObjectBehavior
         ResourceCursorInterface $cursor
     ) {
         $resourceClient
-            ->getResources(PublishedProductApi::PUBLISHED_PRODUCTS_URI, [], 10, false, ['pagination_type' => 'search_after'])
+            ->getResources(
+                PublishedProductApi::PUBLISHED_PRODUCTS_URI,
+                [],
+                10,
+                false,
+                ['pagination_type' => 'search_after']
+            )
             ->willReturn([]);
 
         $pageFactory->createPage([])->willReturn($page);
@@ -88,8 +100,11 @@ class PublishedProductApiSpec extends ObjectBehavior
         $this->all(10, [])->shouldReturn($cursor);
     }
 
-    function it_returns_a_list_of_published_products_with_additional_query_parameters($resourceClient, $pageFactory, PageInterface $page)
-    {
+    function it_returns_a_list_of_published_products_with_additional_query_parameters(
+        $resourceClient,
+        $pageFactory,
+        PageInterface $page
+    ) {
         $resourceClient
             ->getResources(PublishedProductApi::PUBLISHED_PRODUCTS_URI, [], null, null, ['foo' => 'bar'])
             ->willReturn([]);
