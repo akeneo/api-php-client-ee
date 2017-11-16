@@ -1,0 +1,5 @@
+## Rename this file in phpspec.yml to customize the phpspec configuration
+suites:
+    AkeneoPimEnterpriseClient:
+        namespace: Akeneo\PimEnterprise
+        psr4_prefix: Akeneo\PimEnterprise
