@@ -2,10 +2,8 @@
 
 namespace Akeneo\PimEnterprise\tests\Common\Api\PublishedProduct;
 
-use Akeneo\Pim\tests\ConsoleCommandLauncher;
+use Akeneo\Pim\tests\ValuesSanitizer;
 use Akeneo\PimEnterprise\tests\Common\Api\ApiTestCase;
-use Akeneo\Pim\tests\DateSanitizer;
-use Akeneo\Pim\tests\MediaSanitizer;
 
 /**
  * @author    Olivier Soulet <olivier.soulet@akeneo.com>
@@ -49,16 +47,7 @@ abstract class AbstractPublishedProductApiTestCase extends ApiTestCase
      */
     protected function sanitizePublishedProductData(array $publishedProductData)
     {
-        foreach ($publishedProductData as $key => $value) {
-            if (is_array($value)) {
-                $publishedProductData[$key] = $this->sanitizePublishedProductData($value);
-            } else {
-                $publishedProductData[$key] = DateSanitizer::sanitize($publishedProductData[$key]);
-                $publishedProductData[$key] = MediaSanitizer::sanitize($publishedProductData[$key]);
-            }
-        }
-
-        return $publishedProductData;
+        return ValuesSanitizer::sanitize($publishedProductData);
     }
 
     /**

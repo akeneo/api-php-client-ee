@@ -20,6 +20,7 @@ use Akeneo\Pim\Api\ProductModelApiInterface;
 use Akeneo\Pim\Security\Authentication;
 use Akeneo\PimEnterprise\AkeneoPimEnterpriseClient;
 use Akeneo\PimEnterprise\AkeneoPimEnterpriseClientInterface;
+use Akeneo\PimEnterprise\Api\ProductDraftApiInterface;
 use Akeneo\PimEnterprise\Api\PublishedProductApiInterface;
 use PhpSpec\ObjectBehavior;
 
@@ -41,7 +42,8 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
         AssociationTypeApiInterface $associationTypeApi,
         FamilyVariantApiInterface $familyVariantApi,
         ProductModelApiInterface $productModelApi,
-        PublishedProductApiInterface $publishedProductApi
+        PublishedProductApiInterface $publishedProductApi,
+        ProductDraftApiInterface $productDraftApi
     ) {
         $this->beConstructedWith(
             $authentication,
@@ -59,7 +61,8 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
             $associationTypeApi,
             $familyVariantApi,
             $productModelApi,
-            $publishedProductApi
+            $publishedProductApi,
+            $productDraftApi
         );
     }
 

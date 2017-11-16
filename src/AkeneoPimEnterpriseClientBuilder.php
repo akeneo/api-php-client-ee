@@ -27,6 +27,7 @@ use Akeneo\Pim\Routing\UriGenerator;
 use Akeneo\Pim\Security\Authentication;
 use Akeneo\Pim\Stream\MultipartStreamBuilderFactory;
 use Akeneo\Pim\Stream\UpsertResourceListResponseFactory;
+use Akeneo\PimEnterprise\Api\ProductDraftApi;
 use Akeneo\PimEnterprise\Api\PublishedProductApi;
 
 /**
@@ -64,7 +65,8 @@ class AkeneoPimEnterpriseClientBuilder extends AkeneoPimClientBuilder
             new AssociationTypeApi($resourceClient, $pageFactory, $cursorFactory),
             new FamilyVariantApi($resourceClient, $pageFactory, $cursorFactory),
             new ProductModelApi($resourceClient, $pageFactory, $cursorFactory),
-            new PublishedProductApi($resourceClient, $pageFactory, $cursorFactory)
+            new PublishedProductApi($resourceClient, $pageFactory, $cursorFactory),
+            new ProductDraftApi($resourceClient, $pageFactory, $cursorFactory)
         );
 
         return $client;
