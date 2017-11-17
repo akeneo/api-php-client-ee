@@ -2,11 +2,10 @@
 
 namespace Akeneo\PimEnterprise\tests\Common\Api\PublishedProduct;
 
+use Akeneo\Pim\tests\ConsoleCommandLauncher;
 use Akeneo\PimEnterprise\tests\Common\Api\ApiTestCase;
 use Akeneo\Pim\tests\DateSanitizer;
 use Akeneo\Pim\tests\MediaSanitizer;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Process;
 
 /**
  * @author    Olivier Soulet <olivier.soulet@akeneo.com>
@@ -70,30 +69,7 @@ abstract class AbstractPublishedProductApiTestCase extends ApiTestCase
     protected function publishProducts(array $identifiers)
     {
         foreach ($identifiers as $identifier) {
-            $process = new Process($this->getPublishCommand($identifier));
-            $process->mustRun();
+            $this->getCommandLauncher()->launch(sprintf('pim:product:publish %s', $identifier));
         }
-    }
-
-    /**
-     * @param string $identifier
-     *
-     * @return string
-     */
-    private function getPublishCommand($identifier)
-    {
-        $config = $this->getConfiguration();
-        $installPath = $config['pim']['install_path'];
-        $binPath = $config['pim']['bin_path'];
-
-        $publishCommand = sprintf('%s/%s/console pim:product:publish %s', $installPath, $binPath, $identifier);
-
-        if (true === $config['pim']['is_docker']) {
-            $container = $config['pim']['docker_name'];
-
-            return sprintf('docker exec %s %s', $container, $publishCommand);
-        }
-
-        return $publishCommand;
     }
 }
