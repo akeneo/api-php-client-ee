@@ -11,7 +11,12 @@
   ],
   "autoload": {
     "psr-4": {
-      "Akeneo\\PimEnterprise\\": "src/",
+      "Akeneo\\PimEnterprise\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Akeneo\\Pim\\tests\\": "vendor/akeneo/api-php-client/tests/",
       "Akeneo\\PimEnterprise\\tests\\": "tests/"
     }
   },

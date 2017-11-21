@@ -3,8 +3,7 @@
 namespace Akeneo\PimEnterprise\tests\Common\Api;
 
 use Akeneo\Pim\tests\Common\Api\ApiTestCase as BaseApiTestCase;
-use Akeneo\Pim\tests\DockerCredentialGenerator;
-use Akeneo\Pim\tests\LocalCredentialGenerator;
+use Akeneo\Pim\tests\CredentialGenerator;
 use Akeneo\PimEnterprise\AkeneoPimEnterpriseClientBuilder;
 use Akeneo\PimEnterprise\AkeneoPimEnterpriseClientInterface;
 
@@ -21,16 +20,9 @@ abstract class ApiTestCase extends BaseApiTestCase
     protected function createClient()
     {
         $config = $this->getConfiguration();
-        $generator = new LocalCredentialGenerator();
-        if (true === $config['pim']['is_docker']) {
-            $generator = new DockerCredentialGenerator($config['pim']['docker_name']);
-        }
+        $generator = new CredentialGenerator($this->getCommandLauncher());
 
-        $credentials = $generator->generate(
-            $config['pim']['install_path'],
-            $config['pim']['bin_path'],
-            $config['pim']['version']
-        );
+        $credentials = $generator->generate($config['pim']['version']);
         $clientBuilder = new AkeneoPimEnterpriseClientBuilder($config['api']['baseUri']);
 
         return $clientBuilder->buildAuthenticatedByPassword(
