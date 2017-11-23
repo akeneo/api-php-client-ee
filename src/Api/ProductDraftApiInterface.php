@@ -6,7 +6,7 @@ use Akeneo\Pim\Api\GettableResourceInterface;
 use Akeneo\Pim\Api\ListableResourceInterface;
 
 /**
- * API to manage product drafts
+ * API to manage product drafts.
  *
  * @author    Damien Carcel <damien.carcel@gmail.com>
  * @copyright 2017 Akeneo SAS (http://www.akeneo.com)
@@ -14,4 +14,12 @@ use Akeneo\Pim\Api\ListableResourceInterface;
  */
 interface ProductDraftApiInterface extends GettableResourceInterface
 {
+    /**
+     * Submits a product draft for approval, by its code.
+     *
+     * @param string $code
+     *
+     * @return int
+     */
+    public function submitForApproval($code);
 }
