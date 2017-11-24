@@ -18,6 +18,7 @@ use Akeneo\Pim\Api\MediaFileApiInterface;
 use Akeneo\Pim\Api\ProductApiInterface;
 use Akeneo\Pim\Api\ProductModelApiInterface;
 use Akeneo\Pim\Security\Authentication;
+use Akeneo\PimEnterprise\Api\ProductDraftApiInterface;
 use Akeneo\PimEnterprise\Api\PublishedProductApiInterface;
 
 /**
@@ -31,6 +32,9 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
 {
     /** @var PublishedProductApiInterface */
     protected $publishedProductApi;
+
+    /** @var ProductDraftApiInterface */
+    protected $productDraftApi;
 
     /**
      * @param Authentication               $authentication
@@ -49,6 +53,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
      * @param FamilyVariantApiInterface    $familyVariantApi
      * @param ProductModelApiInterface     $productModelApi
      * @param PublishedProductApiInterface $publishedProductApi
+     * @param ProductDraftApiInterface     $productDraftApi
      */
     public function __construct(
         Authentication $authentication,
@@ -66,7 +71,8 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         AssociationTypeApiInterface $associationTypeApi,
         FamilyVariantApiInterface $familyVariantApi,
         ProductModelApiInterface $productModelApi,
-        PublishedProductApiInterface $publishedProductApi
+        PublishedProductApiInterface $publishedProductApi,
+        ProductDraftApiInterface $productDraftApi
     ) {
         parent::__construct(
             $authentication,
@@ -87,6 +93,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         );
 
         $this->publishedProductApi = $publishedProductApi;
+        $this->productDraftApi = $productDraftApi;
     }
 
     /**
@@ -95,5 +102,13 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     public function getPublishedProductApi()
     {
         return $this->publishedProductApi;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getProductDraftApi()
+    {
+        return $this->productDraftApi;
     }
 }

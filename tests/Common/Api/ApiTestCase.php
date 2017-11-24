@@ -15,9 +15,12 @@ use Akeneo\PimEnterprise\AkeneoPimEnterpriseClientInterface;
 abstract class ApiTestCase extends BaseApiTestCase
 {
     /**
+     * @param string $user
+     * @param string $password
+     *
      * @return AkeneoPimEnterpriseClientInterface
      */
-    protected function createClient()
+    protected function createClient($user = '', $password = '')
     {
         $config = $this->getConfiguration();
         $generator = new CredentialGenerator($this->getCommandLauncher());
@@ -28,8 +31,8 @@ abstract class ApiTestCase extends BaseApiTestCase
         return $clientBuilder->buildAuthenticatedByPassword(
             $credentials['client_id'],
             $credentials['secret'],
-            $config['api']['credentials']['username'],
-            $config['api']['credentials']['password']
+            '' !== $user ? $user : $config['api']['credentials']['username'],
+            '' !== $password ? $password : $config['api']['credentials']['password']
         );
     }
 

@@ -3,6 +3,7 @@
 namespace Akeneo\PimEnterprise;
 
 use Akeneo\Pim\AkeneoPimClientInterface;
+use Akeneo\PimEnterprise\Api\ProductDraftApiInterface;
 use Akeneo\PimEnterprise\Api\PublishedProductApiInterface;
 
 /**
@@ -15,9 +16,16 @@ use Akeneo\PimEnterprise\Api\PublishedProductApiInterface;
 interface AkeneoPimEnterpriseClientInterface extends AkeneoPimClientInterface
 {
     /**
-     * Gets the published product API
+     * Gets the published product API.
      *
      * @return PublishedProductApiInterface
      */
     public function getPublishedProductApi();
+
+    /**
+     * Gets the product draft API.
+     *
+     * @return ProductDraftApiInterface
+     */
+    public function getProductDraftApi();
 }
