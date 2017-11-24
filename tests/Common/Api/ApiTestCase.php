@@ -15,24 +15,24 @@ use Akeneo\PimEnterprise\AkeneoPimEnterpriseClientInterface;
 abstract class ApiTestCase extends BaseApiTestCase
 {
     /**
-     * @param string $user
+     * @param string $username
      * @param string $password
      *
      * @return AkeneoPimEnterpriseClientInterface
      */
-    protected function createClient($user = '', $password = '')
+    protected function createClient($username = 'admin', $password = 'admin')
     {
         $config = $this->getConfiguration();
         $generator = new CredentialGenerator($this->getCommandLauncher());
 
         $credentials = $generator->generate($config['pim']['version']);
-        $clientBuilder = new AkeneoPimEnterpriseClientBuilder($config['api']['baseUri']);
+        $clientBuilder = new AkeneoPimEnterpriseClientBuilder($config['pim']['base_uri']);
 
         return $clientBuilder->buildAuthenticatedByPassword(
             $credentials['client_id'],
             $credentials['secret'],
-            '' !== $user ? $user : $config['api']['credentials']['username'],
-            '' !== $password ? $password : $config['api']['credentials']['password']
+            $username,
+            $password
         );
     }
 
@@ -41,6 +41,6 @@ abstract class ApiTestCase extends BaseApiTestCase
      */
     protected function getConfigurationFile()
     {
-        return realpath(dirname(__FILE__)).'/../../../etc/parameters.yml';
+        return realpath(dirname(__FILE__)).'/../../../tests/etc/parameters.yml';
     }
 }
