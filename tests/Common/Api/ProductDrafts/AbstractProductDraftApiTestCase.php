@@ -14,23 +14,6 @@ use Akeneo\PimEnterprise\tests\Common\Api\ApiTestCase;
 abstract class AbstractProductDraftApiTestCase extends ApiTestCase
 {
     /**
-     * Creates a product draft, incarnating a specified user.
-     *
-     * @param string $identifier
-     * @param array  $data
-     * @param string $user
-     */
-    protected function createDraft($identifier, array $data, $user)
-    {
-        $this->getCommandLauncher()->launch(sprintf(
-            'pim:draft:create %s \'%s\' %s',
-            $identifier,
-            json_encode($data),
-            $user
-        ));
-    }
-
-    /**
      * Replaces changing data by specified values.
      *
      * @param array $productDraftData

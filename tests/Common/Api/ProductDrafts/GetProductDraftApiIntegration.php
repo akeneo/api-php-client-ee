@@ -21,18 +21,18 @@ class GetProductDraftApiIntegration extends AbstractProductDraftApiTestCase
 
     public function testGet()
     {
-        $this->createDraft(
-            'big_boot',
-            [
-                [
-                    'type' => 'set_data',
-                    'field' => 'name',
-                    'data' => 'My new name, just for this draft',
-                    'locale' => 'en_US',
+        $productApi = $this->createClient('Sandra', 'Sandra')->getProductApi();
+        $productApi->upsert('big_boot', [
+            'values' => [
+                'name' => [
+                    [
+                        'data' => 'A new name to create a draft',
+                        'locale' => 'en_US',
+                        'scope' => null,
+                    ],
                 ],
             ],
-            'Sandra'
-        );
+        ]);
 
         $expectedProductDraft = [
             'identifier' => 'big_boot',
@@ -118,7 +118,7 @@ class GetProductDraftApiIntegration extends AbstractProductDraftApiTestCase
                     [
                         'locale' => 'en_US',
                         'scope' => null,
-                        'data' => 'My new name, just for this draft',
+                        'data' => 'A new name to create a draft',
                     ],
                 ],
             ],
@@ -162,20 +162,20 @@ class GetProductDraftApiIntegration extends AbstractProductDraftApiTestCase
      */
     public function testCannotGetIfNoRightAccess()
     {
-        $this->createDraft(
-            'big_boot',
-            [
-                [
-                    'type' => 'set_data',
-                    'field' => 'name',
-                    'data' => 'My new name, just for this draft',
-                    'locale' => 'en_US',
+        $productApi = $this->createClient('Sandra', 'Sandra')->getProductApi();
+        $productApi->upsert('big_boot', [
+            'values' => [
+                'name' => [
+                    [
+                        'data' => 'A new name to create a draft',
+                        'locale' => 'en_US',
+                        'scope' => null,
+                    ],
                 ],
             ],
-            'Sandra'
-        );
+        ]);
 
-        $api = $this->createClient('Mary', 'Mary')->getProductDraftApi();
-        $api->get('big_boot');
+        $productDraftApi = $this->createClient('Mary', 'Mary')->getProductDraftApi();
+        $productDraftApi->get('big_boot');
     }
 }
