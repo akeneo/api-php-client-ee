@@ -21,8 +21,9 @@ class GetProductDraftApiIntegration extends AbstractProductDraftApiTestCase
 
     public function testGet()
     {
-        $productApi = $this->createClient('Sandra', 'Sandra')->getProductApi();
-        $productApi->upsert('big_boot', [
+        $client = $this->createClient('Sandra', 'Sandra');
+
+        $client->getProductApi()->upsert('big_boot', [
             'values' => [
                 'name' => [
                     [
@@ -150,8 +151,7 @@ class GetProductDraftApiIntegration extends AbstractProductDraftApiTestCase
             ],
         ];
 
-        $api = $this->createClient('Sandra', 'Sandra')->getProductDraftApi();
-        $productDraft = $api->get('big_boot');
+        $productDraft = $client->getProductDraftApi()->get('big_boot');
         $sanitizedProductDraft = $this->sanitizeProductDraftData($productDraft);
 
         $this->assertSame($expectedProductDraft, $sanitizedProductDraft);

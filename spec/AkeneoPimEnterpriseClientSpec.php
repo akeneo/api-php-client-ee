@@ -4,7 +4,6 @@ namespace spec\Akeneo\PimEnterprise;
 
 use Akeneo\Pim\Api\AssociationTypeApiInterface;
 use Akeneo\Pim\Api\AttributeApiInterface;
-use Akeneo\Pim\Api\AttributeGroupApi;
 use Akeneo\Pim\Api\AttributeGroupApiInterface;
 use Akeneo\Pim\Api\AttributeOptionApiInterface;
 use Akeneo\Pim\Api\CategoryApiInterface;
@@ -75,5 +74,10 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
     function it_gets_published_product_api($publishedProductApi)
     {
         $this->getPublishedProductApi()->shouldReturn($publishedProductApi);
+    }
+
+    function it_gets_draft_product_api($productDraftApi)
+    {
+        $this->getProductDraftApi()->shouldReturn($productDraftApi);
     }
 }
