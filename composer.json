@@ -1,5 +1,5 @@
 {
-  "name": "akeneo/php-api-client-ee",
+  "name": "akeneo/api-php-client-ee",
   "description": "Akeneo PIM ENTERPRISE client for the API",
   "license": "OSL-3.0",
   "minimum-stability": "stable",
