@@ -1,9 +1,9 @@
 <?php
 
-namespace Akeneo\PimEnterprise\Api;
+namespace Akeneo\PimEnterprise\ApiClient\Api;
 
-use Akeneo\Pim\Api\GettableResourceInterface;
-use Akeneo\Pim\Api\ListableResourceInterface;
+use Akeneo\Pim\ApiClient\Api\Operation\GettableResourceInterface;
+use Akeneo\Pim\ApiClient\Api\Operation\ListableResourceInterface;
 
 /**
  * API to manage the published products.

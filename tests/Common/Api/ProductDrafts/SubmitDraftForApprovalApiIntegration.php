@@ -1,6 +1,6 @@
 <?php
 
-namespace Akeneo\PimEnterprise\tests\Common\Api\ProductDrafts;
+namespace Akeneo\PimEnterprise\ApiClient\tests\Common\Api\ProductDrafts;
 
 /**
  * @author    Damien Carcel <damien.carcel@gmail.com>
@@ -31,7 +31,7 @@ class SubmitDraftForApprovalApiIntegration extends AbstractProductDraftApiTestCa
     }
 
     /**
-     * @expectedException \Akeneo\Pim\Exception\NotFoundHttpException
+     * @expectedException \Akeneo\Pim\ApiClient\Exception\NotFoundHttpException
      * @expectedExceptionMessage Product "ham" does not exist
      */
     public function testSubmitNonExistingDraft()
@@ -42,7 +42,7 @@ class SubmitDraftForApprovalApiIntegration extends AbstractProductDraftApiTestCa
     }
 
     /**
-     * @expectedException \Akeneo\Pim\Exception\UnprocessableEntityHttpException
+     * @expectedException \Akeneo\Pim\ApiClient\Exception\UnprocessableEntityHttpException
      * @expectedExceptionMessage You should create a draft before submitting it for approval.
      */
     public function testSubmitNotOwnedDraft()

@@ -1,10 +1,10 @@
 <?php
 
-namespace Akeneo\PimEnterprise\Api;
+namespace Akeneo\PimEnterprise\ApiClient\Api;
 
-use Akeneo\Pim\Client\ResourceClientInterface;
-use Akeneo\Pim\Pagination\PageFactoryInterface;
-use Akeneo\Pim\Pagination\ResourceCursorFactoryInterface;
+use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
+use Akeneo\Pim\ApiClient\Pagination\PageFactoryInterface;
+use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactoryInterface;
 
 /**
  * API implementation to manage product drafts.

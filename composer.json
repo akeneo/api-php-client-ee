@@ -1,8 +1,8 @@
 {
-  "name": "akeneo/php-api-client-ee",
+  "name": "akeneo/api-php-client-ee",
   "description": "Akeneo PIM ENTERPRISE client for the API",
   "license": "OSL-3.0",
-  "minimum-stability": "beta",
+  "minimum-stability": "stable",
   "authors": [
     {
       "name": "Akeneo",
@@ -11,13 +11,13 @@
   ],
   "autoload": {
     "psr-4": {
-      "Akeneo\\PimEnterprise\\": "src/"
+      "Akeneo\\PimEnterprise\\ApiClient\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Akeneo\\Pim\\tests\\": "vendor/akeneo/api-php-client/tests/",
-      "Akeneo\\PimEnterprise\\tests\\": "tests/"
+      "Akeneo\\Pim\\ApiClient\\tests\\": "vendor/akeneo/api-php-client/tests/",
+      "Akeneo\\PimEnterprise\\ApiClient\\tests\\": "tests/"
     }
   },
   "require": {

@@ -1,15 +1,16 @@
 <?php
 
-namespace spec\Akeneo\PimEnterprise\Api;
+namespace spec\Akeneo\PimEnterprise\ApiClient\Api;
 
-use Akeneo\Pim\Api\ListableResourceInterface;
-use Akeneo\PimEnterprise\Api\PublishedProductApi;
-use Akeneo\Pim\Client\ResourceClientInterface;
-use Akeneo\Pim\Pagination\PageInterface;
-use Akeneo\Pim\Pagination\PageFactoryInterface;
-use Akeneo\Pim\Pagination\ResourceCursorFactoryInterface;
-use Akeneo\Pim\Pagination\ResourceCursorInterface;
-use Akeneo\PimEnterprise\Api\PublishedProductApiInterface;
+use Akeneo\Pim\ApiClient\Api\Operation\GettableResourceInterface;
+use Akeneo\Pim\ApiClient\Api\Operation\ListableResourceInterface;
+use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
+use Akeneo\Pim\ApiClient\Pagination\PageInterface;
+use Akeneo\Pim\ApiClient\Pagination\PageFactoryInterface;
+use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactoryInterface;
+use Akeneo\Pim\ApiClient\Pagination\ResourceCursorInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApi;
+use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
 use PhpSpec\ObjectBehavior;
 
 class PublishedProductApiSpec extends ObjectBehavior
@@ -26,6 +27,7 @@ class PublishedProductApiSpec extends ObjectBehavior
     {
         $this->shouldHaveType(PublishedProductApi::class);
         $this->shouldImplement(PublishedProductApiInterface::class);
+        $this->shouldImplement(GettableResourceInterface::class);
         $this->shouldImplement(ListableResourceInterface::class);
     }
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Akeneo\PimEnterprise\tests\Common\Api;
+namespace Akeneo\PimEnterprise\ApiClient\tests\Common\Api;
 
-use Akeneo\Pim\tests\Common\Api\ApiTestCase as BaseApiTestCase;
-use Akeneo\Pim\tests\CredentialGenerator;
-use Akeneo\PimEnterprise\AkeneoPimEnterpriseClientBuilder;
-use Akeneo\PimEnterprise\AkeneoPimEnterpriseClientInterface;
+use Akeneo\Pim\ApiClient\tests\Common\Api\ApiTestCase as BaseApiTestCase;
+use Akeneo\Pim\ApiClient\tests\CredentialGenerator;
+use Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientBuilder;
+use Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientInterface;
 
 /**
  * @author    Olivier Soulet <olivier.soulet@akeneo.com>

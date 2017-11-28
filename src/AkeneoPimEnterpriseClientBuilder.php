@@ -1,25 +1,25 @@
 <?php
 
-namespace Akeneo\PimEnterprise;
+namespace Akeneo\PimEnterprise\ApiClient;
 
-use Akeneo\Pim\AkeneoPimClientBuilder;
-use Akeneo\Pim\Api\AssociationTypeApi;
-use Akeneo\Pim\Api\AttributeApi;
-use Akeneo\Pim\Api\AttributeGroupApi;
-use Akeneo\Pim\Api\AttributeOptionApi;
-use Akeneo\Pim\Api\CategoryApi;
-use Akeneo\Pim\Api\ChannelApi;
-use Akeneo\Pim\Api\CurrencyApi;
-use Akeneo\Pim\Api\FamilyApi;
-use Akeneo\Pim\Api\FamilyVariantApi;
-use Akeneo\Pim\Api\LocaleApi;
-use Akeneo\Pim\Api\MeasureFamilyApi;
-use Akeneo\Pim\Api\ProductApi;
-use Akeneo\Pim\Api\ProductMediaFileApi;
-use Akeneo\Pim\Api\ProductModelApi;
-use Akeneo\Pim\Security\Authentication;
-use Akeneo\PimEnterprise\Api\ProductDraftApi;
-use Akeneo\PimEnterprise\Api\PublishedProductApi;
+use Akeneo\Pim\ApiClient\AkeneoPimClientBuilder;
+use Akeneo\Pim\ApiClient\Api\AssociationTypeApi;
+use Akeneo\Pim\ApiClient\Api\AttributeApi;
+use Akeneo\Pim\ApiClient\Api\AttributeGroupApi;
+use Akeneo\Pim\ApiClient\Api\AttributeOptionApi;
+use Akeneo\Pim\ApiClient\Api\CategoryApi;
+use Akeneo\Pim\ApiClient\Api\ChannelApi;
+use Akeneo\Pim\ApiClient\Api\CurrencyApi;
+use Akeneo\Pim\ApiClient\Api\FamilyApi;
+use Akeneo\Pim\ApiClient\Api\FamilyVariantApi;
+use Akeneo\Pim\ApiClient\Api\LocaleApi;
+use Akeneo\Pim\ApiClient\Api\MeasureFamilyApi;
+use Akeneo\Pim\ApiClient\Api\ProductApi;
+use Akeneo\Pim\ApiClient\Api\ProductMediaFileApi;
+use Akeneo\Pim\ApiClient\Api\ProductModelApi;
+use Akeneo\Pim\ApiClient\Security\Authentication;
+use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApi;
+use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApi;
 
 /**
  * Builder of the class AkeneoPimEnterpriseClient.

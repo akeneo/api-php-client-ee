@@ -1,13 +1,13 @@
 <?php
 
-namespace spec\Akeneo\PimEnterprise\Api;
+namespace spec\Akeneo\PimEnterprise\ApiClient\Api;
 
-use Akeneo\Pim\Api\GettableResourceInterface;
-use Akeneo\Pim\Client\ResourceClientInterface;
-use Akeneo\Pim\Pagination\PageFactoryInterface;
-use Akeneo\Pim\Pagination\ResourceCursorFactoryInterface;
-use Akeneo\PimEnterprise\Api\ProductDraftApi;
-use Akeneo\PimEnterprise\Api\ProductDraftApiInterface;
+use Akeneo\Pim\ApiClient\Api\Operation\GettableResourceInterface;
+use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
+use Akeneo\Pim\ApiClient\Pagination\PageFactoryInterface;
+use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactoryInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApi;
+use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
 use PhpSpec\ObjectBehavior;
 
 class ProductDraftApiSpec extends ObjectBehavior

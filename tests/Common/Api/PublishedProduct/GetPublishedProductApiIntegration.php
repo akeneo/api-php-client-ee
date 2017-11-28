@@ -1,6 +1,6 @@
 <?php
 
-namespace Akeneo\PimEnterprise\tests\Common\Api\PublishedProduct;
+namespace Akeneo\PimEnterprise\ApiClient\tests\Common\Api\PublishedProduct;
 
 /**
  * @author    Olivier Soulet <olivier.soulet@akeneo.com>
@@ -10,7 +10,7 @@ namespace Akeneo\PimEnterprise\tests\Common\Api\PublishedProduct;
 class GetPublishedProductApiIntegration extends AbstractPublishedProductApiTestCase
 {
     /**
-     * @expectedException \Akeneo\Pim\Exception\NotFoundHttpException
+     * @expectedException \Akeneo\Pim\ApiClient\Exception\NotFoundHttpException
      */
     public function testGetNotFound()
     {

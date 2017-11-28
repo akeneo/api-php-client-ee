@@ -1,10 +1,10 @@
 <?php
 
-namespace Akeneo\PimEnterprise;
+namespace Akeneo\PimEnterprise\ApiClient;
 
-use Akeneo\Pim\AkeneoPimClientInterface;
-use Akeneo\PimEnterprise\Api\ProductDraftApiInterface;
-use Akeneo\PimEnterprise\Api\PublishedProductApiInterface;
+use Akeneo\Pim\ApiClient\AkeneoPimClientInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
 
 /**
  * Client to use the Akeneo PIM ENTERPRISE API.
