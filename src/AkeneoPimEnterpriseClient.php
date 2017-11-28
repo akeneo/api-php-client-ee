@@ -1,25 +1,25 @@
 <?php
 
-namespace Akeneo\PimEnterprise;
+namespace Akeneo\PimEnterprise\ApiClient;
 
-use Akeneo\Pim\AkeneoPimClient;
-use Akeneo\Pim\Api\AssociationTypeApiInterface;
-use Akeneo\Pim\Api\AttributeApiInterface;
-use Akeneo\Pim\Api\AttributeGroupApiInterface;
-use Akeneo\Pim\Api\AttributeOptionApiInterface;
-use Akeneo\Pim\Api\CategoryApiInterface;
-use Akeneo\Pim\Api\ChannelApiInterface;
-use Akeneo\Pim\Api\CurrencyApiInterface;
-use Akeneo\Pim\Api\FamilyApiInterface;
-use Akeneo\Pim\Api\FamilyVariantApiInterface;
-use Akeneo\Pim\Api\LocaleApiInterface;
-use Akeneo\Pim\Api\MeasureFamilyApiInterface;
-use Akeneo\Pim\Api\MediaFileApiInterface;
-use Akeneo\Pim\Api\ProductApiInterface;
-use Akeneo\Pim\Api\ProductModelApiInterface;
-use Akeneo\Pim\Security\Authentication;
-use Akeneo\PimEnterprise\Api\ProductDraftApiInterface;
-use Akeneo\PimEnterprise\Api\PublishedProductApiInterface;
+use Akeneo\Pim\ApiClient\AkeneoPimClient;
+use Akeneo\Pim\ApiClient\Api\AssociationTypeApiInterface;
+use Akeneo\Pim\ApiClient\Api\AttributeApiInterface;
+use Akeneo\Pim\ApiClient\Api\AttributeGroupApiInterface;
+use Akeneo\Pim\ApiClient\Api\AttributeOptionApiInterface;
+use Akeneo\Pim\ApiClient\Api\CategoryApiInterface;
+use Akeneo\Pim\ApiClient\Api\ChannelApiInterface;
+use Akeneo\Pim\ApiClient\Api\CurrencyApiInterface;
+use Akeneo\Pim\ApiClient\Api\FamilyApiInterface;
+use Akeneo\Pim\ApiClient\Api\FamilyVariantApiInterface;
+use Akeneo\Pim\ApiClient\Api\LocaleApiInterface;
+use Akeneo\Pim\ApiClient\Api\MeasureFamilyApiInterface;
+use Akeneo\Pim\ApiClient\Api\MediaFileApiInterface;
+use Akeneo\Pim\ApiClient\Api\ProductApiInterface;
+use Akeneo\Pim\ApiClient\Api\ProductModelApiInterface;
+use Akeneo\Pim\ApiClient\Security\Authentication;
+use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
 
 /**
  * This class is the implementation of the client to use the Akeneo PIM ENTERPRISE API.

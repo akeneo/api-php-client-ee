@@ -1,10 +1,10 @@
 <?php
 
-namespace Akeneo\PimEnterprise\tests\Common\Api\ProductDrafts;
+namespace Akeneo\PimEnterprise\ApiClient\tests\Common\Api\ProductDrafts;
 
-use Akeneo\Pim\tests\CommandLauncher;
-use Akeneo\Pim\tests\ValuesSanitizer;
-use Akeneo\PimEnterprise\tests\Common\Api\ApiTestCase;
+use Akeneo\Pim\ApiClient\tests\CommandLauncher;
+use Akeneo\Pim\ApiClient\tests\ValuesSanitizer;
+use Akeneo\PimEnterprise\ApiClient\tests\Common\Api\ApiTestCase;
 
 /**
  * @author    Damien Carcel <damien.carcel@gmail.com>

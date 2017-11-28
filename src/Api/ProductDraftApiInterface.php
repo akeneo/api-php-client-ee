@@ -1,9 +1,8 @@
 <?php
 
-namespace Akeneo\PimEnterprise\Api;
+namespace Akeneo\PimEnterprise\ApiClient\Api;
 
-use Akeneo\Pim\Api\GettableResourceInterface;
-use Akeneo\Pim\Api\ListableResourceInterface;
+use Akeneo\Pim\ApiClient\Api\Operation\GettableResourceInterface;
 
 /**
  * API to manage product drafts.

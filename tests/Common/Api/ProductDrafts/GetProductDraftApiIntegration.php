@@ -1,6 +1,6 @@
 <?php
 
-namespace Akeneo\PimEnterprise\tests\Common\Api\ProductDrafts;
+namespace Akeneo\PimEnterprise\ApiClient\tests\Common\Api\ProductDrafts;
 
 /**
  * @author    Damien Carcel <damien.carcel@gmail.com>
@@ -10,7 +10,7 @@ namespace Akeneo\PimEnterprise\tests\Common\Api\ProductDrafts;
 class GetProductDraftApiIntegration extends AbstractProductDraftApiTestCase
 {
     /**
-     * @expectedException \Akeneo\Pim\Exception\NotFoundHttpException
+     * @expectedException \Akeneo\Pim\ApiClient\Exception\NotFoundHttpException
      */
     public function testGetNotFound()
     {
@@ -158,7 +158,7 @@ class GetProductDraftApiIntegration extends AbstractProductDraftApiTestCase
     }
 
     /**
-     * @expectedException \Akeneo\Pim\Exception\NotFoundHttpException
+     * @expectedException \Akeneo\Pim\ApiClient\Exception\NotFoundHttpException
      */
     public function testCannotGetIfNoRightAccess()
     {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Akeneo\PimEnterprise\tests\Common\Api\PublishedProduct;
+namespace Akeneo\PimEnterprise\ApiClient\tests\Common\Api\PublishedProduct;
 
-use Akeneo\Pim\Pagination\PageInterface;
-use Akeneo\Pim\Pagination\ResourceCursorInterface;
-use Akeneo\Pim\Search\SearchBuilder;
+use Akeneo\Pim\ApiClient\Pagination\PageInterface;
+use Akeneo\Pim\ApiClient\Pagination\ResourceCursorInterface;
+use Akeneo\Pim\ApiClient\Search\SearchBuilder;
 
 /**
  * @author    Olivier Soulet <olivier.soulet@akeneo.com>
@@ -34,7 +34,7 @@ class ListPublishedProductApiIntegration extends AbstractPublishedProductApiTest
     }
 
     /**
-     * @expectedException \Akeneo\Pim\Exception\UnprocessableEntityHttpException
+     * @expectedException \Akeneo\Pim\ApiClient\Exception\UnprocessableEntityHttpException
      */
     public function testSearchFailedWithInvalidOperator()
     {

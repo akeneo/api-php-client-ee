@@ -1,9 +1,9 @@
 <?php
 
-namespace Akeneo\PimEnterprise\tests\Common\Api\PublishedProduct;
+namespace Akeneo\PimEnterprise\ApiClient\tests\Common\Api\PublishedProduct;
 
-use Akeneo\Pim\tests\ValuesSanitizer;
-use Akeneo\PimEnterprise\tests\Common\Api\ApiTestCase;
+use Akeneo\Pim\ApiClient\tests\ValuesSanitizer;
+use Akeneo\PimEnterprise\ApiClient\tests\Common\Api\ApiTestCase;
 
 /**
  * @author    Olivier Soulet <olivier.soulet@akeneo.com>
