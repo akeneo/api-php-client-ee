@@ -111,4 +111,21 @@ class AssetCategoryApiSpec extends ObjectBehavior
 
         $this->listPerPage(null, null, ['foo' => 'bar'])->shouldReturn($page);
     }
+
+    function it_upserts_an_asset_category($resourceClient)
+    {
+        $resourceClient
+            ->upsertResource(AssetCategoryApi::ASSET_CATEGORY_URI, ['asset_main_catalog'], [
+                'labels' => [
+                    'en_US' => 'Nullam ullamcorper',
+                ]
+            ])
+            ->willReturn(204);
+
+        $this->upsert('asset_main_catalog', [
+            'labels' => [
+                'en_US' => 'Nullam ullamcorper',
+            ]
+        ])->shouldReturn(204);
+    }
 }

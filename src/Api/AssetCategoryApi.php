@@ -75,4 +75,12 @@ class AssetCategoryApi implements AssetCategoryApiInterface
 
         return $this->pageFactory->createPage($data);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function upsert($code, array $data = [])
+    {
+        return $this->resourceClient->upsertResource(static::ASSET_CATEGORY_URI, [$code], $data);
+    }
 }
