@@ -83,4 +83,12 @@ class AssetCategoryApi implements AssetCategoryApiInterface
     {
         return $this->resourceClient->upsertResource(static::ASSET_CATEGORY_URI, [$code], $data);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function upsertList($resources)
+    {
+        return $this->resourceClient->upsertResourceList(static::ASSET_CATEGORIES_URI, [], $resources);
+    }
 }

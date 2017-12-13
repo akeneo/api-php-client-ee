@@ -5,6 +5,7 @@ namespace Akeneo\PimEnterprise\ApiClient\Api;
 use Akeneo\Pim\ApiClient\Api\Operation\GettableResourceInterface;
 use Akeneo\Pim\ApiClient\Api\Operation\ListableResourceInterface;
 use Akeneo\Pim\ApiClient\Api\Operation\UpsertableResourceInterface;
+use Akeneo\Pim\ApiClient\Api\Operation\UpsertableResourceListInterface;
 
 /**
  * API to manage asset categories
@@ -16,6 +17,7 @@ use Akeneo\Pim\ApiClient\Api\Operation\UpsertableResourceInterface;
 interface AssetCategoryApiInterface extends
     GettableResourceInterface,
     ListableResourceInterface,
-    UpsertableResourceInterface
+    UpsertableResourceInterface,
+    UpsertableResourceListInterface
 {
 }

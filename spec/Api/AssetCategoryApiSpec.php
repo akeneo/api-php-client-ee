@@ -9,6 +9,7 @@ use Akeneo\Pim\ApiClient\Pagination\PageFactoryInterface;
 use Akeneo\Pim\ApiClient\Pagination\PageInterface;
 use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactoryInterface;
 use Akeneo\Pim\ApiClient\Pagination\ResourceCursorInterface;
+use Akeneo\Pim\ApiClient\Stream\UpsertResourceListResponse;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApiInterface;
 use PhpSpec\ObjectBehavior;
@@ -127,5 +128,25 @@ class AssetCategoryApiSpec extends ObjectBehavior
                 'en_US' => 'Nullam ullamcorper',
             ]
         ])->shouldReturn(204);
+    }
+
+    function it_upserts_a_list_of_asset_categories($resourceClient, UpsertResourceListResponse $response)
+    {
+        $resourceClient
+            ->upsertResourceList(
+                AssetCategoryApi::ASSET_CATEGORIES_URI,
+                [],
+                [
+                    ['code' => 'asset_1'],
+                    ['code' => 'asset_2'],
+                ]
+            )
+            ->willReturn($response);
+
+        $this
+            ->upsertList([
+                ['code' => 'asset_1'],
+                ['code' => 'asset_2'],
+            ])->shouldReturn($response);
     }
 }
