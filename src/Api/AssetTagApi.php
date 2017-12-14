@@ -3,6 +3,8 @@
 namespace Akeneo\PimEnterprise\ApiClient\Api;
 
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
+use Akeneo\Pim\ApiClient\Pagination\PageFactoryInterface;
+use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactoryInterface;
 
 /**
  * API implementation to manage asset tags.
@@ -19,9 +21,20 @@ class AssetTagApi implements AssetTagApiInterface
     /** @var ResourceClientInterface */
     private $resourceClient;
 
-    public function __construct(ResourceClientInterface $resourceClient)
-    {
+    /** @var PageFactoryInterface */
+    private $pageFactory;
+
+    /** @var ResourceCursorFactoryInterface */
+    private $cursorFactory;
+
+    public function __construct(
+        ResourceClientInterface $resourceClient,
+        PageFactoryInterface $pageFactory,
+        ResourceCursorFactoryInterface $cursorFactory
+    ) {
         $this->resourceClient = $resourceClient;
+        $this->pageFactory = $pageFactory;
+        $this->cursorFactory = $cursorFactory;
     }
 
     /**
@@ -38,5 +51,31 @@ class AssetTagApi implements AssetTagApiInterface
     public function upsert($code, array $data = [])
     {
         return $this->resourceClient->upsertResource(static::ASSET_TAG_URI, [$code], $data);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function all($pageSize = 10, array $queryParameters = [])
+    {
+        $firstPage = $this->listPerPage($pageSize, false, $queryParameters);
+
+        return $this->cursorFactory->createCursor($pageSize, $firstPage);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function listPerPage($limit = 10, $withCount = false, array $queryParameters = [])
+    {
+        $data = $this->resourceClient->getResources(
+            static::ASSET_TAGS_URI,
+            [],
+            $limit,
+            $withCount,
+            $queryParameters
+        );
+
+        return $this->pageFactory->createPage($data);
     }
 }
