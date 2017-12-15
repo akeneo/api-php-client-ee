@@ -61,7 +61,7 @@ class AkeneoPimEnterpriseClientBuilder extends AkeneoPimClientBuilder
             new ProductModelApi($resourceClient, $pageFactory, $cursorFactory),
             new PublishedProductApi($resourceClient, $pageFactory, $cursorFactory),
             new ProductDraftApi($resourceClient, $pageFactory, $cursorFactory),
-            new AssetApi($resourceClient),
+            new AssetApi($resourceClient, $pageFactory, $cursorFactory),
             new AssetCategoryApi($resourceClient, $pageFactory, $cursorFactory),
             new AssetTagApi($resourceClient, $pageFactory, $cursorFactory)
         );

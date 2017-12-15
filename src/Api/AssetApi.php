@@ -3,6 +3,8 @@
 namespace Akeneo\PimEnterprise\ApiClient\Api;
 
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
+use Akeneo\Pim\ApiClient\Pagination\PageFactoryInterface;
+use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactoryInterface;
 
 /**
  * API implementation to manage assets.
@@ -13,14 +15,26 @@ use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
  */
 class AssetApi implements AssetApiInterface
 {
+    const ASSETS_URI = '/api/rest/v1/assets';
     const ASSET_URI = '/api/rest/v1/assets/%s';
 
     /** @var ResourceClientInterface */
     private $resourceClient;
 
-    public function __construct(ResourceClientInterface $resourceClient)
-    {
+    /** @var PageFactoryInterface */
+    private $pageFactory;
+
+    /** @var ResourceCursorFactoryInterface */
+    private $cursorFactory;
+
+    public function __construct(
+        ResourceClientInterface $resourceClient,
+        PageFactoryInterface $pageFactory,
+        ResourceCursorFactoryInterface $cursorFactory
+    ) {
         $this->resourceClient = $resourceClient;
+        $this->pageFactory = $pageFactory;
+        $this->cursorFactory = $cursorFactory;
     }
 
     /**
@@ -29,5 +43,32 @@ class AssetApi implements AssetApiInterface
     public function get($code)
     {
         return $this->resourceClient->getResource(static::ASSET_URI, [$code]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function all($pageSize = 10, array $queryParameters = [])
+    {
+        $queryParameters['pagination_type'] = 'search_after';
+
+        $firstPage = $this->listPerPage($pageSize, false, $queryParameters);
+
+        return $this->cursorFactory->createCursor($pageSize, $firstPage);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function listPerPage($limit = 10, $withCount = false, array $queryParameters = [])
+    {
+        $data = $this->resourceClient->getResources(
+            static::ASSETS_URI,
+            [],
+            $limit,
+            $withCount,
+            $queryParameters
+        );
+        return $this->pageFactory->createPage($data);
     }
 }
