@@ -131,4 +131,21 @@ class AssetApiSpec extends ObjectBehavior
             ->shouldThrow(new InvalidArgumentException('The parameter "code" should not be defined in the data parameter'))
             ->during('create', ['unicorn', ['code' => 'unicorn', 'localized' => false]]);
     }
+
+    function it_upserts_an_asset($resourceClient)
+    {
+        $resourceClient
+            ->upsertResource(AssetApi::ASSET_URI, ['akeneo_logo'], [
+                'localized' => false,
+                'description' => 'Akeneo logo updated',
+                'categories' => ['asset_main_catalog'],
+            ])
+            ->willReturn(204);
+
+        $this->upsert('akeneo_logo', [
+            'localized' => false,
+            'description' => 'Akeneo logo updated',
+            'categories' => ['asset_main_catalog'],
+        ])->shouldReturn(204);
+    }
 }

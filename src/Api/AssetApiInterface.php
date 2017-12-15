@@ -5,6 +5,7 @@ namespace Akeneo\PimEnterprise\ApiClient\Api;
 use Akeneo\Pim\ApiClient\Api\Operation\CreatableResourceInterface;
 use Akeneo\Pim\ApiClient\Api\Operation\GettableResourceInterface;
 use Akeneo\Pim\ApiClient\Api\Operation\ListableResourceInterface;
+use Akeneo\Pim\ApiClient\Api\Operation\UpsertableResourceInterface;
 
 /**
  * API to manage assets.
@@ -16,6 +17,7 @@ use Akeneo\Pim\ApiClient\Api\Operation\ListableResourceInterface;
 interface AssetApiInterface extends
     GettableResourceInterface,
     ListableResourceInterface,
-    CreatableResourceInterface
+    CreatableResourceInterface,
+    UpsertableResourceInterface
 {
 }
