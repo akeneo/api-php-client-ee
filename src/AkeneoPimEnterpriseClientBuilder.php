@@ -18,6 +18,7 @@ use Akeneo\Pim\ApiClient\Api\ProductApi;
 use Akeneo\Pim\ApiClient\Api\ProductMediaFileApi;
 use Akeneo\Pim\ApiClient\Api\ProductModelApi;
 use Akeneo\Pim\ApiClient\Security\Authentication;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApi;
@@ -60,6 +61,7 @@ class AkeneoPimEnterpriseClientBuilder extends AkeneoPimClientBuilder
             new ProductModelApi($resourceClient, $pageFactory, $cursorFactory),
             new PublishedProductApi($resourceClient, $pageFactory, $cursorFactory),
             new ProductDraftApi($resourceClient, $pageFactory, $cursorFactory),
+            new AssetApi($resourceClient),
             new AssetCategoryApi($resourceClient, $pageFactory, $cursorFactory),
             new AssetTagApi($resourceClient, $pageFactory, $cursorFactory)
         );
