@@ -3,6 +3,7 @@
 namespace spec\Akeneo\PimEnterprise\ApiClient\Api;
 
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
+use Akeneo\Pim\ApiClient\Exception\InvalidArgumentException;
 use Akeneo\Pim\ApiClient\Pagination\PageFactoryInterface;
 use Akeneo\Pim\ApiClient\Pagination\PageInterface;
 use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactoryInterface;
@@ -98,5 +99,36 @@ class AssetApiSpec extends ObjectBehavior
             ->willReturn([]);
         $pageFactory->createPage([])->willReturn($page);
         $this->listPerPage(null, null, ['foo' => 'bar'])->shouldReturn($page);
+    }
+
+    function it_creates_an_asset($resourceClient)
+    {
+        $resourceClient->createResource(AssetApi::ASSETS_URI, [], [
+            'code' => 'unicorn',
+            'localized' => false,
+            'description' => 'The wonderful unicorn',
+            'end_of_use' => null,
+            'tags' => [],
+            'categories' => ['asset_main_catalog'],
+            'variation_files' => [],
+            'reference_files' => [],
+        ])->willReturn(201);
+
+        $this->create('unicorn', [
+            'localized' => false,
+            'description' => 'The wonderful unicorn',
+            'end_of_use' => null,
+            'tags' => [],
+            'categories' => ['asset_main_catalog'],
+            'variation_files' => [],
+            'reference_files' => [],
+        ])->shouldReturn(201);
+    }
+
+    function it_throws_an_exception_if_code_is_provided_in_data_when_creating_an_asset()
+    {
+        $this
+            ->shouldThrow(new InvalidArgumentException('The parameter "code" should not be defined in the data parameter'))
+            ->during('create', ['unicorn', ['code' => 'unicorn', 'localized' => false]]);
     }
 }
