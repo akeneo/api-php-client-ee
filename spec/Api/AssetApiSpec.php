@@ -8,6 +8,7 @@ use Akeneo\Pim\ApiClient\Pagination\PageFactoryInterface;
 use Akeneo\Pim\ApiClient\Pagination\PageInterface;
 use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactoryInterface;
 use Akeneo\Pim\ApiClient\Pagination\ResourceCursorInterface;
+use Akeneo\Pim\ApiClient\Stream\UpsertResourceListResponse;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetApi;
 use PhpSpec\ObjectBehavior;
 
@@ -147,5 +148,30 @@ class AssetApiSpec extends ObjectBehavior
             'description' => 'Akeneo logo updated',
             'categories' => ['asset_main_catalog'],
         ])->shouldReturn(204);
+    }
+
+    function it_upserts_a_list_of_assets($resourceClient, UpsertResourceListResponse $response)
+    {
+        $resourceClient->upsertResourceList(AssetApi::ASSETS_URI, [], [
+            [
+                'code' => 'akeneo_logo',
+                'description' => 'Akeneo logo updated',
+            ],
+            [
+                'code' => 'unicorn',
+                'description' => 'Created asset',
+            ]
+        ])->willReturn($response);
+
+        $this->upsertList([
+            [
+                'code' => 'akeneo_logo',
+                'description' => 'Akeneo logo updated',
+            ],
+            [
+                'code' => 'unicorn',
+                'description' => 'Created asset',
+            ]
+        ])->shouldReturn($response);
     }
 }

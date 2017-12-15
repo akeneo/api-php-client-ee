@@ -94,4 +94,12 @@ class AssetApi implements AssetApiInterface
     {
         return $this->resourceClient->upsertResource(static::ASSET_URI, [$code], $data);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function upsertList($resources)
+    {
+        return $this->resourceClient->upsertResourceList(static::ASSETS_URI, [], $resources);
+    }
 }
