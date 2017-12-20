@@ -3,6 +3,7 @@
 namespace Akeneo\PimEnterprise\ApiClient;
 
 use Akeneo\Pim\ApiClient\AkeneoPimClientInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
@@ -30,6 +31,13 @@ interface AkeneoPimEnterpriseClientInterface extends AkeneoPimClientInterface
      * @return ProductDraftApiInterface
      */
     public function getProductDraftApi();
+
+    /**
+     * Gets the asset API.
+     *
+     * @return AssetApiInterface
+     */
+    public function getAssetApi();
 
     /**
      * Gets the asset category API.

@@ -19,6 +19,7 @@ use Akeneo\Pim\ApiClient\Api\ProductModelApiInterface;
 use Akeneo\Pim\ApiClient\Security\Authentication;
 use Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClient;
 use Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
@@ -45,6 +46,7 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
         ProductModelApiInterface $productModelApi,
         PublishedProductApiInterface $publishedProductApi,
         ProductDraftApiInterface $productDraftApi,
+        AssetApiInterface $assetApi,
         AssetCategoryApiInterface $assetCategoryApi,
         AssetTagApiInterface $assetTagApi
     ) {
@@ -66,6 +68,7 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
             $productModelApi,
             $publishedProductApi,
             $productDraftApi,
+            $assetApi,
             $assetCategoryApi,
             $assetTagApi
         );
