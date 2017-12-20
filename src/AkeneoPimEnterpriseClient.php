@@ -18,6 +18,7 @@ use Akeneo\Pim\ApiClient\Api\MediaFileApiInterface;
 use Akeneo\Pim\ApiClient\Api\ProductApiInterface;
 use Akeneo\Pim\ApiClient\Api\ProductModelApiInterface;
 use Akeneo\Pim\ApiClient\Security\Authentication;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
 
@@ -35,6 +36,9 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
 
     /** @var ProductDraftApiInterface */
     protected $productDraftApi;
+
+    /** @var AssetCategoryApiInterface */
+    private $assetCategoryApi;
 
     /**
      * @param Authentication               $authentication
@@ -54,6 +58,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
      * @param ProductModelApiInterface     $productModelApi
      * @param PublishedProductApiInterface $publishedProductApi
      * @param ProductDraftApiInterface     $productDraftApi
+     * @param AssetCategoryApiInterface    $assetCategoryApi
      */
     public function __construct(
         Authentication $authentication,
@@ -72,7 +77,8 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         FamilyVariantApiInterface $familyVariantApi,
         ProductModelApiInterface $productModelApi,
         PublishedProductApiInterface $publishedProductApi,
-        ProductDraftApiInterface $productDraftApi
+        ProductDraftApiInterface $productDraftApi,
+        AssetCategoryApiInterface $assetCategoryApi
     ) {
         parent::__construct(
             $authentication,
@@ -94,6 +100,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
 
         $this->publishedProductApi = $publishedProductApi;
         $this->productDraftApi = $productDraftApi;
+        $this->assetCategoryApi = $assetCategoryApi;
     }
 
     /**
@@ -110,5 +117,13 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     public function getProductDraftApi()
     {
         return $this->productDraftApi;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAssetCategoryApi()
+    {
+        return $this->assetCategoryApi;
     }
 }
