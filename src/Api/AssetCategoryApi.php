@@ -3,6 +3,7 @@
 namespace Akeneo\PimEnterprise\ApiClient\Api;
 
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
+use Akeneo\Pim\ApiClient\Exception\InvalidArgumentException;
 use Akeneo\Pim\ApiClient\Pagination\PageFactoryInterface;
 use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactoryInterface;
 
@@ -90,5 +91,19 @@ class AssetCategoryApi implements AssetCategoryApiInterface
     public function upsertList($resources)
     {
         return $this->resourceClient->upsertResourceList(static::ASSET_CATEGORIES_URI, [], $resources);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function create($code, array $data = [])
+    {
+        if (array_key_exists('code', $data)) {
+            throw new InvalidArgumentException('The parameter "code" should not be defined in the data parameter');
+        }
+
+        $data['code'] = $code;
+
+        return $this->resourceClient->createResource(static::ASSET_CATEGORIES_URI, [], $data);
     }
 }
