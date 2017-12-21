@@ -5,6 +5,7 @@ namespace spec\Akeneo\PimEnterprise\ApiClient\Api;
 use Akeneo\Pim\ApiClient\Api\Operation\GettableResourceInterface;
 use Akeneo\Pim\ApiClient\Api\Operation\ListableResourceInterface;
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
+use Akeneo\Pim\ApiClient\Exception\InvalidArgumentException;
 use Akeneo\Pim\ApiClient\Pagination\PageFactoryInterface;
 use Akeneo\Pim\ApiClient\Pagination\PageInterface;
 use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactoryInterface;
@@ -148,5 +149,36 @@ class AssetCategoryApiSpec extends ObjectBehavior
                 ['code' => 'asset_1'],
                 ['code' => 'asset_2'],
             ])->shouldReturn($response);
+    }
+
+    function it_creates_an_asset_category($resourceClient)
+    {
+        $resourceClient->createResource(AssetCategoryApi::ASSET_CATEGORIES_URI, [], [
+            'code' => 'asset_spring',
+            'parent' => null,
+            'labels' => [
+                'en_US' => 'Nullam ullamcorper',
+            ],
+        ])->willReturn(201);
+
+        $this->create('asset_spring', [
+            'parent' => null,
+            'labels' => [
+                'en_US' => 'Nullam ullamcorper',
+            ],
+        ])->shouldReturn(201);
+    }
+
+    function it_throws_an_exception_if_code_is_provided_in_data_when_creating_an_asset_category()
+    {
+        $this
+            ->shouldThrow(new InvalidArgumentException('The parameter "code" should not be defined in the data parameter'))
+            ->during('create', ['asset_spring', [
+                'code' => 'asset_spring',
+                'parent' => null,
+                'labels' => [
+                    'en_US' => 'Nullam ullamcorper',
+                ],
+            ]]);
     }
 }
