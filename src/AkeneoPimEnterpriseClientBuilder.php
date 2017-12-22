@@ -20,6 +20,7 @@ use Akeneo\Pim\ApiClient\Api\ProductModelApi;
 use Akeneo\Pim\ApiClient\Security\Authentication;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApi;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApi;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApi;
@@ -41,7 +42,7 @@ class AkeneoPimEnterpriseClientBuilder extends AkeneoPimClientBuilder
      */
     protected function buildAuthenticatedClient(Authentication $authentication)
     {
-        list($resourceClient, $pageFactory, $cursorFactory) = $this->setUp($authentication);
+        list($resourceClient, $pageFactory, $cursorFactory, $fileSystem) = $this->setUp($authentication);
 
         $client = new AkeneoPimEnterpriseClient(
             $authentication,
@@ -51,7 +52,7 @@ class AkeneoPimEnterpriseClientBuilder extends AkeneoPimClientBuilder
             new AttributeOptionApi($resourceClient, $pageFactory, $cursorFactory),
             new AttributeGroupApi($resourceClient, $pageFactory, $cursorFactory),
             new FamilyApi($resourceClient, $pageFactory, $cursorFactory),
-            new ProductMediaFileApi($resourceClient, $pageFactory, $cursorFactory),
+            new ProductMediaFileApi($resourceClient, $pageFactory, $cursorFactory, $fileSystem),
             new LocaleApi($resourceClient, $pageFactory, $cursorFactory),
             new ChannelApi($resourceClient, $pageFactory, $cursorFactory),
             new CurrencyApi($resourceClient, $pageFactory, $cursorFactory),
@@ -63,7 +64,8 @@ class AkeneoPimEnterpriseClientBuilder extends AkeneoPimClientBuilder
             new ProductDraftApi($resourceClient, $pageFactory, $cursorFactory),
             new AssetApi($resourceClient, $pageFactory, $cursorFactory),
             new AssetCategoryApi($resourceClient, $pageFactory, $cursorFactory),
-            new AssetTagApi($resourceClient, $pageFactory, $cursorFactory)
+            new AssetTagApi($resourceClient, $pageFactory, $cursorFactory),
+        new AssetReferenceFileApi($resourceClient, $fileSystem)
         );
 
         return $client;

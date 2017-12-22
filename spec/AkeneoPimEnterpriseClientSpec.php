@@ -21,6 +21,7 @@ use Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClient;
 use Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
@@ -48,7 +49,8 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
         ProductDraftApiInterface $productDraftApi,
         AssetApiInterface $assetApi,
         AssetCategoryApiInterface $assetCategoryApi,
-        AssetTagApiInterface $assetTagApi
+        AssetTagApiInterface $assetTagApi,
+        AssetReferenceFileApiInterface $assetReferenceFileApi
     ) {
         $this->beConstructedWith(
             $authentication,
@@ -70,7 +72,8 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
             $productDraftApi,
             $assetApi,
             $assetCategoryApi,
-            $assetTagApi
+            $assetTagApi,
+            $assetReferenceFileApi
         );
     }
 
@@ -88,5 +91,25 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
     function it_gets_draft_product_api($productDraftApi)
     {
         $this->getProductDraftApi()->shouldReturn($productDraftApi);
+    }
+
+    function it_gets_asset_api($assetApi)
+    {
+        $this->getAssetApi()->shouldReturn($assetApi);
+    }
+
+    function it_gets_asset_category_api($assetCategoryApi)
+    {
+        $this->getAssetCategoryApi()->shouldReturn($assetCategoryApi);
+    }
+
+    function it_gets_asset_tags_api($assetTagApi)
+    {
+        $this->getAssetTagApi()->shouldReturn($assetTagApi);
+    }
+
+    function it_gets_asset_reference_file_api($assetReferenceFileApi)
+    {
+        $this->getAssetReferenceFileApi()->shouldReturn($assetReferenceFileApi);
     }
 }
