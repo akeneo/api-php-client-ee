@@ -4,6 +4,8 @@ namespace Akeneo\PimEnterprise\ApiClient\Api;
 
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
 use Akeneo\Pim\ApiClient\FileSystem\FileSystemInterface;
+use Akeneo\PimEnterprise\ApiClient\Exception\UploadAssetReferenceFileErrorException;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * API implementation to manage asset reference files.
@@ -94,7 +96,25 @@ class AssetReferenceFileApi implements AssetReferenceFileApiInterface
         ]];
 
         $response = $this->resourceClient->createMultipartResource(static::ASSET_REFERENCE_FILE_URI, [$assetCode, $localeCode], $requestParts);
+        $this->handleUploadErrors($response);
 
         return $response->getStatusCode();
+    }
+
+    /**
+     * @param ResponseInterface $response
+     *
+     * @throws UploadAssetReferenceFileErrorException if an upload returns any errors.
+     */
+    private function handleUploadErrors(ResponseInterface $response)
+    {
+        $decodedResponse = json_decode($response->getBody()->getContents(), true);
+        $errors = isset($decodedResponse['errors']) ? $decodedResponse['errors'] : null;
+
+        if (is_array($errors) && !empty($errors)) {
+            $message = isset($decodedResponse['message']) ? $decodedResponse['message'] : 'Errors occurred during the upload.';
+
+            throw new UploadAssetReferenceFileErrorException($message, $errors);
+        }
     }
 }

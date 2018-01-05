@@ -26,9 +26,9 @@ interface AssetReferenceFileApiInterface
 
     /**
      * Available since Akeneo PIM 2.1.
-     * Gets an asset reference file by its asset code and local code for a not localizable asset.
+     * Gets an asset reference file by its asset code for a not localizable asset.
      *
-     * @param string $assetCode  code of the asset
+     * @param string $assetCode code of the asset
      *
      * @throws HttpException If the request failed
      *
@@ -53,7 +53,7 @@ interface AssetReferenceFileApiInterface
 
     /**
      * Available since Akeneo PIM 2.1.
-     * Uploads a new reference file for a given not localizable asset and locale.
+     * Uploads a new reference file for a given not localizable asset.
      * It will also automatically generate all the variation files corresponding to this reference file.
      *
      * @param string          $assetCode     code of the asset

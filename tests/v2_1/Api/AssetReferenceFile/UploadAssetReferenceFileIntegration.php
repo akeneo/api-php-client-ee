@@ -103,6 +103,30 @@ class UploadAssetReferenceFileIntegration extends ApiTestCase
     }
 
     /**
+     * @expectedException \Akeneo\PimEnterprise\ApiClient\Exception\UploadAssetReferenceFileErrorException
+     */
+    public function testUploadAnImageTooSmallToGenerateVariations()
+    {
+        $filePath = realpath(__DIR__ . '/../../../fixtures/unicorn.png');
+
+        $api = $this->createClient()->getAssetReferenceFileApi();
+
+        $api->uploadForNotLocalizableAsset($filePath, 'ziggy_certif');
+    }
+
+    /**
+     * @expectedException \Akeneo\PimEnterprise\ApiClient\Exception\UploadAssetReferenceFileErrorException
+     */
+    public function testUploadAFileThatCannotBeTransformedForTheVariations()
+    {
+        $filePath = realpath(__DIR__ . '/../../../fixtures/akeneo-logo.pdf');
+
+        $api = $this->createClient()->getAssetReferenceFileApi();
+
+        $api->uploadForNotLocalizableAsset($filePath, 'ziggy_certif');
+    }
+
+    /**
      * @param array $assetReferenceFile
      *
      * @return array
