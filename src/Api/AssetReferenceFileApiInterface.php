@@ -2,6 +2,8 @@
 
 namespace Akeneo\PimEnterprise\ApiClient\Api;
 
+use Psr\Http\Message\StreamInterface;
+
 /**
  * API to manage asset reference files.
  *
@@ -64,4 +66,29 @@ interface AssetReferenceFileApiInterface
      * @return int Status code 201 indicating that the asset reference file has been well uploaded
      */
     public function uploadForNotLocalizableAsset($referenceFile, $assetCode);
+
+    /**
+     * Available since Akeneo PIM 2.1.
+     * Download an asset reference file by its asset code and local code for a localizable asset.
+     *
+     * @param string $assetCode  code of the asset
+     * @param string $localeCode code of the locale
+     *
+     * @throws HttpException If the request failed
+     *
+     * @return StreamInterface
+     */
+    public function downloadFromLocalizableAsset($assetCode, $localeCode);
+
+    /**
+     * Available since Akeneo PIM 2.1.
+     * Download an asset reference file by its asset code for a not localizable asset.
+     *
+     * @param string $assetCode code of the asset
+     *
+     * @throws HttpException If the request failed
+     *
+     * @return StreamInterface
+     */
+    public function downloadFromNotLocalizableAsset($assetCode);
 }

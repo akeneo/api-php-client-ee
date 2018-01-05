@@ -17,6 +17,8 @@ use Psr\Http\Message\ResponseInterface;
 class AssetReferenceFileApi implements AssetReferenceFileApiInterface
 {
     const ASSET_REFERENCE_FILE_URI = '/api/rest/v1/assets/%s/reference-files/%s';
+    const ASSET_REFERENCE_FILE_DOWNLOAD_URI = '/api/rest/v1/assets/%s/reference-files/%s/download';
+    const NOT_LOCALIZABLE_ASSET_LOCALE_CODE = 'no-locale';
 
     /** @var ResourceClientInterface */
     private $resourceClient;
@@ -47,7 +49,7 @@ class AssetReferenceFileApi implements AssetReferenceFileApiInterface
      */
     public function getFromNotLocalizableAsset($assetCode)
     {
-        return $this->get($assetCode, 'no-locale');
+        return $this->get($assetCode, static::NOT_LOCALIZABLE_ASSET_LOCALE_CODE);
     }
 
     /**
@@ -74,7 +76,23 @@ class AssetReferenceFileApi implements AssetReferenceFileApiInterface
      */
     public function uploadForNotLocalizableAsset($referenceFile, $assetCode)
     {
-        return $this->upload($referenceFile, $assetCode, 'no-locale');
+        return $this->upload($referenceFile, $assetCode, static::NOT_LOCALIZABLE_ASSET_LOCALE_CODE);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function downloadFromLocalizableAsset($assetCode, $localeCode)
+    {
+        return $this->resourceClient->getStreamedResource(static::ASSET_REFERENCE_FILE_DOWNLOAD_URI, [$assetCode, $localeCode]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function downloadFromNotLocalizableAsset($assetCode)
+    {
+        return $this->resourceClient->getStreamedResource(static::ASSET_REFERENCE_FILE_DOWNLOAD_URI, [$assetCode, static::NOT_LOCALIZABLE_ASSET_LOCALE_CODE]);
     }
 
     /**
