@@ -23,6 +23,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
 use PhpSpec\ObjectBehavior;
@@ -50,7 +51,8 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
         AssetApiInterface $assetApi,
         AssetCategoryApiInterface $assetCategoryApi,
         AssetTagApiInterface $assetTagApi,
-        AssetReferenceFileApiInterface $assetReferenceFileApi
+        AssetReferenceFileApiInterface $assetReferenceFileApi,
+        AssetVariationFileApiInterface $assetVariationFileApi
     ) {
         $this->beConstructedWith(
             $authentication,
@@ -73,7 +75,8 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
             $assetApi,
             $assetCategoryApi,
             $assetTagApi,
-            $assetReferenceFileApi
+            $assetReferenceFileApi,
+            $assetVariationFileApi
         );
     }
 
