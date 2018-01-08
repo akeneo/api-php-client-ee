@@ -2,6 +2,8 @@
 
 namespace Akeneo\PimEnterprise\ApiClient\Api;
 
+use Psr\Http\Message\StreamInterface;
+
 /**
  * API to manage asset variation files.
  *
@@ -58,4 +60,27 @@ interface AssetVariationFileApiInterface
      * @return int Status code 201 indicating that the asset variation file has been well uploaded
      */
     public function uploadForNotLocalizableAsset($variationFile, $assetCode, $channelCode);
+
+    /**
+     * Available since Akeneo PIM 2.1.
+     * Downloads an asset variation file by its asset code, channel code and local code for a localizable asset.
+     *
+     * @param string $assetCode   code of the asset
+     * @param string $channelCode code of the channel
+     * @param string $localeCode  code of the locale
+     *
+     * @return StreamInterface
+     */
+    public function downloadFromLocalizableAsset($assetCode, $channelCode, $localeCode);
+
+    /**
+     * Available since Akeneo PIM 2.1.
+     * Downloads an asset variation file by its asset code and channel code for a not localizable asset.
+     *
+     * @param string $assetCode   code of the asset
+     * @param string $channelCode code of the channel
+     *
+     * @return StreamInterface
+     */
+    public function downloadFromNotLocalizableAsset($assetCode, $channelCode);
 }
