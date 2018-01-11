@@ -5,6 +5,7 @@ namespace Akeneo\PimEnterprise\ApiClient;
 use Akeneo\Pim\ApiClient\AkeneoPimClientInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
@@ -52,4 +53,11 @@ interface AkeneoPimEnterpriseClientInterface extends AkeneoPimClientInterface
      * @return AssetTagApiInterface
      */
     public function getAssetTagApi();
+
+    /**
+     * Gets the asset reference file API.
+     *
+     * @return AssetReferenceFileApiInterface
+     */
+    public function getAssetReferenceFileApi();
 }
