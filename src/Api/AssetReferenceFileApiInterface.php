@@ -48,6 +48,7 @@ interface AssetReferenceFileApiInterface
      * @param string|resource $referenceFile file path or resource of the reference file to upload
      *
      * @throws HttpException If the request failed
+     * @throws UploadAssetReferenceFileErrorException If the upload returned any errors
      *
      * @return int Status code 201 indicating that the asset reference file has been well uploaded
      */
@@ -62,6 +63,7 @@ interface AssetReferenceFileApiInterface
      * @param string|resource $referenceFile file path or resource of the reference file to upload
      *
      * @throws HttpException If the request failed
+     * @throws UploadAssetReferenceFileErrorException If the upload returned any errors
      *
      * @return int Status code 201 indicating that the asset reference file has been well uploaded
      */
