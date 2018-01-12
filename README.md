@@ -1,4 +1,4 @@
-# PHP Akeneo PIM API
+# PHP Akeneo PIM API test
 
 A simple PHP client to use the [Akeneo PIM API](https://api.akeneo.com/) with the Enterprise Edition.
 
