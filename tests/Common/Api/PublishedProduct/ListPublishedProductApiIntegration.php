@@ -367,6 +367,9 @@ class ListPublishedProductApiIntegration extends AbstractPublishedProductApiTest
         $this->assertSameContent($expectedProduct, $actualProduct);
     }
 
+    /**
+     * @group unstable
+     */
     public function testAllWithSelectedAttributes()
     {
         $baseUri = $this->getConfiguration()['pim']['base_uri'];
@@ -418,6 +421,9 @@ class ListPublishedProductApiIntegration extends AbstractPublishedProductApiTest
         $this->assertSameContent($expectedProduct, $actualProduct);
     }
 
+    /**
+     * @group unstable
+     */
     public function testAllWithSelectedScope()
     {
         $baseUri = $this->getConfiguration()['pim']['base_uri'];
