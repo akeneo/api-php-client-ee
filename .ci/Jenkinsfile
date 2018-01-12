@@ -1,1 +1,23 @@
+pipeline {
+  agent {
+    kubernetes {
+      label 'continuous-integration'
+      containerTemplate {
+        name 'python'
+        image 'python:2.7'
+        ttyEnabled true
+        command 'cat'
+      }
+    }
+  }
 
+  stages {
+    stage('Build') {
+      steps {
+        container('python') {
+          sh "python --help"
+        }
+      }
+    }
+  }
+}
