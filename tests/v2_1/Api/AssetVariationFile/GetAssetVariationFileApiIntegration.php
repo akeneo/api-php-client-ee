@@ -19,6 +19,7 @@ class GetAssetVariationFileApiIntegration extends ApiTestCase
 
         $expectedAssetVariationFile = [
             'code'   => '5/c/8/3/5c835e7785cb174d8e7e39d7ee63be559f233be0_ziggy_ecommerce.jpg',
+            'scope'  => 'ecommerce',
             'locale' => 'en_US',
             '_link'  => [
                 'download' => [
@@ -42,6 +43,7 @@ class GetAssetVariationFileApiIntegration extends ApiTestCase
 
         $expectedAssetVariationFile = [
             'code'   => '2/9/b/f/29bfa18ced500c5fca2072dab978737576ca47ca_ziggy_certification_ecommerce.jpg',
+            'scope'  => 'ecommerce',
             'locale' => null,
             '_link'  => [
                 'download' => [

@@ -17,7 +17,7 @@ class UpsertListAssetApiIntegration extends ApiTestCase
             [
                 'code' => 'unicorn',
                 'description' => 'Unicorn asset',
-                'localized' => false,
+                'localizable' => false,
                 'end_of_use' => null
             ]
         ]);

@@ -21,7 +21,7 @@ class GetAssetApiIntegration extends ApiTestCase
         $asset = $api->get('akeneo_logo');
         $expectedAsset = [
             'code' => 'akeneo_logo',
-            'localized' => false,
+            'localizable' => false,
             'description' => 'Akeneo logo',
             'end_of_use' => null,
             'tags' => [],
