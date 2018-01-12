@@ -1,4 +1,5 @@
-agent {
+pipeline {
+  agent {
     kubernetes {
       label 'continuous-integration'
       containerTemplate {
@@ -19,3 +20,4 @@ agent {
       }
     }
   }
+}
