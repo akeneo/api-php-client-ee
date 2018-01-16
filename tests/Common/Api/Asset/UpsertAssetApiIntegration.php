@@ -21,7 +21,7 @@ class UpsertAssetApiIntegration extends ApiTestCase
         $asset = $api->get('akeneo_logo');
         $this->assertSameContent([
             'code' => 'akeneo_logo',
-            'localized' => false,
+            'localizable' => false,
             'description' => 'Akeneo logo updated',
             'end_of_use' => null,
             'tags' => [],
@@ -36,7 +36,7 @@ class UpsertAssetApiIntegration extends ApiTestCase
         $api = $this->createClient()->getAssetApi();
 
         $responseCode = $api->upsert('unicorn', [
-            'localized' => false,
+            'localizable' => false,
             'description' => 'The wonderful unicorn',
             'end_of_use' => '2042-11-21',
             'tags' => [],
@@ -50,7 +50,7 @@ class UpsertAssetApiIntegration extends ApiTestCase
         $asset = $api->get('unicorn');
         $this->assertSameContent([
             'code' => 'unicorn',
-            'localized' => false,
+            'localizable' => false,
             'description' => 'The wonderful unicorn',
             'end_of_use' => '2042-11-21T00:00:00+00:00',
             'tags' => [],
@@ -80,7 +80,7 @@ class UpsertAssetApiIntegration extends ApiTestCase
     {
         $api = $this->createClient()->getAssetApi();
         $api->upsert('invalid code !', [
-            'localized' => false,
+            'localizable' => false,
             'description' => 'Invalid code',
             'end_of_use' => '2042-11-21',
             'tags' => [],

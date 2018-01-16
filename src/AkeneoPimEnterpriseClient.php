@@ -22,6 +22,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
 
@@ -52,6 +53,9 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /** @var AssetReferenceFileApiInterface */
     private $assetReferenceFileApi;
 
+    /** @var AssetVariationFileApiInterface */
+    private $assetVariationFileApi;
+
     /**
      * @param Authentication                 $authentication
      * @param ProductApiInterface            $productApi
@@ -74,6 +78,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
      * @param AssetCategoryApiInterface      $assetCategoryApi
      * @param AssetTagApiInterface           $assetTagApi
      * @param AssetReferenceFileApiInterface $assetReferenceFileApi
+     * @param AssetVariationFileApiInterface $assetVariationFileApi
      */
     public function __construct(
         Authentication $authentication,
@@ -96,7 +101,8 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         AssetApiInterface $assetApi,
         AssetCategoryApiInterface $assetCategoryApi,
         AssetTagApiInterface $assetTagApi,
-        AssetReferenceFileApiInterface $assetReferenceFileApi
+        AssetReferenceFileApiInterface $assetReferenceFileApi,
+        AssetVariationFileApiInterface $assetVariationFileApi
     ) {
         parent::__construct(
             $authentication,
@@ -122,6 +128,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         $this->assetCategoryApi = $assetCategoryApi;
         $this->assetTagApi = $assetTagApi;
         $this->assetReferenceFileApi = $assetReferenceFileApi;
+        $this->assetVariationFileApi = $assetVariationFileApi;
     }
 
     /**
@@ -170,5 +177,13 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     public function getAssetReferenceFileApi()
     {
         return $this->assetReferenceFileApi;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAssetVariationFileApi()
+    {
+        return $this->assetVariationFileApi;
     }
 }

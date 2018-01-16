@@ -11,7 +11,7 @@ class CreateAssetApiIntegration extends ApiTestCase
     {
         $api = $this->createClient()->getAssetApi();
         $responseCode = $api->create('unicorn', [
-            'localized' => false,
+            'localizable' => false,
             'description' => 'The wonderful unicorn',
             'end_of_use' => '2042-11-21',
             'tags' => [],
@@ -25,7 +25,7 @@ class CreateAssetApiIntegration extends ApiTestCase
         $asset = $api->get('unicorn');
         $this->assertSameContent([
             'code' => 'unicorn',
-            'localized' => false,
+            'localizable' => false,
             'description' => 'The wonderful unicorn',
             'end_of_use' => '2042-11-21T00:00:00+00:00',
             'tags' => [],
@@ -41,7 +41,7 @@ class CreateAssetApiIntegration extends ApiTestCase
 
         try {
             $api->create('akeneo_logo', [
-                'localized' => false,
+                'localizable' => false,
                 'description' => 'Akeneo logo already exists',
                 'end_of_use' => null,
                 'tags' => [],
@@ -67,7 +67,7 @@ class CreateAssetApiIntegration extends ApiTestCase
         $api = $this->createClient()->getAssetApi();
 
         $api->create('unicorn', [
-            'localized' => false,
+            'localizable' => false,
             'description' => 'The wonderful unicorn',
             'end_of_use' => '2042-11-21',
             'tags' => [],
