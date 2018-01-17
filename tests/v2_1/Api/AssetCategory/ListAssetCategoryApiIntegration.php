@@ -1,6 +1,6 @@
 <?php
 
-namespace Akeneo\PimEnterprise\ApiClient\tests\Common\Api\AssetCategory;
+namespace Akeneo\PimEnterprise\ApiClient\tests\v2_1\Api\AssetCategory;
 
 use Akeneo\Pim\ApiClient\Pagination\PageInterface;
 use Akeneo\Pim\ApiClient\Pagination\ResourceCursorInterface;

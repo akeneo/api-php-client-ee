@@ -10,6 +10,8 @@ use Akeneo\Pim\ApiClient\Search\SearchBuilder;
  * @author    Olivier Soulet <olivier.soulet@akeneo.com>
  * @copyright 2017 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ *
+ * @group unstable
  */
 class ListPublishedProductApiIntegration extends AbstractPublishedProductApiTestCase
 {
@@ -367,9 +369,6 @@ class ListPublishedProductApiIntegration extends AbstractPublishedProductApiTest
         $this->assertSameContent($expectedProduct, $actualProduct);
     }
 
-    /**
-     * @group unstable
-     */
     public function testAllWithSelectedAttributes()
     {
         $baseUri = $this->getConfiguration()['pim']['base_uri'];
@@ -421,9 +420,6 @@ class ListPublishedProductApiIntegration extends AbstractPublishedProductApiTest
         $this->assertSameContent($expectedProduct, $actualProduct);
     }
 
-    /**
-     * @group unstable
-     */
     public function testAllWithSelectedScope()
     {
         $baseUri = $this->getConfiguration()['pim']['base_uri'];

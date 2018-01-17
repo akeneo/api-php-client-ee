@@ -2,7 +2,6 @@
 
 namespace Akeneo\PimEnterprise\ApiClient\tests\Common\Api\ProductDrafts;
 
-use Akeneo\Pim\ApiClient\tests\CommandLauncher;
 use Akeneo\Pim\ApiClient\tests\ValuesSanitizer;
 use Akeneo\PimEnterprise\ApiClient\tests\Common\Api\ApiTestCase;
 

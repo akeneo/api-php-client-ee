@@ -1,6 +1,6 @@
 <?php
 
-namespace Akeneo\PimEnterprise\ApiClient\tests\Common\Api\AssetTag;
+namespace Akeneo\PimEnterprise\ApiClient\tests\v2_1\Api\AssetTag;
 
 use Akeneo\Pim\ApiClient\Pagination\PageInterface;
 use Akeneo\Pim\ApiClient\Pagination\ResourceCursorInterface;

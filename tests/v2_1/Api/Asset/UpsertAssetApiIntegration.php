@@ -1,6 +1,6 @@
 <?php
 
-namespace Akeneo\PimEnterprise\ApiClient\tests\Common\Api\Asset;
+namespace Akeneo\PimEnterprise\ApiClient\tests\v2_1\Api\Asset;
 
 use Akeneo\PimEnterprise\ApiClient\tests\Common\Api\ApiTestCase;
 
