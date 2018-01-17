@@ -5,7 +5,7 @@ import groovy.transform.Field
 
 String launchUnitTests = "yes"
 String launchIntegrationTests = "yes"
-String[] pimVersions = ["2.0"]
+String[] pimVersions = ["2.0", "2.1"]
 String[] supportedPhpVersions = ["5.6", "7.0", "7.1"]
 @Field def String verboseOutputs = "yes"
 @Field def String dotsPerLine = "50"
@@ -66,6 +66,7 @@ try {
 
                 switch (currentPimVersion) {
                     case "2.0":
+                    case "2.1":
                         checkouts["pim_enterprise_dev_${currentPimVersion}"] = {buildPim(currentPimVersion, "7.1")}
                         break
                     default:
@@ -177,9 +178,7 @@ void buildPim(String pimVersion, String phpVersion) {
                 sh "php -d memory_limit=-1 /usr/local/bin/composer --ansi require \"akeneo/catalogs\":\"dev-master\" --optimize-autoloader --no-interaction --no-progress --prefer-dist"
                 sh "cp app/config/parameters.yml.dist app/config/parameters.yml"
                 sh "sed -i \"s#database_host: .*#database_host: 127.0.0.1#g\" app/config/parameters.yml"
-                if ("2.0" == pimVersion) {
-                    sh "sed -i \"s#index_hosts: .*#index_hosts: 'elastic:changeme@127.0.0.1:9200'#g\" app/config/parameters.yml"
-                }
+                sh "sed -i \"s#index_hosts: .*#index_hosts: 'elastic:changeme@127.0.0.1:9200'#g\" app/config/parameters.yml"
                 sh "sed -i \"s#installer_data: .*#installer_data: '%kernel.root_dir%/../vendor/akeneo/catalogs/${pimVersion}/enterprise/api/fixtures'#\" app/config/pim_parameters.yml"
             }
 
@@ -283,6 +282,7 @@ void runPhpSpecTest(String phpVersion, String client, String psrImplem) {
 void runIntegrationTest(String phpVersion, String client, String psrImplem, String pimVersion) {
     switch (pimVersion) {
         case "2.0":
+        case "2.1":
             runPim2IntegrationTest(phpVersion, client, psrImplem, pimVersion)
             break
         default:
@@ -317,6 +317,9 @@ def runPim2IntegrationTest(String phpVersion, String client, String psrImplem, S
         def files = []
 
         // Find and store PHP test integration files to launch them in parallels
+        if ("2.1" == pimVersion) {
+            files += sh (returnStdout: true, script: 'find /home/jenkins/php-api-client-ee/tests/v2_1/Api -name "*Integration.php"').tokenize('\n')
+        }
         files += sh (returnStdout: true, script: 'find /home/jenkins/php-api-client-ee/tests/Common/Api -name "*Integration.php"').tokenize('\n')
         for (file in files) {
             def commands = [
@@ -499,6 +502,7 @@ def queue(String phpApiImageName, String pimImageName, String pimVersion, String
     // Define Kubernetes pod template based on PIM version
     switch (pimVersion) {
         case "2.0":
+        case "2.1":
             k8s_template = "pim_20_ee.yaml"
             break
         default:
