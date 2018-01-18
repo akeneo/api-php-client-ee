@@ -5,6 +5,9 @@ namespace Akeneo\PimEnterprise\ApiClient\tests\v2_1\Api\AssetReferenceFile;
 use Akeneo\Pim\ApiClient\tests\MediaSanitizer;
 use Akeneo\PimEnterprise\ApiClient\tests\Common\Api\ApiTestCase;
 
+/**
+ * @group unstable
+ */
 class UploadAssetReferenceFileIntegration extends ApiTestCase
 {
     public function testUploadForLocalizableAsset()

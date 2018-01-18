@@ -1,56 +1,61 @@
 <?php
 
-namespace Akeneo\PimEnterprise\ApiClient\tests\Common\Api\Asset;
+namespace Akeneo\PimEnterprise\ApiClient\tests\v2_1\Api\AssetCategory;
 
 use Akeneo\PimEnterprise\ApiClient\tests\Common\Api\ApiTestCase;
 
-class UpsertListAssetApiIntegration extends ApiTestCase
+class UpsertListAssetCategoryApiIntegration extends ApiTestCase
 {
     public function testUpsertListSuccessful()
     {
-        $api = $this->createClient()->getAssetApi();
-        $response  = $api->upsertList([
+        $api = $this->createClient()->getAssetCategoryApi();
+        $response = $api->upsertList([
             [
-                'code' => 'akeneo_logo',
-                'description' => 'Akeneo logo updated',
+                'code' => 'asset_main_catalog',
+                'labels' => [
+                    'en_US' => 'Nullam ullamcorper',
+                ],
             ],
             [
-                'code' => 'unicorn',
-                'description' => 'Unicorn asset',
-                'localizable' => false,
-                'end_of_use' => null
+                'code' => 'asset_cold',
+                'parent' => 'asset_winter',
+                'labels' => [
+                    'en_US' => 'Aenean ultricies elit',
+                ],
             ]
         ]);
 
         $this->assertInstanceOf('\Iterator', $response);
+
         $responseLines = iterator_to_array($response);
         $this->assertCount(2, $responseLines);
 
         $this->assertSame([
             'line'        => 1,
-            'code'        => 'akeneo_logo',
+            'code'        => 'asset_main_catalog',
             'status_code' => 204,
         ], $responseLines[1]);
 
         $this->assertSame([
             'line'        => 2,
-            'code'        => 'unicorn',
+            'code'        => 'asset_cold',
             'status_code' => 201,
         ], $responseLines[2]);
     }
 
     public function testUpsertListFailed()
     {
-        $api = $this->createClient()->getAssetApi();
-
-        $response  = $api->upsertList([
+        $api = $this->createClient()->getChannelApi();
+        $response = $api->upsertList([
             [
-                'description' => 'Upsert without code',
-                'categories' => [],
+                'labels' => [
+                    'en_US' => 'Nullam ullamcorper',
+                ],
             ]
         ]);
 
         $this->assertInstanceOf('\Iterator', $response);
+
         $responseLines = iterator_to_array($response);
         $this->assertCount(1, $responseLines);
 
