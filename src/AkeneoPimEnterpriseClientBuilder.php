@@ -72,4 +72,21 @@ class AkeneoPimEnterpriseClientBuilder extends AkeneoPimClientBuilder
 
         return $client;
     }
+
+    /**
+     * Build the Akeneo PIM client authenticated by user name and password.
+     *
+     * @param string $clientId Client id to use for the authentication
+     * @param string $secret   Secret associated to the client
+     * @param string $username Username to use for the authentication
+     * @param string $password Password associated to the username
+     *
+     * @return AkeneoPimEnterpriseClientInterface
+     */
+    public function buildAuthenticatedByPassword($clientId, $secret, $username, $password)
+    {
+        $authentication = Authentication::fromPassword($clientId, $secret, $username, $password);
+
+        return $this->buildAuthenticatedClient($authentication);
+    }
 }
