@@ -2,8 +2,13 @@
 
 A simple PHP client to use the [Akeneo PIM API](https://api.akeneo.com/) with the Enterprise Edition.
 
-- The version v1.0 is compatible with the PIM 2.0.
-- The version v2.0 is compatible with the PIM 2.1.
+Matrix compatibility:
+
+| API PHP Client EE version | PIM EE version(s) | CI status                                                                                                                       |
+|---------------------------|----------------|------------------------------------------------------------------------------------------------------------------------------------|
+| v1.0                      | v2.0           | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=1.0)](https://travis-ci.org/akeneo/api-php-client-ee)   |
+| v2.0                      | v2.1 - v2.2    | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=2.0)](https://travis-ci.org/akeneo/api-php-client-ee)   |
+| master                    | -              | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=master)](https://travis-ci.org/akeneo/api-php-client-ee)|
 
 ## Requirements
 
