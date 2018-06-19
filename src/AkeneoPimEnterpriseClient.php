@@ -24,6 +24,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\ProductModelDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
 
 /**
@@ -36,10 +37,13 @@ use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
 class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnterpriseClientInterface
 {
     /** @var PublishedProductApiInterface */
-    protected $publishedProductApi;
+    private $publishedProductApi;
+
+    /** @var ProductModelDraftApiInterface */
+    private $productModelDraftApi;
 
     /** @var ProductDraftApiInterface */
-    protected $productDraftApi;
+    private $productDraftApi;
 
     /** @var AssetApiInterface */
     private $assetApi;
@@ -72,6 +76,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
      * @param AssociationTypeApiInterface    $associationTypeApi
      * @param FamilyVariantApiInterface      $familyVariantApi
      * @param ProductModelApiInterface       $productModelApi
+     * @param ProductModelDraftApiInterface  $productModelDraftApi
      * @param PublishedProductApiInterface   $publishedProductApi
      * @param ProductDraftApiInterface       $productDraftApi
      * @param AssetApiInterface              $assetApi
@@ -96,6 +101,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         AssociationTypeApiInterface $associationTypeApi,
         FamilyVariantApiInterface $familyVariantApi,
         ProductModelApiInterface $productModelApi,
+        ProductModelDraftApiInterface $productModelDraftApi,
         PublishedProductApiInterface $publishedProductApi,
         ProductDraftApiInterface $productDraftApi,
         AssetApiInterface $assetApi,
@@ -124,6 +130,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
 
         $this->publishedProductApi = $publishedProductApi;
         $this->productDraftApi = $productDraftApi;
+        $this->productModelDraftApi = $productModelDraftApi;
         $this->assetApi = $assetApi;
         $this->assetCategoryApi = $assetCategoryApi;
         $this->assetTagApi = $assetTagApi;
@@ -137,6 +144,14 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     public function getPublishedProductApi()
     {
         return $this->publishedProductApi;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getProductModelDraftApi()
+    {
+        return $this->productModelDraftApi;
     }
 
     /**
