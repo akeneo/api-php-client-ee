@@ -21,7 +21,7 @@
     }
   },
   "require": {
-    "akeneo/api-php-client": "2.0.x-dev@dev"
+    "akeneo/api-php-client": "dev-master"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^v2.3",
@@ -32,11 +32,5 @@
   },
   "config": {
     "bin-dir": "bin"
-  },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "1.1.x-dev",
-      "dev-1.0": "1.0.x-dev"
-    }
   }
 }
