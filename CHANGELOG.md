@@ -1,3 +1,14 @@
+# 3.0.0 (2018-06-26)
+
+## Improvements
+
+- API-602: Get a draft of product model and submit it for approval
+
+## BC breaks
+
+- Add method `Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientInterface::getProductModelDraftApi`
+- Change the constructor of `Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClient` to add `Akeneo\PimEnterprise\ApiClient\Api\ProductModelDraftApiInterface`
+
 # 2.0.1 (2018-05-03)
 
 # 2.0.0 (2018-02-19)
