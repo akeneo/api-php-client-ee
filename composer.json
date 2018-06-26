@@ -21,7 +21,7 @@
     }
   },
   "require": {
-    "akeneo/api-php-client": "v3.0.0"
+    "akeneo/api-php-client": "dev-3.0"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^v2.3",
