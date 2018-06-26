@@ -25,6 +25,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\ProductModelDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
 use PhpSpec\ObjectBehavior;
 
@@ -46,6 +47,7 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
         AssociationTypeApiInterface $associationTypeApi,
         FamilyVariantApiInterface $familyVariantApi,
         ProductModelApiInterface $productModelApi,
+        ProductModelDraftApiInterface $productModelDraftApi,
         PublishedProductApiInterface $publishedProductApi,
         ProductDraftApiInterface $productDraftApi,
         AssetApiInterface $assetApi,
@@ -70,6 +72,7 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
             $associationTypeApi,
             $familyVariantApi,
             $productModelApi,
+            $productModelDraftApi,
             $publishedProductApi,
             $productDraftApi,
             $assetApi,
@@ -94,6 +97,11 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
     function it_gets_draft_product_api($productDraftApi)
     {
         $this->getProductDraftApi()->shouldReturn($productDraftApi);
+    }
+
+    function it_gets_draft_product_model_api($productModelDraftApi)
+    {
+        $this->getProductModelDraftApi()->shouldReturn($productModelDraftApi);
     }
 
     function it_gets_asset_api($assetApi)

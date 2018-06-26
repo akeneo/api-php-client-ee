@@ -28,6 +28,13 @@ interface AkeneoPimEnterpriseClientInterface extends AkeneoPimClientInterface
     public function getPublishedProductApi();
 
     /**
+     * Gets the product model draft API.
+     *
+     * @return ProductDraftApiInterface
+     */
+    public function getProductModelDraftApi();
+
+    /**
      * Gets the product draft API.
      *
      * @return ProductDraftApiInterface
