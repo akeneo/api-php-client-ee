@@ -26,6 +26,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductModelDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApiInterface;
 
 /**
  * This class is the implementation of the client to use the Akeneo PIM ENTERPRISE API.
@@ -60,30 +61,34 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /** @var AssetVariationFileApiInterface */
     private $assetVariationFileApi;
 
+    /** @var ReferenceEntityRecordApiInterface */
+    private $referenceEntityRecordApi;
+
     /**
-     * @param Authentication                 $authentication
-     * @param ProductApiInterface            $productApi
-     * @param CategoryApiInterface           $categoryApi
-     * @param AttributeApiInterface          $attributeApi
-     * @param AttributeOptionApiInterface    $attributeOptionApi
-     * @param AttributeGroupApiInterface     $attributeGroupApi
-     * @param FamilyApiInterface             $familyApi
-     * @param MediaFileApiInterface          $productMediaFileApi
-     * @param LocaleApiInterface             $localeApi
-     * @param ChannelApiInterface            $channelApi
-     * @param CurrencyApiInterface           $currencyApi
-     * @param MeasureFamilyApiInterface      $measureFamilyApi
-     * @param AssociationTypeApiInterface    $associationTypeApi
-     * @param FamilyVariantApiInterface      $familyVariantApi
-     * @param ProductModelApiInterface       $productModelApi
-     * @param ProductModelDraftApiInterface  $productModelDraftApi
-     * @param PublishedProductApiInterface   $publishedProductApi
-     * @param ProductDraftApiInterface       $productDraftApi
-     * @param AssetApiInterface              $assetApi
-     * @param AssetCategoryApiInterface      $assetCategoryApi
-     * @param AssetTagApiInterface           $assetTagApi
-     * @param AssetReferenceFileApiInterface $assetReferenceFileApi
-     * @param AssetVariationFileApiInterface $assetVariationFileApi
+     * @param Authentication                    $authentication
+     * @param ProductApiInterface               $productApi
+     * @param CategoryApiInterface              $categoryApi
+     * @param AttributeApiInterface             $attributeApi
+     * @param AttributeOptionApiInterface       $attributeOptionApi
+     * @param AttributeGroupApiInterface        $attributeGroupApi
+     * @param FamilyApiInterface                $familyApi
+     * @param MediaFileApiInterface             $productMediaFileApi
+     * @param LocaleApiInterface                $localeApi
+     * @param ChannelApiInterface               $channelApi
+     * @param CurrencyApiInterface              $currencyApi
+     * @param MeasureFamilyApiInterface         $measureFamilyApi
+     * @param AssociationTypeApiInterface       $associationTypeApi
+     * @param FamilyVariantApiInterface         $familyVariantApi
+     * @param ProductModelApiInterface          $productModelApi
+     * @param ProductModelDraftApiInterface     $productModelDraftApi
+     * @param PublishedProductApiInterface      $publishedProductApi
+     * @param ProductDraftApiInterface          $productDraftApi
+     * @param AssetApiInterface                 $assetApi
+     * @param AssetCategoryApiInterface         $assetCategoryApi
+     * @param AssetTagApiInterface              $assetTagApi
+     * @param AssetReferenceFileApiInterface    $assetReferenceFileApi
+     * @param AssetVariationFileApiInterface    $assetVariationFileApi
+     * @param ReferenceEntityRecordApiInterface $referenceEntityRecordApi
      */
     public function __construct(
         Authentication $authentication,
@@ -108,7 +113,8 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         AssetCategoryApiInterface $assetCategoryApi,
         AssetTagApiInterface $assetTagApi,
         AssetReferenceFileApiInterface $assetReferenceFileApi,
-        AssetVariationFileApiInterface $assetVariationFileApi
+        AssetVariationFileApiInterface $assetVariationFileApi,
+        ReferenceEntityRecordApiInterface $referenceEntityRecordApi
     ) {
         parent::__construct(
             $authentication,
@@ -136,6 +142,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         $this->assetTagApi = $assetTagApi;
         $this->assetReferenceFileApi = $assetReferenceFileApi;
         $this->assetVariationFileApi = $assetVariationFileApi;
+        $this->referenceEntityRecordApi = $referenceEntityRecordApi;
     }
 
     /**
@@ -200,5 +207,13 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     public function getAssetVariationFileApi()
     {
         return $this->assetVariationFileApi;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getReferenceEntityRecordApi()
+    {
+        return $this->referenceEntityRecordApi;
     }
 }
