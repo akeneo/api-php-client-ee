@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Akeneo\PimEnterprise\ApiClient\Api;
 
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
+use Akeneo\Pim\ApiClient\Pagination\PageFactoryInterface;
+use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactoryInterface;
+use Akeneo\Pim\ApiClient\Pagination\ResourceCursorInterface;
 
 /**
  * @author    Laurent Petard <laurent.petard@akeneo.com>
@@ -14,13 +17,25 @@ use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
 class ReferenceEntityRecordApi implements ReferenceEntityRecordApiInterface
 {
     const REFERENCE_ENTITY_RECORD_URI = 'api/rest/v1/reference-entities/%s/records/%s';
+    const REFERENCE_ENTITY_RECORDS_URI = 'api/rest/v1/reference-entities/%s/records';
 
     /** @var ResourceClientInterface */
     private $resourceClient;
 
-    public function __construct(ResourceClientInterface $resourceClient)
-    {
+    /** @var PageFactoryInterface */
+    private $pageFactory;
+
+    /** @var ResourceCursorFactoryInterface */
+    private $cursorFactory;
+
+    public function __construct(
+        ResourceClientInterface $resourceClient,
+        PageFactoryInterface $pageFactory,
+        ResourceCursorFactoryInterface $cursorFactory
+    ) {
         $this->resourceClient = $resourceClient;
+        $this->pageFactory = $pageFactory;
+        $this->cursorFactory = $cursorFactory;
     }
 
     /**
@@ -29,5 +44,23 @@ class ReferenceEntityRecordApi implements ReferenceEntityRecordApiInterface
     public function get(string $referenceEntityCode, string $recordCode): array
     {
         return $this->resourceClient->getResource(static::REFERENCE_ENTITY_RECORD_URI, [$referenceEntityCode, $recordCode]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function all(string $referenceEntityCode, array $queryParameters = []): ResourceCursorInterface
+    {
+        $data = $this->resourceClient->getResources(
+            static::REFERENCE_ENTITY_RECORDS_URI,
+            [$referenceEntityCode],
+            null,
+            false,
+            $queryParameters
+        );
+
+        $firstPage = $this->pageFactory->createPage($data);
+
+        return $this->cursorFactory->createCursor(null, $firstPage);
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Akeneo\PimEnterprise\ApiClient\Api;
 
 use Akeneo\Pim\ApiClient\Exception\HttpException;
+use Akeneo\Pim\ApiClient\Pagination\ResourceCursorInterface;
 
 /**
  * API to mange the reference entity records.
@@ -26,4 +27,16 @@ interface ReferenceEntityRecordApiInterface
      * @return array
      */
     public function get(string $referenceEntityCode, string $recordCode): array;
+
+    /**
+     * Gets a cursor to iterate over the list of records of a given reference entity.
+     *
+     * @param string $referenceEntityCode Code of the reference entity
+     * @param array  $queryParameters     Additional query parameters to pass in the request
+     *
+     * @throws HttpException If the request failed.
+     *
+     * @return ResourceCursorInterface
+     */
+    public function all(string $referenceEntityCode, array $queryParameters = []): ResourceCursorInterface;
 }
