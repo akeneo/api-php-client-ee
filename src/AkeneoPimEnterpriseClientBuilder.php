@@ -26,6 +26,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductModelDraftApi;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApi;
+use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApi;
 
 /**
  * Builder of the class AkeneoPimEnterpriseClient.
@@ -69,7 +70,8 @@ class AkeneoPimEnterpriseClientBuilder extends AkeneoPimClientBuilder
             new AssetCategoryApi($resourceClient, $pageFactory, $cursorFactory),
             new AssetTagApi($resourceClient, $pageFactory, $cursorFactory),
             new AssetReferenceFileApi($resourceClient, $fileSystem),
-            new AssetVariationFileApi($resourceClient, $fileSystem)
+            new AssetVariationFileApi($resourceClient, $fileSystem),
+            new ReferenceEntityRecordApi($resourceClient)
         );
 
         return $client;
