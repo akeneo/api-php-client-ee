@@ -26,6 +26,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductModelDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityMediaFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApiInterface;
 
 /**
@@ -64,31 +65,35 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /** @var ReferenceEntityRecordApiInterface */
     private $referenceEntityRecordApi;
 
+    /** @var ReferenceEntityMediaFileApiInterface */
+    private $referenceEntityMediaFileApi;
+
     /**
-     * @param Authentication                    $authentication
-     * @param ProductApiInterface               $productApi
-     * @param CategoryApiInterface              $categoryApi
-     * @param AttributeApiInterface             $attributeApi
-     * @param AttributeOptionApiInterface       $attributeOptionApi
-     * @param AttributeGroupApiInterface        $attributeGroupApi
-     * @param FamilyApiInterface                $familyApi
-     * @param MediaFileApiInterface             $productMediaFileApi
-     * @param LocaleApiInterface                $localeApi
-     * @param ChannelApiInterface               $channelApi
-     * @param CurrencyApiInterface              $currencyApi
-     * @param MeasureFamilyApiInterface         $measureFamilyApi
-     * @param AssociationTypeApiInterface       $associationTypeApi
-     * @param FamilyVariantApiInterface         $familyVariantApi
-     * @param ProductModelApiInterface          $productModelApi
-     * @param ProductModelDraftApiInterface     $productModelDraftApi
-     * @param PublishedProductApiInterface      $publishedProductApi
-     * @param ProductDraftApiInterface          $productDraftApi
-     * @param AssetApiInterface                 $assetApi
-     * @param AssetCategoryApiInterface         $assetCategoryApi
-     * @param AssetTagApiInterface              $assetTagApi
-     * @param AssetReferenceFileApiInterface    $assetReferenceFileApi
-     * @param AssetVariationFileApiInterface    $assetVariationFileApi
-     * @param ReferenceEntityRecordApiInterface $referenceEntityRecordApi
+     * @param Authentication                       $authentication
+     * @param ProductApiInterface                  $productApi
+     * @param CategoryApiInterface                 $categoryApi
+     * @param AttributeApiInterface                $attributeApi
+     * @param AttributeOptionApiInterface          $attributeOptionApi
+     * @param AttributeGroupApiInterface           $attributeGroupApi
+     * @param FamilyApiInterface                   $familyApi
+     * @param MediaFileApiInterface                $productMediaFileApi
+     * @param LocaleApiInterface                   $localeApi
+     * @param ChannelApiInterface                  $channelApi
+     * @param CurrencyApiInterface                 $currencyApi
+     * @param MeasureFamilyApiInterface            $measureFamilyApi
+     * @param AssociationTypeApiInterface          $associationTypeApi
+     * @param FamilyVariantApiInterface            $familyVariantApi
+     * @param ProductModelApiInterface             $productModelApi
+     * @param ProductModelDraftApiInterface        $productModelDraftApi
+     * @param PublishedProductApiInterface         $publishedProductApi
+     * @param ProductDraftApiInterface             $productDraftApi
+     * @param AssetApiInterface                    $assetApi
+     * @param AssetCategoryApiInterface            $assetCategoryApi
+     * @param AssetTagApiInterface                 $assetTagApi
+     * @param AssetReferenceFileApiInterface       $assetReferenceFileApi
+     * @param AssetVariationFileApiInterface       $assetVariationFileApi
+     * @param ReferenceEntityRecordApiInterface    $referenceEntityRecordApi
+     * @param ReferenceEntityMediaFileApiInterface $referenceEntityMediaFileApi
      */
     public function __construct(
         Authentication $authentication,
@@ -114,7 +119,8 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         AssetTagApiInterface $assetTagApi,
         AssetReferenceFileApiInterface $assetReferenceFileApi,
         AssetVariationFileApiInterface $assetVariationFileApi,
-        ReferenceEntityRecordApiInterface $referenceEntityRecordApi
+        ReferenceEntityRecordApiInterface $referenceEntityRecordApi,
+        ReferenceEntityMediaFileApiInterface $referenceEntityMediaFileApi
     ) {
         parent::__construct(
             $authentication,
@@ -143,6 +149,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         $this->assetReferenceFileApi = $assetReferenceFileApi;
         $this->assetVariationFileApi = $assetVariationFileApi;
         $this->referenceEntityRecordApi = $referenceEntityRecordApi;
+        $this->referenceEntityMediaFileApi = $referenceEntityMediaFileApi;
     }
 
     /**
@@ -215,5 +222,13 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     public function getReferenceEntityRecordApi()
     {
         return $this->referenceEntityRecordApi;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getReferenceEntityMediaFileAPi()
+    {
+        return $this->referenceEntityMediaFileApi;
     }
 }
