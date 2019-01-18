@@ -87,4 +87,51 @@ class ReferenceEntityRecordApiSpec extends ObjectBehavior
 
         $this->upsert('designer', 'starck', $recordData)->shouldReturn(204);
     }
+
+    function it_upserts_a_list_of_reference_entity_records(ResourceClientInterface $resourceClient)
+    {
+        $records = [
+            [
+                'code' => 'starck',
+                'values' => [
+                    'label' => [
+                        [
+                            'channel' => null,
+                            'locale'  => 'en_US',
+                            'data'    => 'Philippe Starck'
+                        ],
+                    ]
+                ]
+            ],
+            [
+                'code' => 'dyson',
+                'values' => [
+                    'label' => [
+                        [
+                            'channel' => null,
+                            'locale'  => 'en_US',
+                            'data'    => 'James Dyson'
+                        ],
+                    ]
+                ]
+            ]
+        ];
+
+        $responses = [
+            [
+                'code' => 'starck',
+                'status_code' =>204
+            ],
+            [
+                'code' => 'dyson',
+                'status_code' =>201
+            ],
+        ];
+
+        $resourceClient
+            ->upsertJsonResourceList(ReferenceEntityRecordApi::REFERENCE_ENTITY_RECORDS_URI, ['designer'], $records)
+            ->willReturn($responses);
+
+        $this->upsertList('designer', $records)->shouldReturn($responses);
+    }
 }
