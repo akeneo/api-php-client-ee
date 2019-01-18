@@ -39,4 +39,18 @@ interface ReferenceEntityRecordApiInterface
      * @return ResourceCursorInterface
      */
     public function all(string $referenceEntityCode, array $queryParameters = []): ResourceCursorInterface;
+
+    /**
+     * Creates a reference entity record if it does not exist yet, otherwise updates partially the record.
+     *
+     * @param string $referenceEntityCode Code of the reference entity
+     * @param string $recordCode          Code of the record
+     * @param array  $data                Data of the record to create or update
+     *
+     * @throws HttpException If the request failed.
+     *
+     * @return int Status code 201 indicating that the reference entity record has been well created.
+     *             Status code 204 indicating that the reference entity record has been well updated.
+     */
+    public function upsert(string $referenceEntityCode, string $recordCode, array $data = []): int;
 }
