@@ -73,7 +73,7 @@ class AkeneoPimEnterpriseClientBuilder extends AkeneoPimClientBuilder
             new AssetReferenceFileApi($resourceClient, $fileSystem),
             new AssetVariationFileApi($resourceClient, $fileSystem),
             new ReferenceEntityRecordApi($resourceClient, $pageFactory, $cursorFactory),
-            new ReferenceEntityMediaFileApi($resourceClient)
+            new ReferenceEntityMediaFileApi($resourceClient, $fileSystem)
         );
 
         return $client;
