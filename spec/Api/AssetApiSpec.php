@@ -152,7 +152,7 @@ class AssetApiSpec extends ObjectBehavior
 
     function it_upserts_a_list_of_assets($resourceClient, UpsertResourceListResponse $response)
     {
-        $resourceClient->upsertResourceList(AssetApi::ASSETS_URI, [], [
+        $resourceClient->upsertStreamResourceList(AssetApi::ASSETS_URI, [], [
             [
                 'code' => 'akeneo_logo',
                 'description' => 'Akeneo logo updated',
