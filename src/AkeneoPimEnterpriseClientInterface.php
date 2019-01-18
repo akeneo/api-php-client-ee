@@ -10,6 +10,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApiInterface;
 
 /**
  * Client to use the Akeneo PIM ENTERPRISE API.
@@ -75,4 +76,11 @@ interface AkeneoPimEnterpriseClientInterface extends AkeneoPimClientInterface
      * @return AssetVariationFileApiInterface
      */
     public function getAssetVariationFileApi();
+
+    /**
+     * Gets the reference entity record API.
+     *
+     * @return ReferenceEntityRecordApiInterface
+     */
+    public function getReferenceEntityRecordApi();
 }
