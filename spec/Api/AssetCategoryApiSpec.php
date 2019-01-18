@@ -134,7 +134,7 @@ class AssetCategoryApiSpec extends ObjectBehavior
     function it_upserts_a_list_of_asset_categories($resourceClient, UpsertResourceListResponse $response)
     {
         $resourceClient
-            ->upsertResourceList(
+            ->upsertStreamResourceList(
                 AssetCategoryApi::ASSET_CATEGORIES_URI,
                 [],
                 [

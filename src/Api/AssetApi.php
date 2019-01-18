@@ -100,6 +100,6 @@ class AssetApi implements AssetApiInterface
      */
     public function upsertList($resources)
     {
-        return $this->resourceClient->upsertResourceList(static::ASSETS_URI, [], $resources);
+        return $this->resourceClient->upsertStreamResourceList(static::ASSETS_URI, [], $resources);
     }
 }
