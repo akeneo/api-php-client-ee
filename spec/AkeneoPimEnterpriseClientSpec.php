@@ -27,6 +27,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductModelDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityMediaFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApiInterface;
 use PhpSpec\ObjectBehavior;
@@ -58,7 +59,8 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
         AssetReferenceFileApiInterface $assetReferenceFileApi,
         AssetVariationFileApiInterface $assetVariationFileApi,
         ReferenceEntityRecordApiInterface $referenceEntityRecordApi,
-        ReferenceEntityMediaFileApiInterface $referenceEntityMediaFileApi
+        ReferenceEntityMediaFileApiInterface $referenceEntityMediaFileApi,
+        ReferenceEntityAttributeApiInterface $referenceEntityAttributeApi
     ) {
         $this->beConstructedWith(
             $authentication,
@@ -85,7 +87,8 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
             $assetReferenceFileApi,
             $assetVariationFileApi,
             $referenceEntityRecordApi,
-            $referenceEntityMediaFileApi
+            $referenceEntityMediaFileApi,
+            $referenceEntityAttributeApi
         );
     }
 
@@ -138,5 +141,10 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
     function it_gets_reference_entity_media_file_api($referenceEntityMediaFileApi)
     {
         $this->getReferenceEntityMediaFileAPi()->shouldReturn($referenceEntityMediaFileApi);
+    }
+
+    function it_gets_reference_entity_attribute_api($referenceEntityAttributeApi)
+    {
+        $this->getReferenceEntityAttributeApi()->shouldReturn($referenceEntityAttributeApi);
     }
 }
