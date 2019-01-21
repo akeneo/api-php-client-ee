@@ -74,7 +74,7 @@ class AssetVariationFileApi implements AssetVariationFileApiInterface
         return $this->resourceClient->getStreamedResource(
             static::ASSET_VARIATION_FILE_DOWNLOAD_URI,
             [$assetCode, $channelCode, $localeCode]
-        );
+        )->getBody();
     }
 
     /**
@@ -85,7 +85,7 @@ class AssetVariationFileApi implements AssetVariationFileApiInterface
         return $this->resourceClient->getStreamedResource(
             static::ASSET_VARIATION_FILE_DOWNLOAD_URI,
             [$assetCode, $channelCode, static::NOT_LOCALIZABLE_ASSET_LOCALE_CODE]
-        );
+        )->getBody();
     }
 
     /**

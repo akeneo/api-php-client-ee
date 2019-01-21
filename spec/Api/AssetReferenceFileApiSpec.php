@@ -193,20 +193,24 @@ JSON;
             ->during('uploadForLocalizableAsset', ['images/ziggy.png', 'ziggy', 'en_US']);
     }
 
-    function it_downloads_a_localizable_asset_reference_file($resourceClient, StreamInterface $streamBody)
+    function it_downloads_a_localizable_asset_reference_file($resourceClient, ResponseInterface $response, StreamInterface $streamBody)
     {
         $resourceClient
             ->getStreamedResource(AssetReferenceFileApi::ASSET_REFERENCE_FILE_DOWNLOAD_URI, ['ziggy', 'en_US'])
-            ->willReturn($streamBody);
+            ->willReturn($response);
+
+        $response->getBody()->willReturn($streamBody);
 
         $this->downloadFromLocalizableAsset('ziggy', 'en_US')->shouldReturn($streamBody);
     }
 
-    function it_downloads_a_not_localizable_asset_reference_file($resourceClient, StreamInterface $streamBody)
+    function it_downloads_a_not_localizable_asset_reference_file($resourceClient, ResponseInterface $response, StreamInterface $streamBody)
     {
         $resourceClient
             ->getStreamedResource(AssetReferenceFileApi::ASSET_REFERENCE_FILE_DOWNLOAD_URI, ['ziggy', AssetReferenceFileApi::NOT_LOCALIZABLE_ASSET_LOCALE_CODE])
-            ->willReturn($streamBody);
+            ->willReturn($response);
+
+        $response->getBody()->willReturn($streamBody);
 
         $this->downloadFromNotLocalizableAsset('ziggy')->shouldReturn($streamBody);
     }
