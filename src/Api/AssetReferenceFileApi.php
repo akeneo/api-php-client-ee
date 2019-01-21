@@ -84,7 +84,9 @@ class AssetReferenceFileApi implements AssetReferenceFileApiInterface
      */
     public function downloadFromLocalizableAsset($assetCode, $localeCode)
     {
-        return $this->resourceClient->getStreamedResource(static::ASSET_REFERENCE_FILE_DOWNLOAD_URI, [$assetCode, $localeCode]);
+        return $this->resourceClient
+            ->getStreamedResource(static::ASSET_REFERENCE_FILE_DOWNLOAD_URI, [$assetCode, $localeCode])
+            ->getBody();
     }
 
     /**
@@ -92,7 +94,9 @@ class AssetReferenceFileApi implements AssetReferenceFileApiInterface
      */
     public function downloadFromNotLocalizableAsset($assetCode)
     {
-        return $this->resourceClient->getStreamedResource(static::ASSET_REFERENCE_FILE_DOWNLOAD_URI, [$assetCode, static::NOT_LOCALIZABLE_ASSET_LOCALE_CODE]);
+        return $this->resourceClient
+            ->getStreamedResource(static::ASSET_REFERENCE_FILE_DOWNLOAD_URI, [$assetCode, static::NOT_LOCALIZABLE_ASSET_LOCALE_CODE])
+            ->getBody();
     }
 
     /**
