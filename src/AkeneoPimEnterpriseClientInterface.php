@@ -99,4 +99,11 @@ interface AkeneoPimEnterpriseClientInterface extends AkeneoPimClientInterface
      * @return ReferenceEntityAttributeApiInterface
      */
     public function getReferenceEntityAttributeApi();
+
+    /**
+     * Gets the reference entity API.
+     *
+     * @return ReferenceEntityRecordApiInterface
+     */
+    public function getReferenceEntityApi();
 }
