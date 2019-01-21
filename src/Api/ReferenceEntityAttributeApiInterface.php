@@ -24,4 +24,16 @@ interface ReferenceEntityAttributeApiInterface
      * @return array
      */
     public function get(string $referenceEntityCode, string $attributeCode): array;
+
+    /**
+     * Gets the list of the attributes of a given reference entity.
+     *
+     * @param string $referenceEntityCode Code of the reference entity
+     * @param array  $queryParameters     Additional query parameters to pass in the request
+     *
+     * @throws HttpException If the request failed.
+     *
+     * @return array
+     */
+    public function all(string $referenceEntityCode, array $queryParameters = []): array;
 }

@@ -5,15 +5,20 @@ declare(strict_types=1);
 namespace spec\Akeneo\PimEnterprise\ApiClient\Api;
 
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
+use Akeneo\Pim\ApiClient\Pagination\PageFactoryInterface;
+use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactoryInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeApiInterface;
 use PhpSpec\ObjectBehavior;
 
 class ReferenceEntityAttributeApiSpec extends ObjectBehavior
 {
-    function let(ResourceClientInterface $resourceClient)
-    {
-        $this->beConstructedWith($resourceClient);
+    function let(
+        ResourceClientInterface $resourceClient,
+        PageFactoryInterface $pageFactory,
+        ResourceCursorFactoryInterface $cursorFactory
+    ) {
+        $this->beConstructedWith($resourceClient, $pageFactory, $cursorFactory);
     }
 
     function it_is_a_reference_entity_attribute_api()
@@ -45,5 +50,57 @@ class ReferenceEntityAttributeApiSpec extends ObjectBehavior
             ->willReturn($attribute);
 
         $this->get('designer', 'description')->shouldReturn($attribute);
+    }
+
+    function it_returns_a_cursor_to_list_all_the_attributes_of_a_reference_entity(ResourceClientInterface $resourceClient)
+    {
+        $attributes = [
+            [
+                'code'                         => 'label',
+                'labels'                       => [
+                    'en_US' => 'Label',
+                ],
+                'type'                         => 'text',
+                'localizable'                  => true,
+                'scopable'                     => false,
+                'is_required_for_completeness' => false,
+                'max_characters'               => null,
+                'is_textarea'                  => false,
+                'is_rich_text_editor'          => false,
+                'validation_rule'              => 'none',
+                'validation_regexp'            => null,
+                '_links'                       => [
+                    'self' => [
+                        'href' => 'http://localhost/api/rest/v1/reference-entities/designer/attributes/label',
+                    ],
+                ],
+            ],
+            [
+                'code'                         => 'birthdate',
+                'labels'                       => [
+                    'en_US' => 'Birthdate',
+                ],
+                'type'                         => 'text',
+                'localizable'                  => false,
+                'scopable'                     => false,
+                'is_required_for_completeness' => false,
+                'max_characters'               => null,
+                'is_textarea'                  => false,
+                'is_rich_text_editor'          => false,
+                'validation_rule'              => 'none',
+                'validation_regexp'            => null,
+                '_links'                       => [
+                    'self' => [
+                        'href' => 'http://localhost/api/rest/v1/reference-entities/designer/attributes/birthdate',
+                    ],
+                ],
+            ],
+        ];
+
+        $resourceClient
+            ->getResource(ReferenceEntityAttributeApi::REFERENCE_ENTITY_ATTRIBUTES_URI, ['designer'])
+            ->willReturn($attributes);
+
+        $this->all('designer', [])->shouldReturn($attributes);
     }
 }

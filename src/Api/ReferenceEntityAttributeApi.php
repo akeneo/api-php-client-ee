@@ -14,13 +14,11 @@ use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
 class ReferenceEntityAttributeApi implements ReferenceEntityAttributeApiInterface
 {
     const REFERENCE_ENTITY_ATTRIBUTE_URI = 'api/rest/v1/reference-entities/%s/attributes/%s';
+    const REFERENCE_ENTITY_ATTRIBUTES_URI = 'api/rest/v1/reference-entities/%s/attributes';
 
     /** @var ResourceClientInterface */
     private $resourceClient;
 
-    /**
-     * @param ResourceClientInterface $resourceClient
-     */
     public function __construct(ResourceClientInterface $resourceClient)
     {
         $this->resourceClient = $resourceClient;
@@ -32,5 +30,13 @@ class ReferenceEntityAttributeApi implements ReferenceEntityAttributeApiInterfac
     public function get(string $referenceEntityCode, string $attributeCode): array
     {
         return $this->resourceClient->getResource(static::REFERENCE_ENTITY_ATTRIBUTE_URI, [$referenceEntityCode, $attributeCode]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function all(string $referenceEntityCode, array $queryParameters = []): array
+    {
+        return $this->resourceClient->getResource(static::REFERENCE_ENTITY_ATTRIBUTES_URI, [$referenceEntityCode]);
     }
 }
