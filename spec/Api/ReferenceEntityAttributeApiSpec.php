@@ -103,4 +103,24 @@ class ReferenceEntityAttributeApiSpec extends ObjectBehavior
 
         $this->all('designer', [])->shouldReturn($attributes);
     }
+
+    function it_upserts_a_reference_entity_attribute(ResourceClientInterface $resourceClient)
+    {
+        $attributeData = [
+            'code'        => 'description',
+            'labels'      => [
+                'en_US' => 'Description',
+                'fr_FR' => 'Description',
+            ],
+            'type'        => 'text',
+            'localizable' => true,
+            'scopable'    => false
+        ];
+
+        $resourceClient
+            ->upsertResource(ReferenceEntityAttributeApi::REFERENCE_ENTITY_ATTRIBUTE_URI, ['designer', 'description'], $attributeData)
+            ->willReturn(204);
+
+        $this->upsert('designer', 'description', $attributeData)->shouldReturn(204);
+    }
 }

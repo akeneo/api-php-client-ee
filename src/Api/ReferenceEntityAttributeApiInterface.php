@@ -14,7 +14,7 @@ use Akeneo\Pim\ApiClient\Exception\HttpException;
 interface ReferenceEntityAttributeApiInterface
 {
     /**
-     * Gets a single reference entity record.
+     * Gets a single reference entity attribute.
      *
      * @param string $referenceEntityCode Code of the reference entity
      * @param string $attributeCode       Code of the attribute
@@ -36,4 +36,18 @@ interface ReferenceEntityAttributeApiInterface
      * @return array
      */
     public function all(string $referenceEntityCode, array $queryParameters = []): array;
+
+    /**
+     * Creates a reference entity attribute if it does not exist yet, otherwise updates partially the attribute.
+     *
+     * @param string $referenceEntityCode Code of the reference entity
+     * @param string $attributeCode       Code of the attribute
+     * @param array  $data                Data of the attribute to create or update
+     *
+     * @throws HttpException If the request failed.
+     *
+     * @return int Status code 201 indicating that the reference entity attribute has been well created.
+     *             Status code 204 indicating that the reference entity attribute has been well updated.
+     */
+    public function upsert(string $referenceEntityCode, string $attributeCode, array $data = []): int;
 }

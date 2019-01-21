@@ -39,4 +39,12 @@ class ReferenceEntityAttributeApi implements ReferenceEntityAttributeApiInterfac
     {
         return $this->resourceClient->getResource(static::REFERENCE_ENTITY_ATTRIBUTES_URI, [$referenceEntityCode]);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function upsert(string $referenceEntityCode, string $attributeCode, array $data = []): int
+    {
+        return $this->resourceClient->upsertResource(static::REFERENCE_ENTITY_ATTRIBUTE_URI, [$referenceEntityCode, $attributeCode], $data);
+    }
 }
