@@ -34,7 +34,7 @@ class ReferenceEntityMediaFileApi implements ReferenceEntityMediaFileApiInterfac
     /**
      * {@inheritdoc}
      */
-    public function download($code)
+    public function download($code): ResponseInterface
     {
         return $this->resourceClient->getStreamedResource(static::MEDIA_FILE_DOWNLOAD_URI, [$code]);
     }

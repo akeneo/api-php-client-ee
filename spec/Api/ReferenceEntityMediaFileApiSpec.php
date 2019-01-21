@@ -23,13 +23,13 @@ class ReferenceEntityMediaFileApiSpec extends ObjectBehavior
         $this->shouldImplement(ReferenceEntityMediaFileApiInterface::class);
     }
 
-    function it_downloads_a_reference_entity_media_file(ResourceClientInterface $resourceClient, StreamInterface $streamBody)
+    function it_downloads_a_reference_entity_media_file(ResourceClientInterface $resourceClient, ResponseInterface $response)
     {
         $resourceClient
             ->getStreamedResource(ReferenceEntityMediaFileApi::MEDIA_FILE_DOWNLOAD_URI, ['images/starck.jpg'])
-            ->willReturn($streamBody);
+            ->willReturn($response);
 
-        $this->download('images/starck.jpg')->shouldReturn($streamBody);
+        $this->download('images/starck.jpg')->shouldReturn($response);
     }
 
     function it_creates_a_reference_entity_media_file(
