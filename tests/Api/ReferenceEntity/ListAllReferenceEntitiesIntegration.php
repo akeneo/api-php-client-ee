@@ -55,14 +55,8 @@ class ListAllReferenceEntitiesIntegration extends ApiTestCaseEnterprise
                             }
                         },
                         "code": "brand",
-                        "values": {
-                            "label": [
-                                {
-                                    "locale": "en_US",
-                                    "channel": null,
-                                    "data": "Brand"
-                                }
-                            ]
+                        "labels": {
+                            "en_US": "Brand"
                         }
                     },
                     {
@@ -72,14 +66,8 @@ class ListAllReferenceEntitiesIntegration extends ApiTestCaseEnterprise
                             }
                         },
                         "code": "designer",
-                        "values": {
-                            "label": [
-                                {
-                                    "locale": "en_US",
-                                    "channel": null,
-                                    "data": "Designer"
-                                }
-                            ]
+                        "labels": {
+                            "en_US": "Designer"
                         }
                     }
                 ]
@@ -97,7 +85,7 @@ JSON;
         {
             "_links": {
                 "self": {
-                    "href": "$baseUri\/api\/rest\/v1\/reference-entities?search_after=designr"
+                    "href": "$baseUri\/api\/rest\/v1\/reference-entities?search_after=designer"
                 },
                 "first": {
                     "href": "$baseUri\/api\/rest\/v1\/reference-entities"
@@ -112,14 +100,8 @@ JSON;
                             }
                         },
                         "code": "color",
-                        "values": {
-                            "label": [
-                                {
-                                    "locale": "en_US",
-                                    "channel": null,
-                                    "data": "Color"
-                                }
-                            ]
+                        "labels": {
+                            "en_US": "Color"
                         }
                     }
                 ]

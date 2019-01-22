@@ -22,14 +22,8 @@ class UpsertReferenceEntityIntegration extends ApiTestCaseEnterprise
 
         $referenceEntity = [
             'code' => 'brand',
-            'values' => [
-                'label' => [
-                    [
-                        'channel' => null,
-                        'locale'  => 'en_US',
-                        'data'    => 'Brand'
-                    ],
-                ]
+            'labels' => [
+                'en_US' => 'Brand'
             ]
         ];
 

@@ -32,14 +32,8 @@ class ReferenceEntityApiSpec extends ObjectBehavior
     {
         $referenceEntity = [
             'code' => 'designer',
-            'values' => [
-                'label' => [
-                    [
-                        'channel' => null,
-                        'locale'  => 'en_US',
-                        'data'    => 'Designer'
-                    ],
-                ]
+            'labels' => [
+                'en_US' => 'Designer'
             ]
         ];
 
@@ -50,7 +44,7 @@ class ReferenceEntityApiSpec extends ObjectBehavior
         $this->get('designer')->shouldReturn($referenceEntity);
     }
 
-    function it_returns_a_cursor_to_list_all_thes_of_reference_entity(
+    function it_returns_a_cursor_to_list_all_the_reference_entities(
         ResourceClientInterface $resourceClient,
         PageFactoryInterface $pageFactory,
         ResourceCursorFactoryInterface $cursorFactory,
@@ -71,14 +65,8 @@ class ReferenceEntityApiSpec extends ObjectBehavior
     {
         $referenceEntityData = [
             'code' => 'designer',
-            'values' => [
-                'label' => [
-                    [
-                        'channel' => null,
-                        'locale'  => 'en_US',
-                        'data'    => 'Designer'
-                    ],
-                ]
+            'labels' => [
+                'en_US' => 'Designer'
             ]
         ];
         $resourceClient
@@ -93,26 +81,14 @@ class ReferenceEntityApiSpec extends ObjectBehavior
         $referenceEntities = [
             [
                 'code' => 'brand',
-                'values' => [
-                    'label' => [
-                        [
-                            'channel' => null,
-                            'locale'  => 'en_US',
-                            'data'    => 'Brand'
-                        ],
-                    ]
+                'labels' => [
+                    'en_US' => 'Brand'
                 ]
             ],
             [
                 'code' => 'color',
-                'values' => [
-                    'label' => [
-                        [
-                            'channel' => null,
-                            'locale'  => 'en_US',
-                            'data'    => 'Color'
-                        ],
-                    ]
+                'labels' => [
+                    'en_US' => 'Color'
                 ]
             ]
         ];

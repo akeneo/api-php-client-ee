@@ -36,26 +36,14 @@ JSON;
         $referenceEntities = [
             [
                 'code' => 'brand',
-                'values' => [
-                    'label' => [
-                        [
-                            'channel' => null,
-                            'locale'  => 'en_US',
-                            'data'    => 'Brand'
-                        ],
-                    ]
+                'labels' => [
+                    'en_US' => 'Brand'
                 ]
             ],
             [
                 'code' => 'designer',
-                'values' => [
-                    'label' => [
-                        [
-                            'channel' => null,
-                            'locale'  => 'en_US',
-                            'data'    => 'Designer'
-                        ],
-                    ]
+                'labels' => [
+                    'en_US' => 'Designer'
                 ]
             ]
         ];

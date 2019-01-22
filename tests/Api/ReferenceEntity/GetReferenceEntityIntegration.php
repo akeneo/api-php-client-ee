@@ -50,14 +50,8 @@ class GetReferenceEntityIntegration extends ApiTestCaseEnterprise
         return <<<JSON
             {
               "code": "brand",
-              "values": {
-                "label": [
-                  {
-                    "locale": "en_US",
-                    "channel": null,
-                    "data": "Brand"
-                  }
-                ]
+              "labels": {
+                "en_US": "Brand"
               }
             }
 JSON;
