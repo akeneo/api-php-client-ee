@@ -49,10 +49,16 @@ class GetReferenceEntityIntegration extends ApiTestCaseEnterprise
     {
         return <<<JSON
             {
+              "_links": {
+                "image_download": {
+                  "href": "https://demo.akeneo.com/api/rest/v1/reference-entities-media-files/0/2/d/6/54d81dc888ba1501a8g765f3ab5797569f3bv756c_ref_img.png"
+                }
+              },
               "code": "brand",
               "labels": {
                 "en_US": "Brand"
-              }
+              },
+              "image": "0/2/d/6/54d81dc888ba1501a8g765f3ab5797569f3bv756c_ref_img.png"
             }
 JSON;
     }

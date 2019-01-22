@@ -52,23 +52,31 @@ class ListAllReferenceEntitiesIntegration extends ApiTestCaseEnterprise
                         "_links": {
                             "self": {
                                 "href": "$baseUri\/api\/rest\/v1\/reference-entities\/brand"
+                            },
+                            "image_download": {
+                                "href": "https://demo.akeneo.com/api/rest/v1/reference-entities-media-files/0/2/d/6/54d81dc888ba1501a8g765f3ab5797569f3bv756c_ref_img.png"
                             }
                         },
                         "code": "brand",
                         "labels": {
                             "en_US": "Brand"
-                        }
+                        },
+                        "image": "0/2/d/6/54d81dc888ba1501a8g765f3ab5797569f3bv756c_ref_img.png"
                     },
                     {
                         "_links": {
                             "self": {
                                 "href": "$baseUri\/api\/rest\/v1\/reference-entities\/designer"
+                            },
+                            "image_download": {
+                                "href": "https://demo.akeneo.com/api/rest/v1/reference-entities-media-files/0/2/d/6/54d81dc888ba1501a8g765f3ab5797569f3bv756c_ref_img.png"
                             }
                         },
                         "code": "designer",
                         "labels": {
                             "en_US": "Designer"
-                        }
+                        },
+                        "image": "0/2/d/6/54d81dc888ba1501a8g765f3ab5797569f3bv756c_ref_img.png"
                     }
                 ]
             }
@@ -97,12 +105,16 @@ JSON;
                         "_links": {
                             "self": {
                                 "href": "$baseUri\/api\/rest\/v1\/reference-entities\/color"
+                            },
+                            "image_download": {
+                                "href": "https://demo.akeneo.com/api/rest/v1/reference-entities-media-files/0/2/d/6/54d81dc888ba1501a8g765f3ab5797569f3bv756c_ref_img.png"
                             }
                         },
                         "code": "color",
                         "labels": {
                             "en_US": "Color"
-                        }
+                        },
+                        "image": "0/2/d/6/54d81dc888ba1501a8g765f3ab5797569f3bv756c_ref_img.png"
                     }
                 ]
             }

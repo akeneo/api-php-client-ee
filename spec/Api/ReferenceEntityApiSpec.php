@@ -31,10 +31,16 @@ class ReferenceEntityApiSpec extends ObjectBehavior
     function it_returns_a_reference_entity(ResourceClientInterface $resourceClient)
     {
         $referenceEntity = [
+            '_links' => [
+                'image_download' => [
+                    'href' => 'https://localhost/api/rest/v1/reference-entities-media-files/img.png'
+              ]
+            ],
             'code' => 'designer',
             'labels' => [
                 'en_US' => 'Designer'
-            ]
+            ],
+            'image' => 'img.png'
         ];
 
         $resourceClient
@@ -83,7 +89,7 @@ class ReferenceEntityApiSpec extends ObjectBehavior
                 'code' => 'brand',
                 'labels' => [
                     'en_US' => 'Brand'
-                ]
+                ],
             ],
             [
                 'code' => 'color',
