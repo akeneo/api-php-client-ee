@@ -26,6 +26,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductModelDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityMediaFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApiInterface;
 
@@ -68,6 +69,9 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /** @var ReferenceEntityMediaFileApiInterface */
     private $referenceEntityMediaFileApi;
 
+    /** @var ReferenceEntityAttributeApiInterface */
+    private $referenceEntityAttributeApi;
+
     /**
      * @param Authentication                       $authentication
      * @param ProductApiInterface                  $productApi
@@ -94,6 +98,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
      * @param AssetVariationFileApiInterface       $assetVariationFileApi
      * @param ReferenceEntityRecordApiInterface    $referenceEntityRecordApi
      * @param ReferenceEntityMediaFileApiInterface $referenceEntityMediaFileApi
+     * @param ReferenceEntityAttributeApiInterface $referenceEntityAttributeApi
      */
     public function __construct(
         Authentication $authentication,
@@ -120,7 +125,8 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         AssetReferenceFileApiInterface $assetReferenceFileApi,
         AssetVariationFileApiInterface $assetVariationFileApi,
         ReferenceEntityRecordApiInterface $referenceEntityRecordApi,
-        ReferenceEntityMediaFileApiInterface $referenceEntityMediaFileApi
+        ReferenceEntityMediaFileApiInterface $referenceEntityMediaFileApi,
+        ReferenceEntityAttributeApiInterface $referenceEntityAttributeApi
     ) {
         parent::__construct(
             $authentication,
@@ -150,6 +156,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         $this->assetVariationFileApi = $assetVariationFileApi;
         $this->referenceEntityRecordApi = $referenceEntityRecordApi;
         $this->referenceEntityMediaFileApi = $referenceEntityMediaFileApi;
+        $this->referenceEntityAttributeApi = $referenceEntityAttributeApi;
     }
 
     /**
@@ -230,5 +237,13 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     public function getReferenceEntityMediaFileAPi()
     {
         return $this->referenceEntityMediaFileApi;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getReferenceEntityAttributeApi()
+    {
+        return $this->referenceEntityAttributeApi;
     }
 }
