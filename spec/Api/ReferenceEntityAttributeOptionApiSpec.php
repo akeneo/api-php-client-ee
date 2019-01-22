@@ -30,9 +30,10 @@ class ReferenceEntityAttributeOptionApiSpec extends ObjectBehavior
         ];
 
         $resourceClient
-            ->getResource(ReferenceEntityAttributeOptionApi::REFERENCE_ENTITY_ATTRIBUTE_OPTION_URI, [
-                'designer', 'favorite_color', 'red'
-            ])
+            ->getResource(
+                ReferenceEntityAttributeOptionApi::REFERENCE_ENTITY_ATTRIBUTE_OPTION_URI,
+                ['designer', 'favorite_color', 'red']
+            )
             ->willReturn($option);
 
         $this->get('designer', 'favorite_color', 'red')->shouldReturn($option);
@@ -58,11 +59,33 @@ class ReferenceEntityAttributeOptionApiSpec extends ObjectBehavior
         ];
 
         $resourceClient
-            ->getResource(ReferenceEntityAttributeOptionApi::REFERENCE_ENTITY_ATTRIBUTE_OPTIONS_URI, [
-                'designer', 'favorite_color'
-            ])
+            ->getResource(
+                ReferenceEntityAttributeOptionApi::REFERENCE_ENTITY_ATTRIBUTE_OPTIONS_URI,
+                ['designer', 'favorite_color']
+            )
             ->willReturn($options);
 
         $this->all('designer', 'favorite_color')->shouldReturn($options);
+    }
+
+    function it_upserts_a_reference_entity_attribute_option(ResourceClientInterface $resourceClient)
+    {
+        $option = [
+            'code'   => 'red',
+            'labels' => [
+                'en_US' => 'Red',
+                'fr_FR' => 'Rouge',
+            ],
+        ];
+
+        $resourceClient
+            ->upsertResource(
+                ReferenceEntityAttributeOptionApi::REFERENCE_ENTITY_ATTRIBUTE_OPTION_URI,
+                ['designer', 'favorite_color', 'red'],
+                $option
+            )
+            ->willReturn(204);
+
+        $this->upsert('designer', 'favorite_color', 'red', $option)->shouldReturn(204);
     }
 }

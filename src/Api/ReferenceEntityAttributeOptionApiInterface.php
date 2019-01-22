@@ -37,4 +37,19 @@ interface ReferenceEntityAttributeOptionApiInterface
      * @return array
      */
     public function all(string $referenceEntityCode, string $attributeCode): array;
+
+    /**
+     * Creates a reference entity attribute option if it does not exist yet, otherwise updates partially the attribute option.
+     *
+     * @param string $referenceEntityCode Code of the reference entity
+     * @param string $attributeCode       Code of the attribute
+     * @param string $attributeOptionCode Code of the attribute option
+     * @param array  $data                Data of the attribute option to create or update
+     *
+     * @throws HttpException If the request failed.
+     *
+     * @return int Status code 201 indicating that the reference entity attribute option has been well created.
+     *             Status code 204 indicating that the reference entity attribute option has been well updated.
+     */
+    public function upsert(string $referenceEntityCode, string $attributeCode, string $attributeOptionCode, array $data = []): int;
 }

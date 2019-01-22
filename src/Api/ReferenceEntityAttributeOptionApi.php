@@ -29,11 +29,10 @@ class ReferenceEntityAttributeOptionApi implements ReferenceEntityAttributeOptio
      */
     public function get(string $referenceEntityCode, string $attributeCode, string $attributeOptionCode): array
     {
-        return $this->resourceClient->getResource(static::REFERENCE_ENTITY_ATTRIBUTE_OPTION_URI, [
-            $referenceEntityCode,
-            $attributeCode,
-            $attributeOptionCode
-        ]);
+        return $this->resourceClient->getResource(
+            static::REFERENCE_ENTITY_ATTRIBUTE_OPTION_URI,
+            [$referenceEntityCode, $attributeCode, $attributeOptionCode]
+        );
     }
 
     /**
@@ -41,9 +40,21 @@ class ReferenceEntityAttributeOptionApi implements ReferenceEntityAttributeOptio
      */
     public function all(string $referenceEntityCode, string $attributeCode): array
     {
-        return $this->resourceClient->getResource(static::REFERENCE_ENTITY_ATTRIBUTE_OPTIONS_URI, [
-            $referenceEntityCode,
-            $attributeCode
-        ]);
+        return $this->resourceClient->getResource(
+            static::REFERENCE_ENTITY_ATTRIBUTE_OPTIONS_URI,
+            [$referenceEntityCode, $attributeCode]
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function upsert(string $referenceEntityCode, string $attributeCode, string $attributeOptionCode, array $data = []): int
+    {
+        return $this->resourceClient->upsertResource(
+            static::REFERENCE_ENTITY_ATTRIBUTE_OPTION_URI,
+            [$referenceEntityCode, $attributeCode, $attributeOptionCode],
+            $data
+        );
     }
 }
