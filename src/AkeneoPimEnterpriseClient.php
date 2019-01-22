@@ -26,9 +26,9 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductModelDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityMediaFileApiInterface;
-use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApiInterface;
 
 /**
