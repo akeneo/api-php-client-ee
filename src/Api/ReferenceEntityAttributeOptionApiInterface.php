@@ -26,5 +26,15 @@ interface ReferenceEntityAttributeOptionApiInterface
      */
     public function get(string $referenceEntityCode, string $attributeCode, string $attributeOptionCode): array;
 
-
+    /**
+     * Get the list of attribute options of a given attribute for a given reference entity.
+     *
+     * @param string $referenceEntityCode Code of the reference entity
+     * @param string $attributeCode       Code of the attribute
+     *
+     * @throws HttpException If the request failed.
+     *
+     * @return array
+     */
+    public function all(string $referenceEntityCode, string $attributeCode): array;
 }

@@ -37,4 +37,32 @@ class ReferenceEntityAttributeOptionApiSpec extends ObjectBehavior
 
         $this->get('designer', 'favorite_color', 'red')->shouldReturn($option);
     }
+
+    function it_returns_the_list_of_attribute_options_of_a_reference_entity_attribute(ResourceClientInterface $resourceClient)
+    {
+        $options = [
+            [
+                'code'   => 'red',
+                'labels' => [
+                    'en_US' => 'Red',
+                    'fr_FR' => 'Rouge',
+                ],
+            ],
+            [
+                'code'   => 'blue',
+                'labels' => [
+                    'en_US' => 'Blue',
+                    'fr_FR' => 'Bleu',
+                ],
+            ]
+        ];
+
+        $resourceClient
+            ->getResource(ReferenceEntityAttributeOptionApi::REFERENCE_ENTITY_ATTRIBUTE_OPTIONS_URI, [
+                'designer', 'favorite_color'
+            ])
+            ->willReturn($options);
+
+        $this->all('designer', 'favorite_color')->shouldReturn($options);
+    }
 }
