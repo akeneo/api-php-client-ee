@@ -93,7 +93,7 @@ interface AkeneoPimEnterpriseClientInterface extends AkeneoPimClientInterface
      *
      * @return ReferenceEntityMediaFileApiInterface
      */
-    public function getReferenceEntityMediaFileAPi();
+    public function getReferenceEntityMediaFileApi();
 
     /**
      * Gets the reference entity attribute API.

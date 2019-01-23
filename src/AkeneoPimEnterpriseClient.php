@@ -248,7 +248,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /**
      * {@inheritdoc}
      */
-    public function getReferenceEntityMediaFileAPi()
+    public function getReferenceEntityMediaFileApi()
     {
         return $this->referenceEntityMediaFileApi;
     }
