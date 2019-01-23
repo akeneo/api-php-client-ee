@@ -12,6 +12,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeOptionApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityMediaFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApiInterface;
 
@@ -100,6 +101,13 @@ interface AkeneoPimEnterpriseClientInterface extends AkeneoPimClientInterface
      * @return ReferenceEntityAttributeApiInterface
      */
     public function getReferenceEntityAttributeApi();
+
+    /**
+     * Gets the reference entity attribute option API.
+     *
+     * @return ReferenceEntityAttributeOptionApiInterface
+     */
+    public function getReferenceEntityAttributeOptionApi();
 
     /**
      * Gets the reference entity API.

@@ -28,6 +28,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\ProductModelDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeOptionApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityMediaFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApiInterface;
 
@@ -73,39 +74,42 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /** @var ReferenceEntityAttributeApiInterface */
     private $referenceEntityAttributeApi;
 
+    /** @var ReferenceEntityAttributeOptionApiInterface */
+    private $referenceEntityAttributeOptionApi;
+
     /** @var ReferenceEntityApiInterface */
     private $referenceEntityApi;
 
     /**
-     * @param Authentication                       $authentication
-     * @param ProductApiInterface                  $productApi
-     * @param CategoryApiInterface                 $categoryApi
-     * @param AttributeApiInterface                $attributeApi
-     * @param AttributeOptionApiInterface          $attributeOptionApi
-     * @param AttributeGroupApiInterface           $attributeGroupApi
-     * @param FamilyApiInterface                   $familyApi
-     * @param MediaFileApiInterface                $productMediaFileApi
-     * @param LocaleApiInterface                   $localeApi
-     * @param ChannelApiInterface                  $channelApi
-     * @param CurrencyApiInterface                 $currencyApi
-     * @param MeasureFamilyApiInterface            $measureFamilyApi
-     * @param AssociationTypeApiInterface          $associationTypeApi
-     * @param FamilyVariantApiInterface            $familyVariantApi
-     * @param ProductModelApiInterface             $productModelApi
-     * @param ProductModelDraftApiInterface        $productModelDraftApi
-     * @param PublishedProductApiInterface         $publishedProductApi
-     * @param ProductDraftApiInterface             $productDraftApi
-     * @param AssetApiInterface                    $assetApi
-     * @param AssetCategoryApiInterface            $assetCategoryApi
-     * @param AssetTagApiInterface                 $assetTagApi
-     * @param AssetReferenceFileApiInterface       $assetReferenceFileApi
-     * @param AssetVariationFileApiInterface       $assetVariationFileApi
-     * @param ReferenceEntityRecordApiInterface    $referenceEntityRecordApi
-     * @param ReferenceEntityMediaFileApiInterface $referenceEntityMediaFileApi
-     * @param ReferenceEntityAttributeApiInterface $referenceEntityAttributeApi
-     * @param ReferenceEntityApiInterface       $referenceEntityApi
-     **/
-
+     * @param Authentication                             $authentication
+     * @param ProductApiInterface                        $productApi
+     * @param CategoryApiInterface                       $categoryApi
+     * @param AttributeApiInterface                      $attributeApi
+     * @param AttributeOptionApiInterface                $attributeOptionApi
+     * @param AttributeGroupApiInterface                 $attributeGroupApi
+     * @param FamilyApiInterface                         $familyApi
+     * @param MediaFileApiInterface                      $productMediaFileApi
+     * @param LocaleApiInterface                         $localeApi
+     * @param ChannelApiInterface                        $channelApi
+     * @param CurrencyApiInterface                       $currencyApi
+     * @param MeasureFamilyApiInterface                  $measureFamilyApi
+     * @param AssociationTypeApiInterface                $associationTypeApi
+     * @param FamilyVariantApiInterface                  $familyVariantApi
+     * @param ProductModelApiInterface                   $productModelApi
+     * @param ProductModelDraftApiInterface              $productModelDraftApi
+     * @param PublishedProductApiInterface               $publishedProductApi
+     * @param ProductDraftApiInterface                   $productDraftApi
+     * @param AssetApiInterface                          $assetApi
+     * @param AssetCategoryApiInterface                  $assetCategoryApi
+     * @param AssetTagApiInterface                       $assetTagApi
+     * @param AssetReferenceFileApiInterface             $assetReferenceFileApi
+     * @param AssetVariationFileApiInterface             $assetVariationFileApi
+     * @param ReferenceEntityRecordApiInterface          $referenceEntityRecordApi
+     * @param ReferenceEntityMediaFileApiInterface       $referenceEntityMediaFileApi
+     * @param ReferenceEntityAttributeApiInterface       $referenceEntityAttributeApi
+     * @param ReferenceEntityAttributeOptionApiInterface $referenceEntityAttributeOptionApi
+     * @param ReferenceEntityApiInterface                $referenceEntityApi
+     */
     public function __construct(
         Authentication $authentication,
         ProductApiInterface $productApi,
@@ -133,6 +137,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         ReferenceEntityRecordApiInterface $referenceEntityRecordApi,
         ReferenceEntityMediaFileApiInterface $referenceEntityMediaFileApi,
         ReferenceEntityAttributeApiInterface $referenceEntityAttributeApi,
+        ReferenceEntityAttributeOptionApiInterface $referenceEntityAttributeOptionApi,
         ReferenceEntityApiInterface $referenceEntityApi
     ) {
         parent::__construct(
@@ -164,6 +169,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         $this->referenceEntityRecordApi = $referenceEntityRecordApi;
         $this->referenceEntityMediaFileApi = $referenceEntityMediaFileApi;
         $this->referenceEntityAttributeApi = $referenceEntityAttributeApi;
+        $this->referenceEntityAttributeOptionApi = $referenceEntityAttributeOptionApi;
         $this->referenceEntityApi = $referenceEntityApi;
     }
 
@@ -253,6 +259,14 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     public function getReferenceEntityAttributeApi()
     {
         return $this->referenceEntityAttributeApi;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getReferenceEntityAttributeOptionApi()
+    {
+        return $this->referenceEntityAttributeOptionApi;
     }
 
     /**

@@ -28,6 +28,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductModelDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeOptionApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityMediaFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApiInterface;
@@ -62,6 +63,7 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
         ReferenceEntityRecordApiInterface $referenceEntityRecordApi,
         ReferenceEntityMediaFileApiInterface $referenceEntityMediaFileApi,
         ReferenceEntityAttributeApiInterface $referenceEntityAttributeApi,
+        ReferenceEntityAttributeOptionApiInterface $referenceEntityAttributeOptionApi,
         ReferenceEntityApiInterface $referenceEntityApi
     ) {
         $this->beConstructedWith(
@@ -91,6 +93,7 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
             $referenceEntityRecordApi,
             $referenceEntityMediaFileApi,
             $referenceEntityAttributeApi,
+            $referenceEntityAttributeOptionApi,
             $referenceEntityApi
         );
     }
