@@ -146,7 +146,7 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
 
     function it_gets_reference_entity_media_file_api($referenceEntityMediaFileApi)
     {
-        $this->getReferenceEntityMediaFileAPi()->shouldReturn($referenceEntityMediaFileApi);
+        $this->getReferenceEntityMediaFileApi()->shouldReturn($referenceEntityMediaFileApi);
     }
 
     function it_gets_reference_entity_attribute_api($referenceEntityAttributeApi)
