@@ -1,4 +1,38 @@
-# 4.0.0 (2018-02-12)
+# 4.0.0 (2019-02-08)
+
+## Improvements
+
+Addition of the reference entity end-points:
+
+- Get a single reference entity
+- Get a list of reference entities
+- Upsert a single reference entity
+- Upsert a list of reference entities
+- Get a single reference entity record
+- Get a list of reference entity records
+- Upsert a single reference entity record
+- Upsert a list of reference entity records
+- Get a single reference entity attribute
+- Get a list of reference entity attributes
+- Upsert a single reference entity attribute
+- Get a single reference entity attribute option
+- Get a list of reference entity attribute options
+- Upsert a single reference entity attribute option
+- Download a reference entity media file
+- Create a reference entity media file
+
+## BC breaks
+ 
+- Add method `Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientInterface::getReferenceEntityApi`
+- Change the constructor of `Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClient` to add `Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityApiInterface`
+- Add method `Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientInterface::getReferenceEntityRecordApi`
+- Change the constructor of `Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClient` to add `Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApiInterface`
+- Add method `Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientInterface::getReferenceEntityAttributeApi`
+- Change the constructor of `Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClient` to add `Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeApiInterface`
+- Add method `Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientInterface::getReferenceEntityAttributeOptionApi`
+- Change the constructor of `Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClient` to add `Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeOptionApiInterface`
+- Add method `Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientInterface::getReferenceEntityMediaFileApi`
+- Change the constructor of `Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClient` to add `Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityMediaFileApiInterface`
 
 ## BC Breaks
 
