@@ -33,6 +33,7 @@ Addition of the reference entity end-points:
 - Change the constructor of `Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClient` to add `Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeOptionApiInterface`
 - Add method `Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientInterface::getReferenceEntityMediaFileApi`
 - Change the constructor of `Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClient` to add `Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityMediaFileApiInterface`
+- Change the response type from `StreamInterface` to `Response` for `\Akeneo\Pim\ApiClient\Api\MediaFileApiInterface::download`
 
 ## BC Breaks
 
