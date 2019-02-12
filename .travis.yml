@@ -16,7 +16,6 @@ before_install:
     - composer self-update --no-interaction
 
 install:
-    - composer --ansi require php-http/guzzle6-adapter guzzlehttp/psr7
     - composer install --prefer-dist --no-interaction
 
 script:
