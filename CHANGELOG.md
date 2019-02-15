@@ -33,7 +33,15 @@ Addition of the reference entity end-points:
 - Change the constructor of `Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClient` to add `Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeOptionApiInterface`
 - Add method `Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientInterface::getReferenceEntityMediaFileApi`
 - Change the constructor of `Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClient` to add `Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityMediaFileApiInterface`
-- Change the response type from `StreamInterface` to `Response` for `\Akeneo\Pim\ApiClient\Api\MediaFileApiInterface::download`
+
+- Change the response type from `Psr\Http\Message\StreamInterface` to `Psr\Http\Message\ResponseInterface` for `Akeneo\Pim\ApiClient\Api\MediaFileApiInterface::download`
+- Change the response type from `Psr\Http\Message\StreamInterface` to `Psr\Http\Message\ResponseInterface` for `Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface::downloadFromLocalizableAsset`
+- Change the response type from `Psr\Http\Message\StreamInterface` to `Psr\Http\Message\ResponseInterface` for `Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface::downloadFromNotLocalizableAsset`
+- Change the response type from `Psr\Http\Message\StreamInterface` to `Psr\Http\Message\ResponseInterface` for `Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface::downloadFromNotLocalizableAsset`
+- Change the response type from `Psr\Http\Message\StreamInterface` to `Psr\Http\Message\ResponseInterface` for `Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface::downloadFromLocalizableAsset`
+
+It allows to get the filename from the response, and also the Mime type.
+To get the content you can do `$response->getBody()->getContent()` (previously `$response->getContent()`.
 
 ## BC Breaks
 

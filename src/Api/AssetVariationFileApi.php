@@ -4,6 +4,7 @@ namespace Akeneo\PimEnterprise\ApiClient\Api;
 
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
 use Akeneo\Pim\ApiClient\FileSystem\FileSystemInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -66,23 +67,23 @@ class AssetVariationFileApi implements AssetVariationFileApiInterface
     /**
      * {@inheritdoc}
      */
-    public function downloadFromLocalizableAsset(string $assetCode, string $channelCode, string $localeCode): StreamInterface
+    public function downloadFromLocalizableAsset(string $assetCode, string $channelCode, string $localeCode): ResponseInterface
     {
         return $this->resourceClient->getStreamedResource(
             static::ASSET_VARIATION_FILE_DOWNLOAD_URI,
             [$assetCode, $channelCode, $localeCode]
-        )->getBody();
+        );
     }
 
     /**
      * {@inheritdoc}
      */
-    public function downloadFromNotLocalizableAsset(string $assetCode, string $channelCode): StreamInterface
+    public function downloadFromNotLocalizableAsset(string $assetCode, string $channelCode): ResponseInterface
     {
         return $this->resourceClient->getStreamedResource(
             static::ASSET_VARIATION_FILE_DOWNLOAD_URI,
             [$assetCode, $channelCode, static::NOT_LOCALIZABLE_ASSET_LOCALE_CODE]
-        )->getBody();
+        );
     }
 
     private function get(string $assetCode, string $channelCode, string $localeCode): array

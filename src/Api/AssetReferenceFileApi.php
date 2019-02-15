@@ -68,21 +68,19 @@ class AssetReferenceFileApi implements AssetReferenceFileApiInterface
     /**
      * {@inheritdoc}
      */
-    public function downloadFromLocalizableAsset(string $assetCode, string $localeCode): StreamInterface
+    public function downloadFromLocalizableAsset(string $assetCode, string $localeCode): ResponseInterface
     {
         return $this->resourceClient
-            ->getStreamedResource(static::ASSET_REFERENCE_FILE_DOWNLOAD_URI, [$assetCode, $localeCode])
-            ->getBody();
+            ->getStreamedResource(static::ASSET_REFERENCE_FILE_DOWNLOAD_URI, [$assetCode, $localeCode]);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function downloadFromNotLocalizableAsset(string $assetCode): StreamInterface
+    public function downloadFromNotLocalizableAsset(string $assetCode): ResponseInterface
     {
         return $this->resourceClient
-            ->getStreamedResource(static::ASSET_REFERENCE_FILE_DOWNLOAD_URI, [$assetCode, static::NOT_LOCALIZABLE_ASSET_LOCALE_CODE])
-            ->getBody();
+            ->getStreamedResource(static::ASSET_REFERENCE_FILE_DOWNLOAD_URI, [$assetCode, static::NOT_LOCALIZABLE_ASSET_LOCALE_CODE]);
     }
 
     /**
