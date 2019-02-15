@@ -23,7 +23,7 @@ interface AssetVariationFileApiInterface
      *
      * @return array
      */
-    public function getFromLocalizableAsset($assetCode, $channelCode, $localeCode);
+    public function getFromLocalizableAsset(string $assetCode, string $channelCode, string $localeCode): array;
 
     /**
      * Available since Akeneo PIM 2.1.
@@ -34,7 +34,7 @@ interface AssetVariationFileApiInterface
      *
      * @return array
      */
-    public function getFromNotLocalizableAsset($assetCode, $channelCode);
+    public function getFromNotLocalizableAsset(string $assetCode, string $channelCode): array;
 
     /**
      * Available since Akeneo PIM 2.1.
@@ -47,7 +47,7 @@ interface AssetVariationFileApiInterface
      *
      * @return int Status code 201 indicating that the asset variation file has been well uploaded
      */
-    public function uploadForLocalizableAsset($variationFile, $assetCode, $channelCode, $localeCode);
+    public function uploadForLocalizableAsset($variationFile, string $assetCode, string $channelCode, string $localeCode): int;
 
     /**
      * Available since Akeneo PIM 2.1.
@@ -59,7 +59,7 @@ interface AssetVariationFileApiInterface
      *
      * @return int Status code 201 indicating that the asset variation file has been well uploaded
      */
-    public function uploadForNotLocalizableAsset($variationFile, $assetCode, $channelCode);
+    public function uploadForNotLocalizableAsset($variationFile, string $assetCode, string $channelCode): int;
 
     /**
      * Available since Akeneo PIM 2.1.
@@ -71,7 +71,7 @@ interface AssetVariationFileApiInterface
      *
      * @return StreamInterface
      */
-    public function downloadFromLocalizableAsset($assetCode, $channelCode, $localeCode);
+    public function downloadFromLocalizableAsset(string $assetCode, string $channelCode, string $localeCode): StreamInterface;
 
     /**
      * Available since Akeneo PIM 2.1.
@@ -82,5 +82,5 @@ interface AssetVariationFileApiInterface
      *
      * @return StreamInterface
      */
-    public function downloadFromNotLocalizableAsset($assetCode, $channelCode);
+    public function downloadFromNotLocalizableAsset(string $assetCode, string $channelCode): StreamInterface;
 }

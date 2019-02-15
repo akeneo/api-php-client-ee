@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Akeneo\PimEnterprise\ApiClient\Api;
 
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
-use Akeneo\Pim\ApiClient\Exception\HttpException;
 use Akeneo\Pim\ApiClient\Pagination\PageFactoryInterface;
 use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactoryInterface;
 use Akeneo\Pim\ApiClient\Pagination\ResourceCursorInterface;
