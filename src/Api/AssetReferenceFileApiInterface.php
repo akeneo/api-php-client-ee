@@ -2,6 +2,8 @@
 
 namespace Akeneo\PimEnterprise\ApiClient\Api;
 
+use Akeneo\Pim\ApiClient\Exception\HttpException;
+use Akeneo\PimEnterprise\ApiClient\Exception\UploadAssetReferenceFileErrorException;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -24,7 +26,7 @@ interface AssetReferenceFileApiInterface
      *
      * @return array
      */
-    public function getFromLocalizableAsset($assetCode, $localeCode);
+    public function getFromLocalizableAsset(string $assetCode, string $localeCode): array;
 
     /**
      * Available since Akeneo PIM 2.1.
@@ -36,38 +38,38 @@ interface AssetReferenceFileApiInterface
      *
      * @return array
      */
-    public function getFromNotLocalizableAsset($assetCode);
+    public function getFromNotLocalizableAsset(string $assetCode): array;
 
     /**
      * Available since Akeneo PIM 2.1.
      * Uploads a new reference file for a given localizable asset and locale.
      * It will also automatically generate all the variation files corresponding to this reference file.
      *
+     * @param string|resource $referenceFile file path or resource of the reference file to upload
      * @param string          $assetCode     code of the asset
      * @param string          $localeCode    code of the locale
-     * @param string|resource $referenceFile file path or resource of the reference file to upload
      *
      * @throws HttpException If the request failed
      * @throws UploadAssetReferenceFileErrorException If the upload returned any errors
      *
      * @return int Status code 201 indicating that the asset reference file has been well uploaded
      */
-    public function uploadForLocalizableAsset($referenceFile, $assetCode, $localeCode);
+    public function uploadForLocalizableAsset($referenceFile, string $assetCode, string $localeCode): int;
 
     /**
      * Available since Akeneo PIM 2.1.
      * Uploads a new reference file for a given not localizable asset.
      * It will also automatically generate all the variation files corresponding to this reference file.
      *
-     * @param string          $assetCode     code of the asset
      * @param string|resource $referenceFile file path or resource of the reference file to upload
+     * @param string          $assetCode     code of the asset
      *
      * @throws HttpException If the request failed
      * @throws UploadAssetReferenceFileErrorException If the upload returned any errors
      *
      * @return int Status code 201 indicating that the asset reference file has been well uploaded
      */
-    public function uploadForNotLocalizableAsset($referenceFile, $assetCode);
+    public function uploadForNotLocalizableAsset($referenceFile, string $assetCode): int;
 
     /**
      * Available since Akeneo PIM 2.1.
@@ -80,7 +82,7 @@ interface AssetReferenceFileApiInterface
      *
      * @return StreamInterface
      */
-    public function downloadFromLocalizableAsset($assetCode, $localeCode);
+    public function downloadFromLocalizableAsset(string $assetCode, string $localeCode): StreamInterface;
 
     /**
      * Available since Akeneo PIM 2.1.
@@ -92,5 +94,5 @@ interface AssetReferenceFileApiInterface
      *
      * @return StreamInterface
      */
-    public function downloadFromNotLocalizableAsset($assetCode);
+    public function downloadFromNotLocalizableAsset(string $assetCode): StreamInterface;
 }

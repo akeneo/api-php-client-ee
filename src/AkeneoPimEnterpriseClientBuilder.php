@@ -7,6 +7,7 @@ use Akeneo\Pim\ApiClient\Api\AssociationTypeApi;
 use Akeneo\Pim\ApiClient\Api\AttributeApi;
 use Akeneo\Pim\ApiClient\Api\AttributeGroupApi;
 use Akeneo\Pim\ApiClient\Api\AttributeOptionApi;
+use Akeneo\Pim\ApiClient\Api\AuthenticationApi;
 use Akeneo\Pim\ApiClient\Api\CategoryApi;
 use Akeneo\Pim\ApiClient\Api\ChannelApi;
 use Akeneo\Pim\ApiClient\Api\CurrencyApi;
@@ -17,7 +18,17 @@ use Akeneo\Pim\ApiClient\Api\MeasureFamilyApi;
 use Akeneo\Pim\ApiClient\Api\ProductApi;
 use Akeneo\Pim\ApiClient\Api\ProductMediaFileApi;
 use Akeneo\Pim\ApiClient\Api\ProductModelApi;
+use Akeneo\Pim\ApiClient\Client\AuthenticatedHttpClient;
+use Akeneo\Pim\ApiClient\Client\HttpClient;
+use Akeneo\Pim\ApiClient\Client\ResourceClient;
+use Akeneo\Pim\ApiClient\FileSystem\FileSystemInterface;
+use Akeneo\Pim\ApiClient\FileSystem\LocalFileSystem;
+use Akeneo\Pim\ApiClient\Pagination\PageFactory;
+use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactory;
+use Akeneo\Pim\ApiClient\Routing\UriGenerator;
 use Akeneo\Pim\ApiClient\Security\Authentication;
+use Akeneo\Pim\ApiClient\Stream\MultipartStreamBuilderFactory;
+use Akeneo\Pim\ApiClient\Stream\UpsertResourceListResponseFactory;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApi;
@@ -31,6 +42,12 @@ use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeOptionApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityMediaFileApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApi;
+use Http\Client\HttpClient as Client;
+use Http\Discovery\HttpClientDiscovery;
+use Http\Discovery\MessageFactoryDiscovery;
+use Http\Discovery\StreamFactoryDiscovery;
+use Http\Message\RequestFactory;
+use Http\Message\StreamFactory;
 
 /**
  * Builder of the class AkeneoPimEnterpriseClient.
@@ -40,8 +57,121 @@ use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApi;
  * @copyright 2017 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class AkeneoPimEnterpriseClientBuilder extends AkeneoPimClientBuilder
+class AkeneoPimEnterpriseClientBuilder
 {
+    /** @var string */
+    protected $baseUri;
+
+    /** @var Client */
+    protected $httpClient;
+
+    /** @var RequestFactory */
+    protected $requestFactory;
+
+    /** @var StreamFactory */
+    protected $streamFactory;
+
+    /** @var FileSystemInterface */
+    protected $fileSystem;
+
+    /**
+     * @param string $baseUri Base uri to request the API
+     */
+    public function __construct(string $baseUri)
+    {
+        $this->baseUri = $baseUri;
+    }
+
+    /**
+     * Allows to directly set a client instead of using HttpClientDiscovery::find()
+     *
+     * @param Client $httpClient
+     *
+     * @return AkeneoPimClientBuilder
+     */
+    public function setHttpClient(Client $httpClient): self
+    {
+        $this->httpClient = $httpClient;
+
+        return $this;
+    }
+
+    /**
+     * Allows to directly set a request factory instead of using MessageFactoryDiscovery::find()
+     *
+     * @param RequestFactory $requestFactory
+     *
+     * @return AkeneoPimClientBuilder
+     */
+    public function setRequestFactory(RequestFactory $requestFactory): self
+    {
+        $this->requestFactory = $requestFactory;
+
+        return $this;
+    }
+
+    /**
+     * Allows to directly set a stream factory instead of using StreamFactoryDiscovery::find()
+     *
+     * @param StreamFactory $streamFactory
+     *
+     * @return AkeneoPimClientBuilder
+     */
+    public function setStreamFactory(StreamFactory $streamFactory): self
+    {
+        $this->streamFactory = $streamFactory;
+
+        return $this;
+    }
+
+    /**
+     * Allows to define another implementation than LocalFileSystem
+     *
+     * @param FileSystemInterface $fileSystem
+     *
+     * @return AkeneoPimClientBuilder
+     */
+    public function setFileSystem(FileSystemInterface $fileSystem): self
+    {
+        $this->fileSystem = $fileSystem;
+
+        return $this;
+    }
+
+    /**
+     * Build the Akeneo PIM client authenticated by user name and password.
+     *
+     * @param string $clientId Client id to use for the authentication
+     * @param string $secret   Secret associated to the client
+     * @param string $username Username to use for the authentication
+     * @param string $password Password associated to the username
+     *
+     * @return AkeneoPimEnterpriseClientInterface
+     */
+    public function buildAuthenticatedByPassword(string $clientId, string $secret, string $username, string $password): AkeneoPimEnterpriseClientInterface
+    {
+        $authentication = Authentication::fromPassword($clientId, $secret, $username, $password);
+
+        return $this->buildAuthenticatedClient($authentication);
+    }
+
+    /**
+     * Build the Akeneo PIM client authenticated by token.
+     *
+     * @param string $clientId     Client id to use for the authentication
+     * @param string $secret       Secret associated to the client
+     * @param string $token        Token to use for the authentication
+     * @param string $refreshToken Token to use to refresh the access token
+     *
+     * @return AkeneoPimEnterpriseClientInterface
+     */
+    public function buildAuthenticatedByToken(string $clientId, string $secret, string $token, string $refreshToken): AkeneoPimEnterpriseClientInterface
+    {
+        $authentication = Authentication::fromToken($clientId, $secret, $token, $refreshToken);
+
+        return $this->buildAuthenticatedClient($authentication);
+    }
+
     /**
      * @param Authentication $authentication
      *
@@ -86,19 +216,58 @@ class AkeneoPimEnterpriseClientBuilder extends AkeneoPimClientBuilder
     }
 
     /**
-     * Build the Akeneo PIM client authenticated by user name and password.
+     * @param Authentication $authentication
      *
-     * @param string $clientId Client id to use for the authentication
-     * @param string $secret   Secret associated to the client
-     * @param string $username Username to use for the authentication
-     * @param string $password Password associated to the username
-     *
-     * @return AkeneoPimEnterpriseClientInterface
+     * @return array
      */
-    public function buildAuthenticatedByPassword($clientId, $secret, $username, $password)
+    protected function setUp(Authentication $authentication): array
     {
-        $authentication = Authentication::fromPassword($clientId, $secret, $username, $password);
+        $uriGenerator = new UriGenerator($this->baseUri);
 
-        return $this->buildAuthenticatedClient($authentication);
+        $httpClient = new HttpClient($this->getHttpClient(), $this->getRequestFactory());
+        $authenticationApi = new AuthenticationApi($httpClient, $uriGenerator);
+        $authenticatedHttpClient = new AuthenticatedHttpClient($httpClient, $authenticationApi, $authentication);
+
+        $multipartStreamBuilderFactory = new MultipartStreamBuilderFactory($this->getStreamFactory());
+        $upsertListResponseFactory = new UpsertResourceListResponseFactory();
+        $resourceClient = new ResourceClient(
+            $authenticatedHttpClient,
+            $uriGenerator,
+            $multipartStreamBuilderFactory,
+            $upsertListResponseFactory
+        );
+
+        $pageFactory = new PageFactory($authenticatedHttpClient);
+        $cursorFactory = new ResourceCursorFactory();
+        $fileSystem = null !== $this->fileSystem ? $this->fileSystem : new LocalFileSystem();
+
+        return [$resourceClient, $pageFactory, $cursorFactory, $fileSystem];
+    }
+
+    private function getHttpClient(): Client
+    {
+        if (null === $this->httpClient) {
+            $this->httpClient = HttpClientDiscovery::find();
+        }
+
+        return $this->httpClient;
+    }
+
+    private function getRequestFactory(): RequestFactory
+    {
+        if (null === $this->requestFactory) {
+            $this->requestFactory = MessageFactoryDiscovery::find();
+        }
+
+        return $this->requestFactory;
+    }
+
+    private function getStreamFactory(): StreamFactory
+    {
+        if (null === $this->streamFactory) {
+            $this->streamFactory = StreamFactoryDiscovery::find();
+        }
+
+        return $this->streamFactory;
     }
 }

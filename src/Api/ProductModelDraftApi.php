@@ -27,11 +27,6 @@ class ProductModelDraftApi implements ProductModelDraftApiInterface
     /** @var ResourceCursorFactoryInterface */
     protected $cursorFactory;
 
-    /**
-     * @param ResourceClientInterface        $resourceClient
-     * @param PageFactoryInterface           $pageFactory
-     * @param ResourceCursorFactoryInterface $cursorFactory
-     */
     public function __construct(
         ResourceClientInterface $resourceClient,
         PageFactoryInterface $pageFactory,
@@ -45,7 +40,7 @@ class ProductModelDraftApi implements ProductModelDraftApiInterface
     /**
      * {@inheritdoc}
      */
-    public function get($code)
+    public function get(string $code): array
     {
         return $this->resourceClient->getResource(static::PRODUCT_MODEL_DRAFT_URI, [$code]);
     }

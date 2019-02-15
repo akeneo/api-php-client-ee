@@ -4,6 +4,7 @@ namespace Akeneo\PimEnterprise\ApiClient\Api;
 
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
 use Akeneo\Pim\ApiClient\FileSystem\FileSystemInterface;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Class AssetVariationFileApi
@@ -24,10 +25,6 @@ class AssetVariationFileApi implements AssetVariationFileApiInterface
     /** @var FileSystemInterface */
     private $fileSystem;
 
-    /**
-     * @param ResourceClientInterface $resourceClient
-     * @param FileSystemInterface     $fileSystem
-     */
     public function __construct(ResourceClientInterface $resourceClient, FileSystemInterface $fileSystem)
     {
         $this->resourceClient = $resourceClient;
@@ -37,7 +34,7 @@ class AssetVariationFileApi implements AssetVariationFileApiInterface
     /**
      * {@inheritdoc}
      */
-    public function getFromNotLocalizableAsset($assetCode, $channelCode)
+    public function getFromNotLocalizableAsset(string $assetCode, string $channelCode): array
     {
         return $this->get($assetCode, $channelCode, static::NOT_LOCALIZABLE_ASSET_LOCALE_CODE);
     }
@@ -45,7 +42,7 @@ class AssetVariationFileApi implements AssetVariationFileApiInterface
     /**
      * {@inheritdoc}
      */
-    public function getFromLocalizableAsset($assetCode, $channelCode, $localeCode)
+    public function getFromLocalizableAsset(string $assetCode, string $channelCode, string $localeCode): array
     {
         return $this->get($assetCode, $channelCode, $localeCode);
     }
@@ -53,7 +50,7 @@ class AssetVariationFileApi implements AssetVariationFileApiInterface
     /**
      * {@inheritdoc}
      */
-    public function uploadForNotLocalizableAsset($variationFile, $assetCode, $channelCode)
+    public function uploadForNotLocalizableAsset($variationFile, string $assetCode, string $channelCode): int
     {
         return $this->upload($variationFile, $assetCode, $channelCode, static::NOT_LOCALIZABLE_ASSET_LOCALE_CODE);
     }
@@ -61,7 +58,7 @@ class AssetVariationFileApi implements AssetVariationFileApiInterface
     /**
      * {@inheritdoc}
      */
-    public function uploadForLocalizableAsset($variationFile, $assetCode, $channelCode, $localeCode)
+    public function uploadForLocalizableAsset($variationFile, string $assetCode, string $channelCode, string $localeCode): int
     {
         return $this->upload($variationFile, $assetCode, $channelCode, $localeCode);
     }
@@ -69,7 +66,7 @@ class AssetVariationFileApi implements AssetVariationFileApiInterface
     /**
      * {@inheritdoc}
      */
-    public function downloadFromLocalizableAsset($assetCode, $channelCode, $localeCode)
+    public function downloadFromLocalizableAsset(string $assetCode, string $channelCode, string $localeCode): StreamInterface
     {
         return $this->resourceClient->getStreamedResource(
             static::ASSET_VARIATION_FILE_DOWNLOAD_URI,
@@ -80,7 +77,7 @@ class AssetVariationFileApi implements AssetVariationFileApiInterface
     /**
      * {@inheritdoc}
      */
-    public function downloadFromNotLocalizableAsset($assetCode, $channelCode)
+    public function downloadFromNotLocalizableAsset(string $assetCode, string $channelCode): StreamInterface
     {
         return $this->resourceClient->getStreamedResource(
             static::ASSET_VARIATION_FILE_DOWNLOAD_URI,
@@ -88,14 +85,7 @@ class AssetVariationFileApi implements AssetVariationFileApiInterface
         )->getBody();
     }
 
-    /**
-     * @param string $assetCode
-     * @param string $channelCode
-     * @param string $localeCode
-     *
-     * @return array
-     */
-    private function get($assetCode, $channelCode, $localeCode)
+    private function get(string $assetCode, string $channelCode, string $localeCode): array
     {
         return $this->resourceClient->getResource(static::ASSET_VARIATION_FILE_URI, [$assetCode, $channelCode, $localeCode]);
     }
@@ -108,7 +98,7 @@ class AssetVariationFileApi implements AssetVariationFileApiInterface
      *
      * @return int
      */
-    private function upload($variationFile, $assetCode, $channelCode, $localeCode)
+    private function upload($variationFile, string $assetCode, string $channelCode, string $localeCode): int
     {
         if (is_string($variationFile)) {
             $variationFile = $this->fileSystem->getResourceFromPath($variationFile);

@@ -28,10 +28,7 @@ class UploadAssetReferenceFileErrorException extends RuntimeException
         $this->errors = $errors;
     }
 
-    /**
-     * @return array
-     */
-    public function getErrors()
+    public function getErrors(): array
     {
         return $this->errors;
     }

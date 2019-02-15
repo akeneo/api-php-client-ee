@@ -4,7 +4,9 @@ namespace Akeneo\PimEnterprise\ApiClient\Api;
 
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
 use Akeneo\Pim\ApiClient\Pagination\PageFactoryInterface;
+use Akeneo\Pim\ApiClient\Pagination\PageInterface;
 use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactoryInterface;
+use Akeneo\Pim\ApiClient\Pagination\ResourceCursorInterface;
 
 /**
  * API implementation to manage published products.
@@ -27,11 +29,6 @@ class PublishedProductApi implements PublishedProductApiInterface
     /** @var ResourceCursorFactoryInterface */
     protected $cursorFactory;
 
-    /**
-     * @param ResourceClientInterface        $resourceClient
-     * @param PageFactoryInterface           $pageFactory
-     * @param ResourceCursorFactoryInterface $cursorFactory
-     */
     public function __construct(
         ResourceClientInterface $resourceClient,
         PageFactoryInterface $pageFactory,
@@ -45,7 +42,7 @@ class PublishedProductApi implements PublishedProductApiInterface
     /**
      * {@inheritdoc}
      */
-    public function get($code)
+    public function get(string $code): array
     {
         return $this->resourceClient->getResource(static::PUBLISHED_PRODUCT_URI, [$code]);
     }
@@ -53,7 +50,7 @@ class PublishedProductApi implements PublishedProductApiInterface
     /**
      * {@inheritdoc}
      */
-    public function listPerPage($limit = 10, $withCount = false, array $queryParameters = [])
+    public function listPerPage(int $limit = 10, bool $withCount = false, array $queryParameters = []): PageInterface
     {
         $data = $this->resourceClient->getResources(
             static::PUBLISHED_PRODUCTS_URI,
@@ -69,7 +66,7 @@ class PublishedProductApi implements PublishedProductApiInterface
     /**
      * {@inheritdoc}
      */
-    public function all($pageSize = 10, array $queryParameters = [])
+    public function all(int $pageSize = 10, array $queryParameters = []): ResourceCursorInterface
     {
         $queryParameters['pagination_type'] = 'search_after';
 

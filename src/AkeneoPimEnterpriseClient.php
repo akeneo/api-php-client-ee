@@ -80,36 +80,6 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /** @var ReferenceEntityApiInterface */
     private $referenceEntityApi;
 
-    /**
-     * @param Authentication                             $authentication
-     * @param ProductApiInterface                        $productApi
-     * @param CategoryApiInterface                       $categoryApi
-     * @param AttributeApiInterface                      $attributeApi
-     * @param AttributeOptionApiInterface                $attributeOptionApi
-     * @param AttributeGroupApiInterface                 $attributeGroupApi
-     * @param FamilyApiInterface                         $familyApi
-     * @param MediaFileApiInterface                      $productMediaFileApi
-     * @param LocaleApiInterface                         $localeApi
-     * @param ChannelApiInterface                        $channelApi
-     * @param CurrencyApiInterface                       $currencyApi
-     * @param MeasureFamilyApiInterface                  $measureFamilyApi
-     * @param AssociationTypeApiInterface                $associationTypeApi
-     * @param FamilyVariantApiInterface                  $familyVariantApi
-     * @param ProductModelApiInterface                   $productModelApi
-     * @param ProductModelDraftApiInterface              $productModelDraftApi
-     * @param PublishedProductApiInterface               $publishedProductApi
-     * @param ProductDraftApiInterface                   $productDraftApi
-     * @param AssetApiInterface                          $assetApi
-     * @param AssetCategoryApiInterface                  $assetCategoryApi
-     * @param AssetTagApiInterface                       $assetTagApi
-     * @param AssetReferenceFileApiInterface             $assetReferenceFileApi
-     * @param AssetVariationFileApiInterface             $assetVariationFileApi
-     * @param ReferenceEntityRecordApiInterface          $referenceEntityRecordApi
-     * @param ReferenceEntityMediaFileApiInterface       $referenceEntityMediaFileApi
-     * @param ReferenceEntityAttributeApiInterface       $referenceEntityAttributeApi
-     * @param ReferenceEntityAttributeOptionApiInterface $referenceEntityAttributeOptionApi
-     * @param ReferenceEntityApiInterface                $referenceEntityApi
-     */
     public function __construct(
         Authentication $authentication,
         ProductApiInterface $productApi,
@@ -176,7 +146,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /**
      * {@inheritdoc}
      */
-    public function getPublishedProductApi()
+    public function getPublishedProductApi(): PublishedProductApiInterface
     {
         return $this->publishedProductApi;
     }
@@ -184,7 +154,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /**
      * {@inheritdoc}
      */
-    public function getProductModelDraftApi()
+    public function getProductModelDraftApi(): ProductModelDraftApiInterface
     {
         return $this->productModelDraftApi;
     }
@@ -192,7 +162,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /**
      * {@inheritdoc}
      */
-    public function getProductDraftApi()
+    public function getProductDraftApi(): ProductDraftApiInterface
     {
         return $this->productDraftApi;
     }
@@ -200,7 +170,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /**
      * @return AssetApiInterface
      */
-    public function getAssetApi()
+    public function getAssetApi(): AssetApiInterface
     {
         return $this->assetApi;
     }
@@ -208,7 +178,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /**
      * {@inheritdoc}
      */
-    public function getAssetCategoryApi()
+    public function getAssetCategoryApi(): AssetCategoryApiInterface
     {
         return $this->assetCategoryApi;
     }
@@ -216,7 +186,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /**
      * {@inheritdoc}
      */
-    public function getAssetTagApi()
+    public function getAssetTagApi(): AssetTagApiInterface
     {
         return $this->assetTagApi;
     }
@@ -224,7 +194,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /**
      * {@inheritdoc}
      */
-    public function getAssetReferenceFileApi()
+    public function getAssetReferenceFileApi(): AssetReferenceFileApiInterface
     {
         return $this->assetReferenceFileApi;
     }
@@ -232,7 +202,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /**
      * {@inheritdoc}
      */
-    public function getAssetVariationFileApi()
+    public function getAssetVariationFileApi(): AssetVariationFileApiInterface
     {
         return $this->assetVariationFileApi;
     }
@@ -240,7 +210,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /**
      * {@inheritdoc}
      */
-    public function getReferenceEntityRecordApi()
+    public function getReferenceEntityRecordApi(): ReferenceEntityRecordApiInterface
     {
         return $this->referenceEntityRecordApi;
     }
@@ -248,7 +218,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /**
      * {@inheritdoc}
      */
-    public function getReferenceEntityMediaFileApi()
+    public function getReferenceEntityMediaFileApi(): ReferenceEntityMediaFileApiInterface
     {
         return $this->referenceEntityMediaFileApi;
     }
@@ -256,7 +226,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /**
      * {@inheritdoc}
      */
-    public function getReferenceEntityAttributeApi()
+    public function getReferenceEntityAttributeApi(): ReferenceEntityAttributeApiInterface
     {
         return $this->referenceEntityAttributeApi;
     }
@@ -264,7 +234,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /**
      * {@inheritdoc}
      */
-    public function getReferenceEntityAttributeOptionApi()
+    public function getReferenceEntityAttributeOptionApi(): ReferenceEntityAttributeOptionApiInterface
     {
         return $this->referenceEntityAttributeOptionApi;
     }
@@ -272,7 +242,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /**
      * {@inheritdoc}
      */
-    public function getReferenceEntityApi()
+    public function getReferenceEntityApi(): ReferenceEntityApiInterface
     {
         return $this->referenceEntityApi;
     }

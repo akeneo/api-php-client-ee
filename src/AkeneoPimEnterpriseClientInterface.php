@@ -9,6 +9,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\ProductModelDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeApiInterface;
@@ -25,94 +26,29 @@ use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApiInterface;
  */
 interface AkeneoPimEnterpriseClientInterface extends AkeneoPimClientInterface
 {
-    /**
-     * Gets the published product API.
-     *
-     * @return PublishedProductApiInterface
-     */
-    public function getPublishedProductApi();
+    public function getPublishedProductApi(): PublishedProductApiInterface;
 
-    /**
-     * Gets the product model draft API.
-     *
-     * @return ProductDraftApiInterface
-     */
-    public function getProductModelDraftApi();
+    public function getProductModelDraftApi(): ProductModelDraftApiInterface;
 
-    /**
-     * Gets the product draft API.
-     *
-     * @return ProductDraftApiInterface
-     */
-    public function getProductDraftApi();
+    public function getProductDraftApi(): ProductDraftApiInterface;
 
-    /**
-     * Gets the asset API.
-     *
-     * @return AssetApiInterface
-     */
-    public function getAssetApi();
+    public function getAssetApi(): AssetApiInterface;
 
-    /**
-     * Gets the asset category API.
-     *
-     * @return AssetCategoryApiInterface
-     */
-    public function getAssetCategoryApi();
+    public function getAssetCategoryApi(): AssetCategoryApiInterface;
 
-    /**
-     * Gets the asset tag API.
-     *
-     * @return AssetTagApiInterface
-     */
-    public function getAssetTagApi();
+    public function getAssetTagApi(): AssetTagApiInterface;
 
-    /**
-     * Gets the asset reference file API.
-     *
-     * @return AssetReferenceFileApiInterface
-     */
-    public function getAssetReferenceFileApi();
+    public function getAssetReferenceFileApi(): AssetReferenceFileApiInterface;
 
-    /**
-     * Gets the asset variation file API.
-     *
-     * @return AssetVariationFileApiInterface
-     */
-    public function getAssetVariationFileApi();
+    public function getAssetVariationFileApi(): AssetVariationFileApiInterface;
 
-    /**
-     * Gets the reference entity record API.
-     *
-     * @return ReferenceEntityRecordApiInterface
-     */
-    public function getReferenceEntityRecordApi();
+    public function getReferenceEntityRecordApi(): ReferenceEntityRecordApiInterface;
 
-    /**
-     * Gets the reference entity media file API
-     *
-     * @return ReferenceEntityMediaFileApiInterface
-     */
-    public function getReferenceEntityMediaFileApi();
+    public function getReferenceEntityMediaFileApi(): ReferenceEntityMediaFileApiInterface;
 
-    /**
-     * Gets the reference entity attribute API.
-     *
-     * @return ReferenceEntityAttributeApiInterface
-     */
-    public function getReferenceEntityAttributeApi();
+    public function getReferenceEntityAttributeApi(): ReferenceEntityAttributeApiInterface;
 
-    /**
-     * Gets the reference entity attribute option API.
-     *
-     * @return ReferenceEntityAttributeOptionApiInterface
-     */
-    public function getReferenceEntityAttributeOptionApi();
+    public function getReferenceEntityAttributeOptionApi(): ReferenceEntityAttributeOptionApiInterface;
 
-    /**
-     * Gets the reference entity API.
-     *
-     * @return ReferenceEntityApiInterface
-     */
-    public function getReferenceEntityApi();
+    public function getReferenceEntityApi(): ReferenceEntityApiInterface;
 }

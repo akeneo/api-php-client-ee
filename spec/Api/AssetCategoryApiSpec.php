@@ -106,12 +106,12 @@ class AssetCategoryApiSpec extends ObjectBehavior
         PageInterface $page
     ) {
         $resourceClient
-            ->getResources(AssetCategoryApi::ASSET_CATEGORIES_URI, [], null, null, ['foo' => 'bar'])
+            ->getResources(AssetCategoryApi::ASSET_CATEGORIES_URI, [], 10, true, ['foo' => 'bar'])
             ->willReturn([]);
 
         $pageFactory->createPage([])->willReturn($page);
 
-        $this->listPerPage(null, null, ['foo' => 'bar'])->shouldReturn($page);
+        $this->listPerPage(10, true, ['foo' => 'bar'])->shouldReturn($page);
     }
 
     function it_upserts_an_asset_category($resourceClient)

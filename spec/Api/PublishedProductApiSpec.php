@@ -108,11 +108,11 @@ class PublishedProductApiSpec extends ObjectBehavior
         PageInterface $page
     ) {
         $resourceClient
-            ->getResources(PublishedProductApi::PUBLISHED_PRODUCTS_URI, [], null, null, ['foo' => 'bar'])
+            ->getResources(PublishedProductApi::PUBLISHED_PRODUCTS_URI, [], 10, true, ['foo' => 'bar'])
             ->willReturn([]);
 
         $pageFactory->createPage([])->willReturn($page);
 
-        $this->listPerPage(null, null, ['foo' => 'bar'])->shouldReturn($page);
+        $this->listPerPage(10, true, ['foo' => 'bar'])->shouldReturn($page);
     }
 }

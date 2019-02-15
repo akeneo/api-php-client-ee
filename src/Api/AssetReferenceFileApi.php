@@ -6,6 +6,7 @@ use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
 use Akeneo\Pim\ApiClient\FileSystem\FileSystemInterface;
 use Akeneo\PimEnterprise\ApiClient\Exception\UploadAssetReferenceFileErrorException;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * API implementation to manage asset reference files.
@@ -26,10 +27,6 @@ class AssetReferenceFileApi implements AssetReferenceFileApiInterface
     /** @var FileSystemInterface */
     private $fileSystem;
 
-    /**
-     * @param ResourceClientInterface $resourceClient
-     * @param FileSystemInterface     $fileSystem
-     */
     public function __construct(ResourceClientInterface $resourceClient, FileSystemInterface $fileSystem)
     {
         $this->resourceClient = $resourceClient;
@@ -39,7 +36,7 @@ class AssetReferenceFileApi implements AssetReferenceFileApiInterface
     /**
      * {@inheritdoc}
      */
-    public function getFromLocalizableAsset($assetCode, $localeCode)
+    public function getFromLocalizableAsset(string $assetCode, string $localeCode): array
     {
         return $this->get($assetCode, $localeCode);
     }
@@ -47,26 +44,15 @@ class AssetReferenceFileApi implements AssetReferenceFileApiInterface
     /**
      * {@inheritdoc}
      */
-    public function getFromNotLocalizableAsset($assetCode)
+    public function getFromNotLocalizableAsset(string $assetCode): array
     {
         return $this->get($assetCode, static::NOT_LOCALIZABLE_ASSET_LOCALE_CODE);
     }
 
     /**
-     * @param string $assetCode
-     * @param string $localeCode
-     *
-     * @return array
-     */
-    private function get($assetCode, $localeCode)
-    {
-        return $this->resourceClient->getResource(static::ASSET_REFERENCE_FILE_URI, [$assetCode, $localeCode]);
-    }
-
-    /**
      * {@inheritdoc}
      */
-    public function uploadForLocalizableAsset($referenceFile, $assetCode, $localeCode)
+    public function uploadForLocalizableAsset($referenceFile, string $assetCode, string $localeCode): int
     {
         return $this->upload($referenceFile, $assetCode, $localeCode);
     }
@@ -74,7 +60,7 @@ class AssetReferenceFileApi implements AssetReferenceFileApiInterface
     /**
      * {@inheritdoc}
      */
-    public function uploadForNotLocalizableAsset($referenceFile, $assetCode)
+    public function uploadForNotLocalizableAsset($referenceFile, string $assetCode): int
     {
         return $this->upload($referenceFile, $assetCode, static::NOT_LOCALIZABLE_ASSET_LOCALE_CODE);
     }
@@ -82,7 +68,7 @@ class AssetReferenceFileApi implements AssetReferenceFileApiInterface
     /**
      * {@inheritdoc}
      */
-    public function downloadFromLocalizableAsset($assetCode, $localeCode)
+    public function downloadFromLocalizableAsset(string $assetCode, string $localeCode): StreamInterface
     {
         return $this->resourceClient
             ->getStreamedResource(static::ASSET_REFERENCE_FILE_DOWNLOAD_URI, [$assetCode, $localeCode])
@@ -92,7 +78,7 @@ class AssetReferenceFileApi implements AssetReferenceFileApiInterface
     /**
      * {@inheritdoc}
      */
-    public function downloadFromNotLocalizableAsset($assetCode)
+    public function downloadFromNotLocalizableAsset(string $assetCode): StreamInterface
     {
         return $this->resourceClient
             ->getStreamedResource(static::ASSET_REFERENCE_FILE_DOWNLOAD_URI, [$assetCode, static::NOT_LOCALIZABLE_ASSET_LOCALE_CODE])
@@ -106,7 +92,7 @@ class AssetReferenceFileApi implements AssetReferenceFileApiInterface
      *
      * @return int
      */
-    private function upload($referenceFile, $assetCode, $localeCode)
+    private function upload($referenceFile, string $assetCode, string $localeCode): int
     {
         if (is_string($referenceFile)) {
             $referenceFile = $this->fileSystem->getResourceFromPath($referenceFile);
@@ -124,11 +110,9 @@ class AssetReferenceFileApi implements AssetReferenceFileApiInterface
     }
 
     /**
-     * @param ResponseInterface $response
-     *
      * @throws UploadAssetReferenceFileErrorException if an upload returns any errors.
      */
-    private function handleUploadErrors(ResponseInterface $response)
+    private function handleUploadErrors(ResponseInterface $response): void
     {
         $decodedResponse = json_decode($response->getBody()->getContents(), true);
         $errors = isset($decodedResponse['errors']) ? $decodedResponse['errors'] : null;
@@ -138,5 +122,10 @@ class AssetReferenceFileApi implements AssetReferenceFileApiInterface
 
             throw new UploadAssetReferenceFileErrorException($message, $errors);
         }
+    }
+
+    private function get(string $assetCode, string $localeCode): array
+    {
+        return $this->resourceClient->getResource(static::ASSET_REFERENCE_FILE_URI, [$assetCode, $localeCode]);
     }
 }

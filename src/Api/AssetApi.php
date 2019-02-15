@@ -5,7 +5,9 @@ namespace Akeneo\PimEnterprise\ApiClient\Api;
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
 use Akeneo\Pim\ApiClient\Exception\InvalidArgumentException;
 use Akeneo\Pim\ApiClient\Pagination\PageFactoryInterface;
+use Akeneo\Pim\ApiClient\Pagination\PageInterface;
 use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactoryInterface;
+use Akeneo\Pim\ApiClient\Pagination\ResourceCursorInterface;
 
 /**
  * API implementation to manage assets.
@@ -41,7 +43,7 @@ class AssetApi implements AssetApiInterface
     /**
      * {@inheritdoc}
      */
-    public function get($code)
+    public function get(string $code): array
     {
         return $this->resourceClient->getResource(static::ASSET_URI, [$code]);
     }
@@ -49,7 +51,7 @@ class AssetApi implements AssetApiInterface
     /**
      * {@inheritdoc}
      */
-    public function all($pageSize = 10, array $queryParameters = [])
+    public function all(int $pageSize = 10, array $queryParameters = []): ResourceCursorInterface
     {
         $queryParameters['pagination_type'] = 'search_after';
 
@@ -61,7 +63,7 @@ class AssetApi implements AssetApiInterface
     /**
      * {@inheritdoc}
      */
-    public function listPerPage($limit = 10, $withCount = false, array $queryParameters = [])
+    public function listPerPage(int $limit = 10, bool $withCount = false, array $queryParameters = []): PageInterface
     {
         $data = $this->resourceClient->getResources(
             static::ASSETS_URI,
@@ -76,7 +78,7 @@ class AssetApi implements AssetApiInterface
     /**
      * {@inheritdoc}
      */
-    public function create($code, array $data = [])
+    public function create(string $code, array $data = []): int
     {
         if (array_key_exists('code', $data)) {
             throw new InvalidArgumentException('The parameter "code" should not be defined in the data parameter');
@@ -90,7 +92,7 @@ class AssetApi implements AssetApiInterface
     /**
      * {@inheritdoc}
      */
-    public function upsert($code, array $data = [])
+    public function upsert(string $code, array $data = []): int
     {
         return $this->resourceClient->upsertResource(static::ASSET_URI, [$code], $data);
     }
@@ -98,7 +100,7 @@ class AssetApi implements AssetApiInterface
     /**
      * {@inheritdoc}
      */
-    public function upsertList($resources)
+    public function upsertList($resources): \Traversable
     {
         return $this->resourceClient->upsertStreamResourceList(static::ASSETS_URI, [], $resources);
     }
