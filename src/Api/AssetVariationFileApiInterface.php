@@ -2,7 +2,7 @@
 
 namespace Akeneo\PimEnterprise\ApiClient\Api;
 
-use Psr\Http\Message\StreamInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * API to manage asset variation files.
@@ -69,9 +69,9 @@ interface AssetVariationFileApiInterface
      * @param string $channelCode code of the channel
      * @param string $localeCode  code of the locale
      *
-     * @return StreamInterface
+     * @return ResponseInterface
      */
-    public function downloadFromLocalizableAsset(string $assetCode, string $channelCode, string $localeCode): StreamInterface;
+    public function downloadFromLocalizableAsset(string $assetCode, string $channelCode, string $localeCode): ResponseInterface;
 
     /**
      * Available since Akeneo PIM 2.1.
@@ -80,7 +80,7 @@ interface AssetVariationFileApiInterface
      * @param string $assetCode   code of the asset
      * @param string $channelCode code of the channel
      *
-     * @return StreamInterface
+     * @return ResponseInterface
      */
-    public function downloadFromNotLocalizableAsset(string $assetCode, string $channelCode): StreamInterface;
+    public function downloadFromNotLocalizableAsset(string $assetCode, string $channelCode): ResponseInterface;
 }

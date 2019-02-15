@@ -8,6 +8,7 @@ use donatj\MockWebServer\RequestInfo;
 use donatj\MockWebServer\Response;
 use donatj\MockWebServer\ResponseStack;
 use PHPUnit\Framework\Assert;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
 class DownloadAssetReferenceFileIntegration extends ApiTestCaseEnterprise
@@ -28,8 +29,8 @@ class DownloadAssetReferenceFileIntegration extends ApiTestCaseEnterprise
 
         Assert::assertSame($this->server->getLastRequest()->jsonSerialize()[RequestInfo::JSON_KEY_METHOD], 'GET');
 
-        Assert::assertInstanceOf(StreamInterface::class, $downloadResponse);
-        Assert::assertSame(file_get_contents($expectedFilePath), $downloadResponse->getContents());
+        Assert::assertInstanceOf(ResponseInterface::class, $downloadResponse);
+        Assert::assertSame(file_get_contents($expectedFilePath), $downloadResponse->getBody()->getContents());
     }
 
     public function test_download_a_not_localizable_asset_reference_file()
@@ -48,8 +49,8 @@ class DownloadAssetReferenceFileIntegration extends ApiTestCaseEnterprise
 
         Assert::assertSame($this->server->getLastRequest()->jsonSerialize()[RequestInfo::JSON_KEY_METHOD], 'GET');
 
-        $this->assertInstanceOf(StreamInterface::class, $downloadResponse);
-        $this->assertSame(file_get_contents($expectedFilePath), $downloadResponse->getContents());
+        $this->assertInstanceOf(ResponseInterface::class, $downloadResponse);
+        Assert::assertSame(file_get_contents($expectedFilePath), $downloadResponse->getBody()->getContents());
     }
 
     /**

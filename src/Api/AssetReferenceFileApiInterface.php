@@ -4,7 +4,7 @@ namespace Akeneo\PimEnterprise\ApiClient\Api;
 
 use Akeneo\Pim\ApiClient\Exception\HttpException;
 use Akeneo\PimEnterprise\ApiClient\Exception\UploadAssetReferenceFileErrorException;
-use Psr\Http\Message\StreamInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * API to manage asset reference files.
@@ -80,9 +80,9 @@ interface AssetReferenceFileApiInterface
      *
      * @throws HttpException If the request failed
      *
-     * @return StreamInterface
+     * @return ResponseInterface
      */
-    public function downloadFromLocalizableAsset(string $assetCode, string $localeCode): StreamInterface;
+    public function downloadFromLocalizableAsset(string $assetCode, string $localeCode): ResponseInterface;
 
     /**
      * Available since Akeneo PIM 2.1.
@@ -92,7 +92,7 @@ interface AssetReferenceFileApiInterface
      *
      * @throws HttpException If the request failed
      *
-     * @return StreamInterface
+     * @return ResponseInterface
      */
-    public function downloadFromNotLocalizableAsset(string $assetCode): StreamInterface;
+    public function downloadFromNotLocalizableAsset(string $assetCode): ResponseInterface;
 }

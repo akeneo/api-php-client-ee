@@ -8,6 +8,7 @@ use donatj\MockWebServer\RequestInfo;
 use donatj\MockWebServer\Response;
 use donatj\MockWebServer\ResponseStack;
 use PHPUnit\Framework\Assert;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
 class DownloadAssetVariationFileApiIntegration extends ApiTestCaseEnterprise
@@ -29,8 +30,8 @@ class DownloadAssetVariationFileApiIntegration extends ApiTestCaseEnterprise
 
         Assert::assertSame($this->server->getLastRequest()->jsonSerialize()[RequestInfo::JSON_KEY_METHOD], 'GET');
 
-        Assert::assertInstanceOf(StreamInterface::class, $downloadResponse);
-        Assert::assertSame(file_get_contents($expectedFilePath), $downloadResponse->getContents());
+        Assert::assertInstanceOf(ResponseInterface::class, $downloadResponse);
+        Assert::assertSame(file_get_contents($expectedFilePath), $downloadResponse->getBody()->getContents());
     }
 
 
@@ -50,8 +51,8 @@ class DownloadAssetVariationFileApiIntegration extends ApiTestCaseEnterprise
 
         Assert::assertSame($this->server->getLastRequest()->jsonSerialize()[RequestInfo::JSON_KEY_METHOD], 'GET');
 
-        Assert::assertInstanceOf(StreamInterface::class, $downloadResponse);
-        Assert::assertSame(file_get_contents($expectedFilePath), $downloadResponse->getContents());
+        Assert::assertInstanceOf(ResponseInterface::class, $downloadResponse);
+        Assert::assertSame(file_get_contents($expectedFilePath), $downloadResponse->getBody()->getContents());
     }
 
     /**
