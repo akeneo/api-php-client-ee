@@ -71,12 +71,4 @@ class ReferenceEntityApi implements ReferenceEntityApiInterface
     {
         return $this->resourceClient->upsertResource(static::REFERENCE_ENTITY_URI, [$referenceEntityCode], $data);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function upsertList(array $referenceEntities): array
-    {
-        return $this->resourceClient->upsertJsonResourceList(static::REFERENCE_ENTITIES_URI, [], $referenceEntities);
-    }
 }

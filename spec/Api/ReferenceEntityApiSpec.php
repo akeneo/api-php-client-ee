@@ -81,39 +81,4 @@ class ReferenceEntityApiSpec extends ObjectBehavior
 
         $this->upsert('designer', $referenceEntityData)->shouldReturn(204);
     }
-
-    function it_upserts_a_list_of_reference_entities(ResourceClientInterface $resourceClient)
-    {
-        $referenceEntities = [
-            [
-                'code' => 'brand',
-                'labels' => [
-                    'en_US' => 'Brand'
-                ],
-            ],
-            [
-                'code' => 'color',
-                'labels' => [
-                    'en_US' => 'Color'
-                ]
-            ]
-        ];
-
-        $responses = [
-            [
-                'code' => 'brand',
-                'status_code' =>204
-            ],
-            [
-                'code' => 'color',
-                'status_code' =>201
-            ],
-        ];
-
-        $resourceClient
-            ->upsertJsonResourceList(ReferenceEntityApi::REFERENCE_ENTITIES_URI, [], $referenceEntities)
-            ->willReturn($responses);
-
-        $this->upsertList($referenceEntities)->shouldReturn($responses);
-    }
 }

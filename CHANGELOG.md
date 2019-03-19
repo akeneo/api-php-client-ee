@@ -1,3 +1,9 @@
+# 4.0.1 (2019-03-06)
+
+## BC breaks
+
+- Remove Upsert a list of reference entities (the method was doing nothing and doesn't exist in the API)
+
 # 4.0.0 (2019-02-08)
 
 ## Improvements
