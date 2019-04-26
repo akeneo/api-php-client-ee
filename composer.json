@@ -29,6 +29,7 @@
     "phpspec/phpspec": "^5.0",
     "symfony/yaml": "^4.2",
     "donatj/mock-webserver": "^2.0",
+    "http-interop/http-factory-guzzle": "^1.0",
     "php-http/guzzle6-adapter": "^2.0"
   },
   "config": {
