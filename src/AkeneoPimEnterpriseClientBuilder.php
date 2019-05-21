@@ -42,12 +42,13 @@ use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeOptionApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityMediaFileApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApi;
-use Http\Client\HttpClient as Client;
-use Http\Discovery\HttpClientDiscovery;
-use Http\Discovery\MessageFactoryDiscovery;
-use Http\Discovery\StreamFactoryDiscovery;
+use Http\Discovery\Psr17FactoryDiscovery;
+use Http\Discovery\Psr18ClientDiscovery;
 use Http\Message\RequestFactory;
 use Http\Message\StreamFactory;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
 
 /**
  * Builder of the class AkeneoPimEnterpriseClient.
@@ -62,7 +63,7 @@ class AkeneoPimEnterpriseClientBuilder
     /** @var string */
     protected $baseUri;
 
-    /** @var Client */
+    /** @var ClientInterface */
     protected $httpClient;
 
     /** @var RequestFactory */
@@ -83,13 +84,9 @@ class AkeneoPimEnterpriseClientBuilder
     }
 
     /**
-     * Allows to directly set a client instead of using HttpClientDiscovery::find()
-     *
-     * @param Client $httpClient
-     *
-     * @return AkeneoPimClientBuilder
+     * Allows to directly set a client instead of using the discovery
      */
-    public function setHttpClient(Client $httpClient): self
+    public function setHttpClient(ClientInterface $httpClient): self
     {
         $this->httpClient = $httpClient;
 
@@ -97,13 +94,9 @@ class AkeneoPimEnterpriseClientBuilder
     }
 
     /**
-     * Allows to directly set a request factory instead of using MessageFactoryDiscovery::find()
-     *
-     * @param RequestFactory $requestFactory
-     *
-     * @return AkeneoPimClientBuilder
+     * Allows to directly set a request factory instead of using the discovery
      */
-    public function setRequestFactory(RequestFactory $requestFactory): self
+    public function setRequestFactory(RequestFactoryInterface $requestFactory): self
     {
         $this->requestFactory = $requestFactory;
 
@@ -111,13 +104,9 @@ class AkeneoPimEnterpriseClientBuilder
     }
 
     /**
-     * Allows to directly set a stream factory instead of using StreamFactoryDiscovery::find()
-     *
-     * @param StreamFactory $streamFactory
-     *
-     * @return AkeneoPimClientBuilder
+     * Allows to directly set a stream factory instead of using the discovery
      */
-    public function setStreamFactory(StreamFactory $streamFactory): self
+    public function setStreamFactory(StreamFactoryInterface $streamFactory): self
     {
         $this->streamFactory = $streamFactory;
 
@@ -224,7 +213,7 @@ class AkeneoPimEnterpriseClientBuilder
     {
         $uriGenerator = new UriGenerator($this->baseUri);
 
-        $httpClient = new HttpClient($this->getHttpClient(), $this->getRequestFactory());
+        $httpClient = new HttpClient($this->getHttpClient(), $this->getRequestFactory(), $this->getStreamFactory());
         $authenticationApi = new AuthenticationApi($httpClient, $uriGenerator);
         $authenticatedHttpClient = new AuthenticatedHttpClient($httpClient, $authenticationApi, $authentication);
 
@@ -244,28 +233,28 @@ class AkeneoPimEnterpriseClientBuilder
         return [$resourceClient, $pageFactory, $cursorFactory, $fileSystem];
     }
 
-    private function getHttpClient(): Client
+    private function getHttpClient(): ClientInterface
     {
         if (null === $this->httpClient) {
-            $this->httpClient = HttpClientDiscovery::find();
+            $this->httpClient = Psr18ClientDiscovery::find();
         }
 
         return $this->httpClient;
     }
 
-    private function getRequestFactory(): RequestFactory
+    private function getRequestFactory(): RequestFactoryInterface
     {
         if (null === $this->requestFactory) {
-            $this->requestFactory = MessageFactoryDiscovery::find();
+            $this->requestFactory = Psr17FactoryDiscovery::findRequestFactory();
         }
 
         return $this->requestFactory;
     }
 
-    private function getStreamFactory(): StreamFactory
+    private function getStreamFactory(): StreamFactoryInterface
     {
         if (null === $this->streamFactory) {
-            $this->streamFactory = StreamFactoryDiscovery::find();
+            $this->streamFactory = Psr17FactoryDiscovery::findStreamFactory();
         }
 
         return $this->streamFactory;

@@ -105,7 +105,7 @@ class UploadAssetVariationFileApiIntegration extends ApiTestCaseEnterprise
      */
     public function test_upload_for_an_unknown_asset()
     {
-        $filePath = realpath(__DIR__ . '/../../../fixtures/ziggy.png');
+        $filePath = realpath(__DIR__ . '/../../fixtures/ziggy.png');
 
         $this->server->setResponseOfPath(
             '/'. sprintf(AssetVariationFileApi::ASSET_VARIATION_FILE_URI, 'unknown_asset', 'ecommerce', 'en_US'),
@@ -124,7 +124,7 @@ class UploadAssetVariationFileApiIntegration extends ApiTestCaseEnterprise
      */
     public function test_upload_for_an_asset_that_should_be_localizable()
     {
-        $filePath = realpath(__DIR__ . '/../../../fixtures/unicorn.png');
+        $filePath = realpath(__DIR__ . '/../../fixtures/unicorn.png');
 
         $this->server->setResponseOfPath(
             '/'. sprintf(AssetVariationFileApi::ASSET_VARIATION_FILE_URI, 'unicorn', 'ecommerce', AssetVariationFileApi::NOT_LOCALIZABLE_ASSET_LOCALE_CODE),

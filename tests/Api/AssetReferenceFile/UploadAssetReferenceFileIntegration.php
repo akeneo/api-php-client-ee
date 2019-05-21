@@ -104,7 +104,7 @@ class UploadAssetReferenceFileIntegration extends ApiTestCaseEnterprise
      */
     public function test_upload_for_an_unknown_asset()
     {
-        $filePath = realpath(__DIR__ . '/../../../fixtures/ziggy.png');
+        $filePath = realpath(__DIR__ . '/../../fixtures/ziggy.png');
 
         $this->server->setResponseOfPath(
             '/'. sprintf(AssetReferenceFileApi::ASSET_REFERENCE_FILE_URI, 'unknown_asset', 'en_US'),
@@ -123,7 +123,7 @@ class UploadAssetReferenceFileIntegration extends ApiTestCaseEnterprise
      */
     public function test_upload_a_file_that_cannot_be_transformed_for_the_variations()
     {
-        $filePath = realpath(__DIR__ . '/../../../fixtures/unicorn.png');
+        $filePath = realpath(__DIR__ . '/../../fixtures/unicorn.png');
 
         $this->server->setResponseOfPath(
             '/'. sprintf(AssetReferenceFileApi::ASSET_REFERENCE_FILE_URI, 'unicorn', AssetReferenceFileApi::NOT_LOCALIZABLE_ASSET_LOCALE_CODE),
