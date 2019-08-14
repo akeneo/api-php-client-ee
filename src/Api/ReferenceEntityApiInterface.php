@@ -50,15 +50,4 @@ interface ReferenceEntityApiInterface
      *             Status code 204 indicating that the reference entity has been well updated.
      */
     public function upsert(string $referenceEntityCode, array $data = []): int;
-
-    /**
-     * Updates or creates several reference entities.
-     *
-     * @param array  $referenceEntities   Array containing the reference entities to create or update
-     *
-     * @throws HttpException
-     *
-     * @return array returns the list of the responses of each created or updated reference entity.
-     */
-    public function upsertList(array $referenceEntities): array;
 }
