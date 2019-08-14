@@ -15,6 +15,16 @@ For example, with Guzzle:
 $ php composer.phar require akeneo/api-php-client-ee php-http/guzzle6-adapter:^2.0 http-interop/http-factory-guzzle:^1.0
 ```
 
+# 4.0.2 (2019-03-06)
+
+- Add support for PHP 7.1
+
+# 4.0.1 (2019-03-06)
+
+## BC breaks
+
+- Remove Upsert a list of reference entities (the method was doing nothing and doesn't exist in the API)
+
 # 4.0.0 (2019-02-08)
 
 ## Improvements

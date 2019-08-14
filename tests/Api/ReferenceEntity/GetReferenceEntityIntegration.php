@@ -29,17 +29,17 @@ class GetReferenceEntityIntegration extends ApiTestCaseEnterprise
         Assert::assertEquals($product, json_decode($this->getBrand(), true));
     }
 
-    /**
-     * @expectedExceptionMessage  Reference entity "foo" does not exist.
-     */
     public function test_get_unknown_reference_entity()
     {
         $this->server->setResponseOfPath(
-            '/'. sprintf(ReferenceEntityApi::REFERENCE_ENTITY_URI, 'designer', 'foo'),
+            '/'. sprintf(ReferenceEntityApi::REFERENCE_ENTITY_URI, 'foo'),
             new ResponseStack(
                 new Response('{"code": 404, "message":"Reference entity \"foo\" does not exist."}', [], 404)
             )
         );
+
+        $this->expectException(\Akeneo\Pim\ApiClient\Exception\NotFoundHttpException::class);
+        $this->expectExceptionMessage('Reference entity "foo" does not exist.');
 
         $api = $this->createClient()->getReferenceEntityApi();
         $api->get('foo');
