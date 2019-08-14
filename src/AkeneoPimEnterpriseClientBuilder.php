@@ -31,6 +31,7 @@ use Akeneo\Pim\ApiClient\Stream\MultipartStreamBuilderFactory;
 use Akeneo\Pim\ApiClient\Stream\UpsertResourceListResponseFactory;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApi;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetFamilyApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApi;
@@ -44,8 +45,6 @@ use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityMediaFileApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApi;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
-use Http\Message\RequestFactory;
-use Http\Message\StreamFactory;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
@@ -66,10 +65,10 @@ class AkeneoPimEnterpriseClientBuilder
     /** @var ClientInterface */
     protected $httpClient;
 
-    /** @var RequestFactory */
+    /** @var RequestFactoryInterface */
     protected $requestFactory;
 
-    /** @var StreamFactory */
+    /** @var StreamFactoryInterface */
     protected $streamFactory;
 
     /** @var FileSystemInterface */
@@ -198,7 +197,8 @@ class AkeneoPimEnterpriseClientBuilder
             new ReferenceEntityMediaFileApi($resourceClient, $fileSystem),
             new ReferenceEntityAttributeApi($resourceClient),
             new ReferenceEntityAttributeOptionApi($resourceClient),
-            new ReferenceEntityApi($resourceClient, $pageFactory, $cursorFactory)
+            new ReferenceEntityApi($resourceClient, $pageFactory, $cursorFactory),
+            new AssetFamilyApi($resourceClient, $pageFactory, $cursorFactory)
         );
 
         return $client;

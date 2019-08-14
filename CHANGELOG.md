@@ -1,3 +1,10 @@
+
+# 6.0.0
+
+## Improvements
+
+- WIP
+
 # 5.0.0
 
 ## BC Breaks
