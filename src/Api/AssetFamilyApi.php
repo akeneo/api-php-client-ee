@@ -66,12 +66,4 @@ class AssetFamilyApi implements AssetFamilyApiInterface
     {
         return $this->resourceClient->upsertResource(static::ASSET_FAMILY_URI, [$referenceEntityCode], $data);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function upsertList(array $referenceEntities): array
-    {
-        return $this->resourceClient->upsertJsonResourceList(static::ASSET_FAMILIES_URI, [], $referenceEntities);
-    }
 }
