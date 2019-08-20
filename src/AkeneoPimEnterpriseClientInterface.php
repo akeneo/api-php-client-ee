@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Akeneo\PimEnterprise\ApiClient;
 
 use Akeneo\Pim\ApiClient\AkeneoPimClientInterface;
