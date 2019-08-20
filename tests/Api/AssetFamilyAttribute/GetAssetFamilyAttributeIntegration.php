@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Akeneo\PimEnterprise\ApiClient\tests\Api\AssetFamilyAttribute;
 
-use Akeneo\PimEnterprise\ApiClient\Api\AssetFamilyAttributeApi;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeApi;
 use Akeneo\PimEnterprise\ApiClient\tests\Api\ApiTestCaseEnterprise;
 use donatj\MockWebServer\RequestInfo;
 use donatj\MockWebServer\Response;

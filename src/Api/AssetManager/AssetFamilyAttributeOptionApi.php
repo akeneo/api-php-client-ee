@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Akeneo\PimEnterprise\ApiClient\Api;
+namespace Akeneo\PimEnterprise\ApiClient\Api\AssetManager;
 
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeOptionApiInterface;
 
 class AssetFamilyAttributeOptionApi implements AssetFamilyAttributeOptionApiInterface
 {

@@ -2,7 +2,7 @@
 
 namespace Akeneo\PimEnterprise\ApiClient\tests\Api\AssetFamily;
 
-use Akeneo\PimEnterprise\ApiClient\Api\AssetFamilyApi;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyApi;
 use Akeneo\PimEnterprise\ApiClient\tests\Api\ApiTestCaseEnterprise;
 use donatj\MockWebServer\RequestInfo;
 use donatj\MockWebServer\Response;
