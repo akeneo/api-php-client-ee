@@ -14,6 +14,9 @@ Addition of the Asset manager end-points:
 - Get an asset family attribute option
 - Get a list of asset family attribute options
 - Upsert an asset family attribute option
+- Upsert an asset
+- Upsert a list of assets
+- Delete an asset
 
 # 5.0.0
 

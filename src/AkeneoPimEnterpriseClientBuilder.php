@@ -33,6 +33,7 @@ use Akeneo\Pim\ApiClient\Stream\MultipartStreamBuilderFactory;
 use Akeneo\Pim\ApiClient\Stream\UpsertResourceListResponseFactory;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApi;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetApi as AssetManagerApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeOptionApi;
@@ -202,6 +203,7 @@ class AkeneoPimEnterpriseClientBuilder
             new ReferenceEntityAttributeApi($resourceClient),
             new ReferenceEntityAttributeOptionApi($resourceClient),
             new ReferenceEntityApi($resourceClient, $pageFactory, $cursorFactory),
+            new AssetManagerApi($resourceClient),
             new AssetFamilyApi($resourceClient, $pageFactory, $cursorFactory),
             new AssetFamilyAttributeApi($resourceClient),
             new AssetFamilyAttributeOptionApi($resourceClient)

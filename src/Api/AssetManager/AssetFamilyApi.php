@@ -36,9 +36,9 @@ class AssetFamilyApi implements AssetFamilyApiInterface
     /**
      * {@inheritdoc}
      */
-    public function get(string $referenceEntityCode): array
+    public function get(string $code): array
     {
-        return $this->resourceClient->getResource(static::ASSET_FAMILY_URI, [$referenceEntityCode]);
+        return $this->resourceClient->getResource(static::ASSET_FAMILY_URI, [$code]);
     }
 
     /**
@@ -62,8 +62,8 @@ class AssetFamilyApi implements AssetFamilyApiInterface
     /**
      * {@inheritdoc}
      */
-    public function upsert(string $referenceEntityCode, array $data = []): int
+    public function upsert(string $code, array $data = []): int
     {
-        return $this->resourceClient->upsertResource(static::ASSET_FAMILY_URI, [$referenceEntityCode], $data);
+        return $this->resourceClient->upsertResource(static::ASSET_FAMILY_URI, [$code], $data);
     }
 }

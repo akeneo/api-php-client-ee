@@ -7,6 +7,7 @@ namespace Akeneo\PimEnterprise\ApiClient;
 use Akeneo\Pim\ApiClient\AkeneoPimClientInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetApiInterface as AssetManagerApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeOptionApiInterface;
@@ -56,6 +57,8 @@ interface AkeneoPimEnterpriseClientInterface extends AkeneoPimClientInterface
     public function getReferenceEntityAttributeOptionApi(): ReferenceEntityAttributeOptionApiInterface;
 
     public function getReferenceEntityApi(): ReferenceEntityApiInterface;
+
+    public function getAssetManagerApi(): AssetManagerApiInterface;
 
     public function getAssetFamilyApi(): AssetFamilyApiInterface;
 
