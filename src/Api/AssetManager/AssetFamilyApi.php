@@ -8,7 +8,6 @@ use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
 use Akeneo\Pim\ApiClient\Pagination\PageFactoryInterface;
 use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactoryInterface;
 use Akeneo\Pim\ApiClient\Pagination\ResourceCursorInterface;
-use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyApiInterface;
 
 class AssetFamilyApi implements AssetFamilyApiInterface
 {
