@@ -6,6 +6,8 @@ use Akeneo\Pim\ApiClient\AkeneoPimClientInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetFamilyApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetFamilyAttributeApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetFamilyAttributeOptionApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
@@ -54,4 +56,8 @@ interface AkeneoPimEnterpriseClientInterface extends AkeneoPimClientInterface
     public function getReferenceEntityApi(): ReferenceEntityApiInterface;
 
     public function getAssetFamilyApi(): AssetFamilyApiInterface;
+
+    public function getAssetFamilyAttributeApi(): AssetFamilyAttributeApiInterface;
+
+    public function getAssetFamilyAttributeOptionApi(): AssetFamilyAttributeOptionApiInterface;
 }

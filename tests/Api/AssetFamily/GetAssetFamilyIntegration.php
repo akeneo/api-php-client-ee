@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Akeneo\PimEnterprise\ApiClient\tests\Api\ReferenceEntity;
+namespace Akeneo\PimEnterprise\ApiClient\tests\Api\AssetFamily;
 
 use Akeneo\PimEnterprise\ApiClient\Api\AssetFamilyApi;
 use Akeneo\PimEnterprise\ApiClient\tests\Api\ApiTestCaseEnterprise;
@@ -11,7 +11,7 @@ use donatj\MockWebServer\Response;
 use donatj\MockWebServer\ResponseStack;
 use PHPUnit\Framework\Assert;
 
-class GetReferenceEntityIntegration extends ApiTestCaseEnterprise
+class GetAssetFamilyIntegration extends ApiTestCaseEnterprise
 {
     public function test_get_asset_family()
     {

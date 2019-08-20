@@ -16,7 +16,7 @@ class UpsertAssetFamilyIntegration extends ApiTestCaseEnterprise
         $this->server->setResponseOfPath(
             '/'. sprintf(AssetFamilyApi::ASSET_FAMILY_URI, 'packshot'),
             new ResponseStack(
-                new Response('', [], 204)
+                new Response('', [], 201)
             )
         );
 
@@ -31,6 +31,6 @@ class UpsertAssetFamilyIntegration extends ApiTestCaseEnterprise
         $response = $api->upsert('packshot', $assetFamily);
 
         Assert::assertSame($this->server->getLastRequest()->jsonSerialize()[RequestInfo::JSON_KEY_INPUT], json_encode($assetFamily));
-        Assert::assertSame(204, $response);
+        Assert::assertSame(201, $response);
     }
 }

@@ -21,6 +21,9 @@ use Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClient;
 use Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetFamilyApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetFamilyAttributeApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetFamilyAttributeOptionApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
@@ -64,7 +67,10 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
         ReferenceEntityMediaFileApiInterface $referenceEntityMediaFileApi,
         ReferenceEntityAttributeApiInterface $referenceEntityAttributeApi,
         ReferenceEntityAttributeOptionApiInterface $referenceEntityAttributeOptionApi,
-        ReferenceEntityApiInterface $referenceEntityApi
+        ReferenceEntityApiInterface $referenceEntityApi,
+        AssetFamilyApiInterface $assetFamilyApi,
+        AssetFamilyAttributeApiInterface $assetFamilyAttributeApi,
+        AssetFamilyAttributeOptionApiInterface $assetFamilyAttributeOptionApi
     ) {
         $this->beConstructedWith(
             $authentication,
@@ -94,7 +100,10 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
             $referenceEntityMediaFileApi,
             $referenceEntityAttributeApi,
             $referenceEntityAttributeOptionApi,
-            $referenceEntityApi
+            $referenceEntityApi,
+            $assetFamilyApi,
+            $assetFamilyAttributeApi,
+            $assetFamilyAttributeOptionApi
         );
     }
 
@@ -157,5 +166,20 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
     function it_gets_reference_entity_api($referenceEntityApi)
     {
         $this->getReferenceEntityApi()->shouldReturn($referenceEntityApi);
+    }
+
+    function it_gets_asset_family_api($assetFamilyApi)
+    {
+        $this->getAssetFamilyApi()->shouldReturn($assetFamilyApi);
+    }
+
+    function it_gets_asset_family_attribute_api($assetFamilyAttributeApi)
+    {
+        $this->getAssetFamilyAttributeApi()->shouldReturn($assetFamilyAttributeApi);
+    }
+
+    function it_gets_asset_family_attribute_option_api($assetFamilyAttributeOptionApi)
+    {
+        $this->getAssetFamilyAttributeOptionApi()->shouldReturn($assetFamilyAttributeOptionApi);
     }
 }

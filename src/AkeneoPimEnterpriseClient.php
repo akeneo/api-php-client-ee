@@ -21,6 +21,8 @@ use Akeneo\Pim\ApiClient\Security\Authentication;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetFamilyApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetFamilyAttributeApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetFamilyAttributeOptionApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
@@ -84,6 +86,12 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /** @var AssetFamilyApiInterface */
     private $assetFamilyApi;
 
+    /** @var AssetFamilyAttributeApiInterface */
+    private $assetFamilyAttributeApi;
+
+    /** @var AssetFamilyAttributeOptionApiInterface */
+    private $assetFamilyAttributeOptionApi;
+
     public function __construct(
         Authentication $authentication,
         ProductApiInterface $productApi,
@@ -113,7 +121,9 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         ReferenceEntityAttributeApiInterface $referenceEntityAttributeApi,
         ReferenceEntityAttributeOptionApiInterface $referenceEntityAttributeOptionApi,
         ReferenceEntityApiInterface $referenceEntityApi,
-        AssetFamilyApiInterface $assetFamilyApi
+        AssetFamilyApiInterface $assetFamilyApi,
+        AssetFamilyAttributeApiInterface $assetFamilyAttributeApi,
+        AssetFamilyAttributeOptionApiInterface $assetFamilyAttributeOptionApi
     ) {
         parent::__construct(
             $authentication,
@@ -148,6 +158,8 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         $this->referenceEntityAttributeOptionApi = $referenceEntityAttributeOptionApi;
         $this->referenceEntityApi = $referenceEntityApi;
         $this->assetFamilyApi = $assetFamilyApi;
+        $this->assetFamilyAttributeApi = $assetFamilyAttributeApi;
+        $this->assetFamilyAttributeOptionApi = $assetFamilyAttributeOptionApi;
     }
 
     /**
@@ -260,5 +272,21 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     public function getAssetFamilyApi(): AssetFamilyApiInterface
     {
         return $this->assetFamilyApi;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAssetFamilyAttributeApi(): AssetFamilyAttributeApiInterface
+    {
+        return $this->assetFamilyAttributeApi;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAssetFamilyAttributeOptionApi(): AssetFamilyAttributeOptionApiInterface
+    {
+        return $this->assetFamilyAttributeOptionApi;
     }
 }
