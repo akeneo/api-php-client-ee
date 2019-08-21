@@ -21,6 +21,7 @@ use Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClient;
 use Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetApiInterface as AssetManagerApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeOptionApiInterface;
@@ -68,6 +69,7 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
         ReferenceEntityAttributeApiInterface $referenceEntityAttributeApi,
         ReferenceEntityAttributeOptionApiInterface $referenceEntityAttributeOptionApi,
         ReferenceEntityApiInterface $referenceEntityApi,
+        AssetManagerApiInterface $assetManagerApi,
         AssetFamilyApiInterface $assetFamilyApi,
         AssetFamilyAttributeApiInterface $assetFamilyAttributeApi,
         AssetFamilyAttributeOptionApiInterface $assetFamilyAttributeOptionApi
@@ -101,6 +103,7 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
             $referenceEntityAttributeApi,
             $referenceEntityAttributeOptionApi,
             $referenceEntityApi,
+            $assetManagerApi,
             $assetFamilyApi,
             $assetFamilyAttributeApi,
             $assetFamilyAttributeOptionApi
@@ -166,6 +169,11 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
     function it_gets_reference_entity_api($referenceEntityApi)
     {
         $this->getReferenceEntityApi()->shouldReturn($referenceEntityApi);
+    }
+
+    function it_gets_asset_manager_api($assetManagerApi)
+    {
+        $this->getAssetManagerApi()->shouldReturn($assetManagerApi);
     }
 
     function it_gets_asset_family_api($assetFamilyApi)
