@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Akeneo\PimEnterprise\ApiClient\tests\Api\AssetFamilyAttribute;
+namespace Akeneo\PimEnterprise\ApiClient\tests\Api\AssetAttribute;
 
-use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeApi;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetAttributeApi;
 use Akeneo\PimEnterprise\ApiClient\tests\Api\ApiTestCaseEnterprise;
 use donatj\MockWebServer\RequestInfo;
 use donatj\MockWebServer\Response;
@@ -16,13 +16,13 @@ class GetAssetFamilyAttributeIntegration extends ApiTestCaseEnterprise
     public function test_get_asset_family_attribute()
     {
         $this->server->setResponseOfPath(
-            '/'. sprintf(AssetFamilyAttributeApi::ASSET_FAMILY_ATTRIBUTE_URI, 'packshot', 'media_preview'),
+            '/'. sprintf(AssetAttributeApi::ASSET_ATTRIBUTE_URI, 'packshot', 'media_preview'),
             new ResponseStack(
                 new Response($this->getPackshotPreviewAttribute(), [], 200)
             )
         );
 
-        $api = $this->createClient()->getAssetFamilyAttributeApi();
+        $api = $this->createClient()->getAssetAttributeApi();
         $familyAttribute = $api->get('packshot', 'media_preview');
 
         Assert::assertSame($this->server->getLastRequest()->jsonSerialize()[RequestInfo::JSON_KEY_METHOD], 'GET');
@@ -36,13 +36,13 @@ class GetAssetFamilyAttributeIntegration extends ApiTestCaseEnterprise
     public function test_get_unknown_asset_family_attribute()
     {
         $this->server->setResponseOfPath(
-            '/'. sprintf(AssetFamilyAttributeApi::ASSET_FAMILY_ATTRIBUTE_URI, 'packshot', 'foo'),
+            '/'. sprintf(AssetAttributeApi::ASSET_ATTRIBUTE_URI, 'packshot', 'foo'),
             new ResponseStack(
                 new Response('{"code": 404, "message":"Resource `foo` does not exist."}', [], 404)
             )
         );
 
-        $api = $this->createClient()->getAssetFamilyAttributeApi();
+        $api = $this->createClient()->getAssetAttributeApi();
         $api->get('packshot', 'foo');
     }
 

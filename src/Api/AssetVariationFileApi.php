@@ -7,7 +7,6 @@ namespace Akeneo\PimEnterprise\ApiClient\Api;
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
 use Akeneo\Pim\ApiClient\FileSystem\FileSystemInterface;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 
 /**
  * Class AssetVariationFileApi

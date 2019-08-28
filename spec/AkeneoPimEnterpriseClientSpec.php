@@ -23,8 +23,8 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetApiInterface as AssetManagerApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyApiInterface;
-use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeApiInterface;
-use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeOptionApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetAttributeApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetAttributeOptionApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
@@ -71,8 +71,8 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
         ReferenceEntityApiInterface $referenceEntityApi,
         AssetManagerApiInterface $assetManagerApi,
         AssetFamilyApiInterface $assetFamilyApi,
-        AssetFamilyAttributeApiInterface $assetFamilyAttributeApi,
-        AssetFamilyAttributeOptionApiInterface $assetFamilyAttributeOptionApi
+        AssetAttributeApiInterface $assetAttributeApi,
+        AssetAttributeOptionApiInterface $assetAttributeOptionApi
     ) {
         $this->beConstructedWith(
             $authentication,
@@ -105,8 +105,8 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
             $referenceEntityApi,
             $assetManagerApi,
             $assetFamilyApi,
-            $assetFamilyAttributeApi,
-            $assetFamilyAttributeOptionApi
+            $assetAttributeApi,
+            $assetAttributeOptionApi
         );
     }
 
@@ -181,13 +181,13 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
         $this->getAssetFamilyApi()->shouldReturn($assetFamilyApi);
     }
 
-    function it_gets_asset_family_attribute_api($assetFamilyAttributeApi)
+    function it_gets_asset_attribute_api($assetAttributeApi)
     {
-        $this->getAssetFamilyAttributeApi()->shouldReturn($assetFamilyAttributeApi);
+        $this->getAssetAttributeApi()->shouldReturn($assetAttributeApi);
     }
 
-    function it_gets_asset_family_attribute_option_api($assetFamilyAttributeOptionApi)
+    function it_gets_asset_attribute_option_api($assetAttributeOptionApi)
     {
-        $this->getAssetFamilyAttributeOptionApi()->shouldReturn($assetFamilyAttributeOptionApi);
+        $this->getAssetAttributeOptionApi()->shouldReturn($assetAttributeOptionApi);
     }
 }

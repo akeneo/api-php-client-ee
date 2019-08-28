@@ -6,10 +6,10 @@ namespace Akeneo\PimEnterprise\ApiClient\Api\AssetManager;
 
 use Akeneo\Pim\ApiClient\Exception\HttpException;
 
-interface AssetFamilyAttributeApiInterface
+interface AssetAttributeApiInterface
 {
     /**
-     * Gets a single asset family attribute.
+     * Gets a single asset attribute.
      *
      * @throws HttpException
      */
@@ -23,12 +23,12 @@ interface AssetFamilyAttributeApiInterface
     public function all(string $assetFamilyCode, array $queryParameters = []): array;
 
     /**
-     * Creates a asset family attribute if it does not exist yet, otherwise updates partially the attribute.
+     * Creates a asset attribute if it does not exist yet, otherwise updates partially the attribute.
      *
      * @throws HttpException
      *
-     * @return int Status code 201 indicating that the asset family attribute has been well created.
-     *             Status code 204 indicating that the asset family attribute has been well updated.
+     * @return int Status code 201 indicating that the asset attribute has been well created.
+     *             Status code 204 indicating that the asset attribute has been well updated.
      */
     public function upsert(string $assetFamilyCode, string $attributeCode, array $data = []): int;
 }

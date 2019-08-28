@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Akeneo\PimEnterprise\ApiClient\tests\Api\AssetFamilyAttributeOption;
+namespace Akeneo\PimEnterprise\ApiClient\tests\Api\AssetAttributeOption;
 
-use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeApi;
-use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeOptionApi;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetAttributeOptionApi;
 use Akeneo\PimEnterprise\ApiClient\tests\Api\ApiTestCaseEnterprise;
 use donatj\MockWebServer\RequestInfo;
 use donatj\MockWebServer\Response;
@@ -18,7 +17,7 @@ class UpsertAssetFamilyAttributeOptionIntegration extends ApiTestCaseEnterprise
     {
         $this->server->setResponseOfPath(
             '/'. sprintf(
-                AssetFamilyAttributeOptionApi::ASSET_FAMILY_ATTRIBUTE_OPTION_URI,
+                AssetAttributeOptionApi::ASSET_ATTRIBUTE_OPTION_URI,
                 'packshot',
                 'wearing_model_size',
                 'size_27'
@@ -36,7 +35,7 @@ class UpsertAssetFamilyAttributeOptionIntegration extends ApiTestCaseEnterprise
             ]
         ];
 
-        $api = $this->createClient()->getAssetFamilyAttributeOptionApi();
+        $api = $this->createClient()->getAssetAttributeOptionApi();
         $response = $api->upsert('packshot', 'wearing_model_size', 'size_27', $assetFamilyAttributeOption);
 
         Assert::assertSame($this->server->getLastRequest()->jsonSerialize()[RequestInfo::JSON_KEY_INPUT], json_encode($assetFamilyAttributeOption));

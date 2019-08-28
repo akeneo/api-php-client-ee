@@ -6,10 +6,10 @@ namespace Akeneo\PimEnterprise\ApiClient\Api\AssetManager;
 
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
 
-class AssetFamilyAttributeOptionApi implements AssetFamilyAttributeOptionApiInterface
+class AssetAttributeOptionApi implements AssetAttributeOptionApiInterface
 {
-    const ASSET_FAMILY_ATTRIBUTE_OPTION_URI = 'api/rest/v1/asset-families/%s/attributes/%s/options/%s';
-    const ASSET_FAMILY_ATTRIBUTE_OPTIONS_URI = 'api/rest/v1/asset-families/%s/attributes/%s/options';
+    const ASSET_ATTRIBUTE_OPTION_URI = 'api/rest/v1/asset-families/%s/attributes/%s/options/%s';
+    const ASSET_ATTRIBUTE_OPTIONS_URI = 'api/rest/v1/asset-families/%s/attributes/%s/options';
 
     /** @var ResourceClientInterface */
     private $resourceClient;
@@ -25,7 +25,7 @@ class AssetFamilyAttributeOptionApi implements AssetFamilyAttributeOptionApiInte
     public function get(string $assetFamilyCode, string $attributeCode, string $attributeOptionCode): array
     {
         return $this->resourceClient->getResource(
-            static::ASSET_FAMILY_ATTRIBUTE_OPTION_URI,
+            static::ASSET_ATTRIBUTE_OPTION_URI,
             [$assetFamilyCode, $attributeCode, $attributeOptionCode]
         );
     }
@@ -36,7 +36,7 @@ class AssetFamilyAttributeOptionApi implements AssetFamilyAttributeOptionApiInte
     public function all(string $assetFamilyCode, string $attributeCode): array
     {
         return $this->resourceClient->getResource(
-            static::ASSET_FAMILY_ATTRIBUTE_OPTIONS_URI,
+            static::ASSET_ATTRIBUTE_OPTIONS_URI,
             [$assetFamilyCode, $attributeCode]
         );
     }
@@ -47,7 +47,7 @@ class AssetFamilyAttributeOptionApi implements AssetFamilyAttributeOptionApiInte
     public function upsert(string $assetFamilyCode, string $attributeCode, string $attributeOptionCode, array $data = []): int
     {
         return $this->resourceClient->upsertResource(
-            static::ASSET_FAMILY_ATTRIBUTE_OPTION_URI,
+            static::ASSET_ATTRIBUTE_OPTION_URI,
             [$assetFamilyCode, $attributeCode, $attributeOptionCode],
             $data
         );

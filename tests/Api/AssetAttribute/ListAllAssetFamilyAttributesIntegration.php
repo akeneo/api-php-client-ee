@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Akeneo\PimEnterprise\ApiClient\tests\Api\AssetFamilyAttribute;
+namespace Akeneo\PimEnterprise\ApiClient\tests\Api\AssetAttribute;
 
-use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeApi;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetAttributeApi;
 use Akeneo\PimEnterprise\ApiClient\tests\Api\ApiTestCaseEnterprise;
 use donatj\MockWebServer\RequestInfo;
 use donatj\MockWebServer\Response;
@@ -16,13 +16,13 @@ class ListAllAssetFamilyAttributesIntegration extends ApiTestCaseEnterprise
     public function test_list_family_attributes()
     {
         $this->server->setResponseOfPath(
-            '/' . sprintf(AssetFamilyAttributeApi::ASSET_FAMILY_ATTRIBUTES_URI, 'packshot'),
+            '/' . sprintf(AssetAttributeApi::ASSET_ATTRIBUTES_URI, 'packshot'),
             new ResponseStack(
                 new Response($this->getAssetFamilyAttributes(), [], 200)
             )
         );
 
-        $api = $this->createClient()->getAssetFamilyAttributeApi();
+        $api = $this->createClient()->getAssetAttributeApi();
         $assetFamilyAttributes = $api->all('packshot');
 
         Assert::assertSame($this->server->getLastRequest()->jsonSerialize()[RequestInfo::JSON_KEY_METHOD], 'GET');
