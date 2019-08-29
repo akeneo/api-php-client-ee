@@ -6,10 +6,10 @@ namespace Akeneo\PimEnterprise\ApiClient\Api\AssetManager;
 
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
 
-class AssetFamilyAttributeApi implements AssetFamilyAttributeApiInterface
+class AssetAttributeApi implements AssetAttributeApiInterface
 {
-    const ASSET_FAMILY_ATTRIBUTE_URI = 'api/rest/v1/asset-families/%s/attributes/%s';
-    const ASSET_FAMILY_ATTRIBUTES_URI = 'api/rest/v1/asset-families/%s/attributes';
+    const ASSET_ATTRIBUTE_URI = 'api/rest/v1/asset-families/%s/attributes/%s';
+    const ASSET_ATTRIBUTES_URI = 'api/rest/v1/asset-families/%s/attributes';
 
     /** @var ResourceClientInterface */
     private $resourceClient;
@@ -24,7 +24,7 @@ class AssetFamilyAttributeApi implements AssetFamilyAttributeApiInterface
      */
     public function get(string $assetFamilyCode, string $attributeCode): array
     {
-        return $this->resourceClient->getResource(static::ASSET_FAMILY_ATTRIBUTE_URI, [$assetFamilyCode, $attributeCode]);
+        return $this->resourceClient->getResource(static::ASSET_ATTRIBUTE_URI, [$assetFamilyCode, $attributeCode]);
     }
 
     /**
@@ -32,7 +32,7 @@ class AssetFamilyAttributeApi implements AssetFamilyAttributeApiInterface
      */
     public function all(string $assetFamilyCode, array $queryParameters = []): array
     {
-        return $this->resourceClient->getResource(static::ASSET_FAMILY_ATTRIBUTES_URI, [$assetFamilyCode]);
+        return $this->resourceClient->getResource(static::ASSET_ATTRIBUTES_URI, [$assetFamilyCode]);
     }
 
     /**
@@ -40,6 +40,6 @@ class AssetFamilyAttributeApi implements AssetFamilyAttributeApiInterface
      */
     public function upsert(string $assetFamilyCode, string $attributeCode, array $data = []): int
     {
-        return $this->resourceClient->upsertResource(static::ASSET_FAMILY_ATTRIBUTE_URI, [$assetFamilyCode, $attributeCode], $data);
+        return $this->resourceClient->upsertResource(static::ASSET_ATTRIBUTE_URI, [$assetFamilyCode, $attributeCode], $data);
     }
 }

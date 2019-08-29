@@ -8,9 +8,9 @@ use Akeneo\Pim\ApiClient\AkeneoPimClientInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetApiInterface as AssetManagerApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetAttributeApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetAttributeOptionApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyApiInterface;
-use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeApiInterface;
-use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeOptionApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
@@ -62,7 +62,7 @@ interface AkeneoPimEnterpriseClientInterface extends AkeneoPimClientInterface
 
     public function getAssetFamilyApi(): AssetFamilyApiInterface;
 
-    public function getAssetFamilyAttributeApi(): AssetFamilyAttributeApiInterface;
+    public function getAssetAttributeApi(): AssetAttributeApiInterface;
 
-    public function getAssetFamilyAttributeOptionApi(): AssetFamilyAttributeOptionApiInterface;
+    public function getAssetAttributeOptionApi(): AssetAttributeOptionApiInterface;
 }

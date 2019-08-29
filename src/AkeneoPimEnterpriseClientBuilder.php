@@ -34,9 +34,9 @@ use Akeneo\Pim\ApiClient\Stream\UpsertResourceListResponseFactory;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetApi as AssetManagerApi;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetAttributeApi;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetAttributeOptionApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyApi;
-use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeApi;
-use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeOptionApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApi;
@@ -205,8 +205,8 @@ class AkeneoPimEnterpriseClientBuilder
             new ReferenceEntityApi($resourceClient, $pageFactory, $cursorFactory),
             new AssetManagerApi($resourceClient),
             new AssetFamilyApi($resourceClient, $pageFactory, $cursorFactory),
-            new AssetFamilyAttributeApi($resourceClient),
-            new AssetFamilyAttributeOptionApi($resourceClient)
+            new AssetAttributeApi($resourceClient),
+            new AssetAttributeOptionApi($resourceClient)
         );
 
         return $client;

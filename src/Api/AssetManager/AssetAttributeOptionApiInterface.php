@@ -6,7 +6,7 @@ namespace Akeneo\PimEnterprise\ApiClient\Api\AssetManager;
 
 use Akeneo\Pim\ApiClient\Exception\HttpException;
 
-interface AssetFamilyAttributeOptionApiInterface
+interface AssetAttributeOptionApiInterface
 {
     /**
      * Get an attribute option for a given attribute of a given asset family.
@@ -23,12 +23,12 @@ interface AssetFamilyAttributeOptionApiInterface
     public function all(string $assetFamilyCode, string $attributeCode): array;
 
     /**
-     * Creates a asset family attribute option if it does not exist yet, otherwise updates partially the attribute option.
+     * Creates a asset attribute option if it does not exist yet, otherwise updates partially the attribute option.
      *
      * @throws HttpException
      *
-     * @return int Status code 201 indicating that the asset family attribute option has been well created.
-     *             Status code 204 indicating that the asset family attribute option has been well updated.
+     * @return int Status code 201 indicating that the asset attribute option has been well created.
+     *             Status code 204 indicating that the asset attribute option has been well updated.
      */
     public function upsert(string $assetFamilyCode, string $attributeCode, string $attributeOptionCode, array $data = []): int;
 }

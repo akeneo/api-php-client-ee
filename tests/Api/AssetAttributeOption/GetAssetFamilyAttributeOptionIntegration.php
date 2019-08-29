@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Akeneo\PimEnterprise\ApiClient\tests\Api\AssetFamilyAttributeOption;
+namespace Akeneo\PimEnterprise\ApiClient\tests\Api\AssetAttributeOption;
 
-use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyAttributeOptionApi;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetAttributeOptionApi;
 use Akeneo\PimEnterprise\ApiClient\tests\Api\ApiTestCaseEnterprise;
 use donatj\MockWebServer\RequestInfo;
 use donatj\MockWebServer\Response;
@@ -16,13 +16,13 @@ class GetAssetFamilyAttributeOptionIntegration extends ApiTestCaseEnterprise
     public function test_get_asset_family_attribute_option()
     {
         $this->server->setResponseOfPath(
-            '/'. sprintf(AssetFamilyAttributeOptionApi::ASSET_FAMILY_ATTRIBUTE_OPTION_URI, 'packshot', 'wearing_model_size', 'small'),
+            '/'. sprintf(AssetAttributeOptionApi::ASSET_ATTRIBUTE_OPTION_URI, 'packshot', 'wearing_model_size', 'small'),
             new ResponseStack(
                 new Response($this->getPackshotAttributeOption(), [], 200)
             )
         );
 
-        $api = $this->createClient()->getAssetFamilyAttributeOptionApi();
+        $api = $this->createClient()->getAssetAttributeOptionApi();
         $familyAttributeOption = $api->get('packshot', 'wearing_model_size', 'small');
 
         Assert::assertSame($this->server->getLastRequest()->jsonSerialize()[RequestInfo::JSON_KEY_METHOD], 'GET');
@@ -36,13 +36,13 @@ class GetAssetFamilyAttributeOptionIntegration extends ApiTestCaseEnterprise
     public function test_get_unknown_asset_family_attribute_option()
     {
         $this->server->setResponseOfPath(
-            '/'. sprintf(AssetFamilyAttributeOptionApi::ASSET_FAMILY_ATTRIBUTE_OPTION_URI, 'packshot', 'wearing_model_size', 'XLS'),
+            '/'. sprintf(AssetAttributeOptionApi::ASSET_ATTRIBUTE_OPTION_URI, 'packshot', 'wearing_model_size', 'XLS'),
             new ResponseStack(
                 new Response('{"code": 404, "message":"Resource `XLS` does not exist."}', [], 404)
             )
         );
 
-        $api = $this->createClient()->getAssetFamilyAttributeOptionApi();
+        $api = $this->createClient()->getAssetAttributeOptionApi();
         $api->get('packshot', 'wearing_model_size', 'XLS');
     }
 
