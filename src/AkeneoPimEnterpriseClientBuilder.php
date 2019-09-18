@@ -203,7 +203,7 @@ class AkeneoPimEnterpriseClientBuilder
             new ReferenceEntityAttributeApi($resourceClient),
             new ReferenceEntityAttributeOptionApi($resourceClient),
             new ReferenceEntityApi($resourceClient, $pageFactory, $cursorFactory),
-            new AssetManagerApi($resourceClient),
+            new AssetManagerApi($resourceClient, $pageFactory, $cursorFactory),
             new AssetFamilyApi($resourceClient, $pageFactory, $cursorFactory),
             new AssetAttributeApi($resourceClient),
             new AssetAttributeOptionApi($resourceClient)

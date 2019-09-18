@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Akeneo\PimEnterprise\ApiClient\Api\AssetManager;
 
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
+use Akeneo\Pim\ApiClient\Pagination\PageFactoryInterface;
+use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactoryInterface;
+use Akeneo\Pim\ApiClient\Pagination\ResourceCursorInterface;
 
 class AssetApi implements AssetApiInterface
 {
@@ -14,9 +17,46 @@ class AssetApi implements AssetApiInterface
     /** @var ResourceClientInterface */
     private $resourceClient;
 
-    public function __construct(ResourceClientInterface $resourceClient)
-    {
+    /** @var PageFactoryInterface */
+    private $pageFactory;
+
+    /** @var ResourceCursorFactoryInterface */
+    private $cursorFactory;
+
+    public function __construct(
+        ResourceClientInterface $resourceClient,
+        PageFactoryInterface $pageFactory,
+        ResourceCursorFactoryInterface $cursorFactory
+    ) {
         $this->resourceClient = $resourceClient;
+        $this->pageFactory = $pageFactory;
+        $this->cursorFactory = $cursorFactory;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function get(string $assetFamilyCode, string $assetCode): array
+    {
+        return $this->resourceClient->getResource(static::ASSET_URI, [$assetFamilyCode, $assetCode]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function all(string $assetFamilyCode, array $queryParameters = []): ResourceCursorInterface
+    {
+        $data = $this->resourceClient->getResources(
+            static::ASSETS_URI,
+            [$assetFamilyCode],
+            null,
+            null,
+            $queryParameters
+        );
+
+        $firstPage = $this->pageFactory->createPage($data);
+
+        return $this->cursorFactory->createCursor(null, $firstPage);
     }
 
     /**
