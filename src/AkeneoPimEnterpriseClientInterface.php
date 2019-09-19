@@ -11,6 +11,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetApiInterface as AssetMa
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetAttributeApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetAttributeOptionApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetMediaFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
@@ -65,4 +66,6 @@ interface AkeneoPimEnterpriseClientInterface extends AkeneoPimClientInterface
     public function getAssetAttributeApi(): AssetAttributeApiInterface;
 
     public function getAssetAttributeOptionApi(): AssetAttributeOptionApiInterface;
+
+    public function getAssetMediaFileApi(): AssetMediaFileApiInterface;
 }

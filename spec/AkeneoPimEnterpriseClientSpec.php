@@ -25,6 +25,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetApiInterface as AssetMa
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetAttributeApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetAttributeOptionApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetMediaFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
@@ -72,7 +73,8 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
         AssetManagerApiInterface $assetManagerApi,
         AssetFamilyApiInterface $assetFamilyApi,
         AssetAttributeApiInterface $assetAttributeApi,
-        AssetAttributeOptionApiInterface $assetAttributeOptionApi
+        AssetAttributeOptionApiInterface $assetAttributeOptionApi,
+        AssetMediaFileApiInterface $assetMediaFileApi
     ) {
         $this->beConstructedWith(
             $authentication,
@@ -106,7 +108,8 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
             $assetManagerApi,
             $assetFamilyApi,
             $assetAttributeApi,
-            $assetAttributeOptionApi
+            $assetAttributeOptionApi,
+            $assetMediaFileApi
         );
     }
 
@@ -189,5 +192,10 @@ class AkeneoPimEnterpriseClientSpec extends ObjectBehavior
     function it_gets_asset_attribute_option_api($assetAttributeOptionApi)
     {
         $this->getAssetAttributeOptionApi()->shouldReturn($assetAttributeOptionApi);
+    }
+
+    function it_gets_asset_media_file_api($assetMediaFileApi)
+    {
+        $this->getAssetMediaFileApi()->shouldReturn($assetMediaFileApi);
     }
 }
