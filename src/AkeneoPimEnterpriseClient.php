@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Akeneo\PimEnterprise\ApiClient;
 
 use Akeneo\Pim\ApiClient\AkeneoPimClient;
@@ -20,6 +22,11 @@ use Akeneo\Pim\ApiClient\Api\ProductModelApiInterface;
 use Akeneo\Pim\ApiClient\Security\Authentication;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetCategoryApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetApiInterface as AssetManagerApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetAttributeApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetAttributeOptionApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetFamilyApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetMediaFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
@@ -80,6 +87,21 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /** @var ReferenceEntityApiInterface */
     private $referenceEntityApi;
 
+    /** @var AssetManagerApiInterface */
+    private $assetManagerApi;
+
+    /** @var AssetFamilyApiInterface */
+    private $assetFamilyApi;
+
+    /** @var AssetAttributeApiInterface */
+    private $assetAttributeApi;
+
+    /** @var AssetAttributeOptionApiInterface */
+    private $assetAttributeOptionApi;
+
+    /** @var AssetMediaFileApiInterface */
+    private $assetMediaFileApi;
+
     public function __construct(
         Authentication $authentication,
         ProductApiInterface $productApi,
@@ -108,7 +130,12 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         ReferenceEntityMediaFileApiInterface $referenceEntityMediaFileApi,
         ReferenceEntityAttributeApiInterface $referenceEntityAttributeApi,
         ReferenceEntityAttributeOptionApiInterface $referenceEntityAttributeOptionApi,
-        ReferenceEntityApiInterface $referenceEntityApi
+        ReferenceEntityApiInterface $referenceEntityApi,
+        AssetManagerApiInterface $assetManagerApi,
+        AssetFamilyApiInterface $assetFamilyApi,
+        AssetAttributeApiInterface $assetAttributeApi,
+        AssetAttributeOptionApiInterface $assetAttributeOptionApi,
+        AssetMediaFileApiInterface $assetMediaFileApi
     ) {
         parent::__construct(
             $authentication,
@@ -141,6 +168,11 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         $this->referenceEntityAttributeApi = $referenceEntityAttributeApi;
         $this->referenceEntityAttributeOptionApi = $referenceEntityAttributeOptionApi;
         $this->referenceEntityApi = $referenceEntityApi;
+        $this->assetManagerApi = $assetManagerApi;
+        $this->assetFamilyApi = $assetFamilyApi;
+        $this->assetAttributeApi = $assetAttributeApi;
+        $this->assetAttributeOptionApi = $assetAttributeOptionApi;
+        $this->assetMediaFileApi = $assetMediaFileApi;
     }
 
     /**
@@ -245,5 +277,45 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     public function getReferenceEntityApi(): ReferenceEntityApiInterface
     {
         return $this->referenceEntityApi;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAssetManagerApi(): AssetManagerApiInterface
+    {
+        return $this->assetManagerApi;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAssetFamilyApi(): AssetFamilyApiInterface
+    {
+        return $this->assetFamilyApi;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAssetAttributeApi(): AssetAttributeApiInterface
+    {
+        return $this->assetAttributeApi;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAssetAttributeOptionApi(): AssetAttributeOptionApiInterface
+    {
+        return $this->assetAttributeOptionApi;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAssetMediaFileApi(): AssetMediaFileApiInterface
+    {
+        return $this->assetMediaFileApi;
     }
 }

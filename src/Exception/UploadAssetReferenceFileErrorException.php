@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Akeneo\PimEnterprise\ApiClient\Exception;
 
 use Akeneo\Pim\ApiClient\Exception\RuntimeException;

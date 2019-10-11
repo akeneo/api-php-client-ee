@@ -1,3 +1,23 @@
+
+# 6.0.0
+
+## Improvements
+
+Addition of the Asset manager end-points:
+
+- Get an asset family
+- Get a list of asset families
+- Upsert an asset family
+- Get an asset family attribute
+- Get a list of asset family attributes
+- Upsert an asset family attribute
+- Get an asset family attribute option
+- Get a list of asset family attribute options
+- Upsert an asset family attribute option
+- Upsert an asset
+- Upsert a list of assets
+- Delete an asset
+
 # 5.0.0
 
 ## BC Breaks

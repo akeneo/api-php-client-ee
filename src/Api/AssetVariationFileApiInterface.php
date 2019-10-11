@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Akeneo\PimEnterprise\ApiClient\Api;
 
 use Psr\Http\Message\ResponseInterface;
