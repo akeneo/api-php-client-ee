@@ -9,7 +9,8 @@ Matrix compatibility:
 | v2.0               | v1.0                       |  March 2019    | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=1.0)](https://travis-ci.org/akeneo/api-php-client-ee)   |
 | v2.1 - v2.2        | v2.0                       |  March 2019    | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=2.0)](https://travis-ci.org/akeneo/api-php-client-ee)   |
 | v2.3               | v3.0                       |  December 2019 | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=3.0)](https://travis-ci.org/akeneo/api-php-client-ee)   |
-| v3.0               | v4.0                       |  August 2020   | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=4.0)](https://travis-ci.org/akeneo/api-php-client-ee)   |
+| v3.0 - v3.1        | v4.0                       |  August 2020   | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=4.0)](https://travis-ci.org/akeneo/api-php-client-ee)   |
+| v3.2               | v5.0                       |  August 2020   | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=4.0)](https://travis-ci.org/akeneo/api-php-client-ee)   |
 | -                  | master                     |  -             | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=master)](https://travis-ci.org/akeneo/api-php-client-ee)|
 
 Note that our PHP client is backward compatible.
