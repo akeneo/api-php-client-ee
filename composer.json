@@ -21,7 +21,7 @@
     }
   },
   "require": {
-    "akeneo/api-php-client": "^5.0"
+    "akeneo/api-php-client": "^5.0 || ^6.0"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.14",
@@ -33,9 +33,6 @@
     "php-http/guzzle6-adapter": "^2.0"
   },
   "config": {
-    "bin-dir": "bin",
-    "platform": {
-      "php": "7.1.3"
-    }
+    "bin-dir": "bin"
   }
 }
