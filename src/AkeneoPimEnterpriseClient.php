@@ -39,6 +39,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeOptionApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityMediaFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\SharedCatalogApiInterface;
 
 /**
  * This class is the implementation of the client to use the Akeneo PIM ENTERPRISE API.
@@ -103,7 +104,11 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /** @var AssetMediaFileApiInterface */
     private $assetMediaFileApi;
 
+    /** @var CatalogApiInterface */
     private $catalogApi;
+
+    /** @var SharedCatalogApiInterface */
+    private $sharedCatalogApi;
 
     public function __construct(
         Authentication $authentication,
@@ -139,7 +144,8 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         AssetAttributeApiInterface $assetAttributeApi,
         AssetAttributeOptionApiInterface $assetAttributeOptionApi,
         AssetMediaFileApiInterface $assetMediaFileApi,
-        CatalogApiInterface $catalogApi
+        CatalogApiInterface $catalogApi,
+        SharedCatalogApiInterface $sharedCatalogApi
     ) {
         parent::__construct(
             $authentication,
@@ -178,6 +184,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         $this->assetAttributeOptionApi = $assetAttributeOptionApi;
         $this->assetMediaFileApi = $assetMediaFileApi;
         $this->catalogApi = $catalogApi;
+        $this->sharedCatalogApi = $sharedCatalogApi;
     }
 
     /**
@@ -199,6 +206,11 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     public function getCatalogApi(): CatalogApiInterface
     {
         return $this->catalogApi;
+    }
+
+    public function getSharedCatalogApi(): SharedCatalogApiInterface
+    {
+        return $this->sharedCatalogApi;
     }
 
     /**

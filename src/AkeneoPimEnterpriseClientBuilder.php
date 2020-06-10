@@ -50,6 +50,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeOptionApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityMediaFileApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApi;
+use Akeneo\PimEnterprise\ApiClient\Api\SharedCatalogApi;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
@@ -176,9 +177,12 @@ class AkeneoPimEnterpriseClientBuilder
     {
         list($resourceClient, $pageFactory, $cursorFactory, $fileSystem) = $this->setUp($authentication);
 
+        $catalogApi = new CatalogApi($resourceClient);
+        $productApi = new ProductApi($resourceClient, $pageFactory, $cursorFactory);
+
         $client = new AkeneoPimEnterpriseClient(
             $authentication,
-            new ProductApi($resourceClient, $pageFactory, $cursorFactory),
+            $productApi,
             new CategoryApi($resourceClient, $pageFactory, $cursorFactory),
             new AttributeApi($resourceClient, $pageFactory, $cursorFactory),
             new AttributeOptionApi($resourceClient, $pageFactory, $cursorFactory),
@@ -210,7 +214,8 @@ class AkeneoPimEnterpriseClientBuilder
             new AssetAttributeApi($resourceClient),
             new AssetAttributeOptionApi($resourceClient),
             new AssetMediaFileApi($resourceClient, $fileSystem),
-            new CatalogApi($resourceClient)
+            $catalogApi,
+            new SharedCatalogApi($catalogApi, $productApi)
         );
 
         return $client;

@@ -15,6 +15,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetMediaFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\CatalogApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductModelDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
@@ -23,6 +24,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeOptionApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityMediaFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\SharedCatalogApiInterface;
 
 /**
  * Client to use the Akeneo PIM ENTERPRISE API.
@@ -68,4 +70,8 @@ interface AkeneoPimEnterpriseClientInterface extends AkeneoPimClientInterface
     public function getAssetAttributeOptionApi(): AssetAttributeOptionApiInterface;
 
     public function getAssetMediaFileApi(): AssetMediaFileApiInterface;
+
+    public function getCatalogApi(): CatalogApiInterface;
+
+    public function getSharedCatalogApi(): SharedCatalogApiInterface;
 }

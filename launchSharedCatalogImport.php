@@ -16,8 +16,7 @@ $client = (new AkeneoPimEnterpriseClientBuilder('http://localhost:8080'))->build
 $catalogs = $client->getCatalogApi()->all();
 $catalogCode = $catalogs[0]['code'];
 
-$catalogSharedBuilder = new SharedCatalogBuilder($client->getCatalogApi(), $client->getProductApi());
-$products = $catalogSharedBuilder->search($catalogCode);
+$products = $client->getSharedCatalogApi()->search($catalogCode, 50);
 
 foreach ($products as $product) {
     var_dump($product);
