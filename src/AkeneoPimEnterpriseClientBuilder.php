@@ -41,6 +41,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetMediaFileApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApi;
+use Akeneo\PimEnterprise\ApiClient\Api\CatalogApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductModelDraftApi;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApi;
@@ -208,7 +209,8 @@ class AkeneoPimEnterpriseClientBuilder
             new AssetFamilyApi($resourceClient, $pageFactory, $cursorFactory),
             new AssetAttributeApi($resourceClient),
             new AssetAttributeOptionApi($resourceClient),
-            new AssetMediaFileApi($resourceClient, $fileSystem)
+            new AssetMediaFileApi($resourceClient, $fileSystem),
+            new CatalogApi($resourceClient)
         );
 
         return $client;

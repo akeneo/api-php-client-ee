@@ -30,6 +30,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetMediaFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
+use Akeneo\PimEnterprise\ApiClient\Api\CatalogApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductModelDraftApiInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApiInterface;
@@ -102,6 +103,8 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     /** @var AssetMediaFileApiInterface */
     private $assetMediaFileApi;
 
+    private $catalogApi;
+
     public function __construct(
         Authentication $authentication,
         ProductApiInterface $productApi,
@@ -135,7 +138,8 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         AssetFamilyApiInterface $assetFamilyApi,
         AssetAttributeApiInterface $assetAttributeApi,
         AssetAttributeOptionApiInterface $assetAttributeOptionApi,
-        AssetMediaFileApiInterface $assetMediaFileApi
+        AssetMediaFileApiInterface $assetMediaFileApi,
+        CatalogApiInterface $catalogApi
     ) {
         parent::__construct(
             $authentication,
@@ -173,6 +177,7 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
         $this->assetAttributeApi = $assetAttributeApi;
         $this->assetAttributeOptionApi = $assetAttributeOptionApi;
         $this->assetMediaFileApi = $assetMediaFileApi;
+        $this->catalogApi = $catalogApi;
     }
 
     /**
@@ -189,6 +194,11 @@ class AkeneoPimEnterpriseClient extends AkeneoPimClient implements AkeneoPimEnte
     public function getProductModelDraftApi(): ProductModelDraftApiInterface
     {
         return $this->productModelDraftApi;
+    }
+
+    public function getCatalogApi(): CatalogApiInterface
+    {
+        return $this->catalogApi;
     }
 
     /**
