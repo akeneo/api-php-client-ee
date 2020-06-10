@@ -28,6 +28,7 @@ class SharedCatalogBuilder implements SharedCatalogBuilderInterface
             'search' => $filters,
             'scope' => $catalog['structure']['scope'],
             'locales' => implode(',', $catalog['structure']['locales']),
+            'attributes' => implode(',', $catalog['structure']['attributes'])
         ]);
     }
 
@@ -38,18 +39,6 @@ class SharedCatalogBuilder implements SharedCatalogBuilderInterface
             $searchBuilder->addFilter($filter['field'], $filter['operator'], $filter['value']);
         }
 
-        return $searchBuilder;
-    }
-
-    private function getCatalog($catalogCode)
-    {
-        $catalogs = $this->catalogApi->all();
-        foreach ($catalogs as $catalog) {
-            if ($catalog['code'] === $catalogCode) {
-                return $catalog;
-            }
-        }
-
-        throw new InvalidArgumentException("Catalog not found");
+        return $searchBuilder->getFilters();
     }
 }
