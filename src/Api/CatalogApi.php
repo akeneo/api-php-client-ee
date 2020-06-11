@@ -5,11 +5,6 @@ declare(strict_types=1);
 namespace Akeneo\PimEnterprise\ApiClient\Api;
 
 use Akeneo\Pim\ApiClient\Client\ResourceClientInterface;
-use Akeneo\Pim\ApiClient\Exception\InvalidArgumentException;
-use Akeneo\Pim\ApiClient\Exception\NotFoundHttpException;
-use Akeneo\Pim\ApiClient\Pagination\PageFactoryInterface;
-use Akeneo\Pim\ApiClient\Pagination\ResourceCursorFactoryInterface;
-use Akeneo\Pim\ApiClient\Pagination\ResourceCursorInterface;
 
 class CatalogApi implements CatalogApiInterface
 {
@@ -32,7 +27,7 @@ class CatalogApi implements CatalogApiInterface
             }
         }
 
-        throw new NotFoundHttpException('Catalog "' . $code . '" does not exist.');
+        throw new \Exception('Catalog "' . $code . '" does not exist.');
     }
 
     /**

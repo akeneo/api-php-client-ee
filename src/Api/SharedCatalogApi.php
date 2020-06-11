@@ -24,12 +24,21 @@ class SharedCatalogApi implements SharedCatalogApiInterface
         $catalog = $this->catalogApi->get($catalogCode);
         $filters = $this->buildFilter($catalog);
 
-        return $this->productApi->all($pageSize, [
+        $data = [
             'search' => $filters,
             'scope' => $catalog['structure']['scope'],
-            'locales' => implode(',', $catalog['structure']['locales']),
-            'attributes' => implode(',', $catalog['structure']['attributes'])
-        ]);
+            'search_scope' => $catalog['structure']['scope'],
+        ];
+
+        if(!empty($catalog['structure']['locales'])) {
+            $data['locales'] = implode(',', $catalog['structure']['locales']);
+        }
+
+        if(!empty($catalog['structure']['attributes'])) {
+            $data['attributes'] = implode(',', $catalog['structure']['attributes']);
+        }
+
+        return $this->productApi->all($pageSize, $data);
     }
 
     private function buildFilter($catalog)
