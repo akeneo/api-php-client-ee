@@ -31,7 +31,7 @@ class SharedCatalogApi implements SharedCatalogApiInterface
         ];
 
         if(!empty($catalog['structure']['locales'])) {
-            $data['locales'] = implode(',', $catalog['structure']['locales']);
+//            $data['locales'] = implode(',', $catalog['structure']['locales']);
         }
 
         if(!empty($catalog['structure']['attributes'])) {
