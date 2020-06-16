@@ -41,6 +41,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\AssetManager\AssetMediaFileApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetTagApi;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApi;
+use Akeneo\PimEnterprise\ApiClient\Api\CatalogApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductDraftApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ProductModelDraftApi;
 use Akeneo\PimEnterprise\ApiClient\Api\PublishedProductApi;
@@ -49,6 +50,7 @@ use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityAttributeOptionApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityMediaFileApi;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApi;
+use Akeneo\PimEnterprise\ApiClient\Api\SharedCatalogApi;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
@@ -175,9 +177,12 @@ class AkeneoPimEnterpriseClientBuilder
     {
         list($resourceClient, $pageFactory, $cursorFactory, $fileSystem) = $this->setUp($authentication);
 
+        $catalogApi = new CatalogApi($resourceClient);
+        $productApi = new ProductApi($resourceClient, $pageFactory, $cursorFactory);
+
         $client = new AkeneoPimEnterpriseClient(
             $authentication,
-            new ProductApi($resourceClient, $pageFactory, $cursorFactory),
+            $productApi,
             new CategoryApi($resourceClient, $pageFactory, $cursorFactory),
             new AttributeApi($resourceClient, $pageFactory, $cursorFactory),
             new AttributeOptionApi($resourceClient, $pageFactory, $cursorFactory),
@@ -208,7 +213,9 @@ class AkeneoPimEnterpriseClientBuilder
             new AssetFamilyApi($resourceClient, $pageFactory, $cursorFactory),
             new AssetAttributeApi($resourceClient),
             new AssetAttributeOptionApi($resourceClient),
-            new AssetMediaFileApi($resourceClient, $fileSystem)
+            new AssetMediaFileApi($resourceClient, $fileSystem),
+            $catalogApi,
+            new SharedCatalogApi($catalogApi, $productApi)
         );
 
         return $client;
