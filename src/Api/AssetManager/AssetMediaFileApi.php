@@ -67,10 +67,10 @@ class AssetMediaFileApi implements AssetMediaFileApiInterface
     {
         $headers = $response->getHeaders();
 
-        if (!isset($headers['Asset-media-file-code'][0])) {
+        if (!isset($headers['Asset-Media-File-Code'][0])) {
             throw new RuntimeException('The response does not contain the code of the created media-file.');
         }
 
-        return (string) $headers['Asset-media-file-code'][0];
+        return (string) $headers['Asset-Media-File-Code'][0];
     }
 }
