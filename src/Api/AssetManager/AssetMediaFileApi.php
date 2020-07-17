@@ -65,12 +65,12 @@ class AssetMediaFileApi implements AssetMediaFileApiInterface
      */
     private function extractCodeFromCreationResponse(ResponseInterface $response): string
     {
-        $headers = $response->getHeaders();
+        $header = $response->getHeader('asset-media-file-code');
 
-        if (!isset($headers['Asset-media-file-code'][0])) {
+        if (empty($header)) {
             throw new RuntimeException('The response does not contain the code of the created media-file.');
         }
 
-        return (string) $headers['Asset-media-file-code'][0];
+        return (string) $header[0];
     }
 }
