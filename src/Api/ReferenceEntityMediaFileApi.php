@@ -71,12 +71,12 @@ class ReferenceEntityMediaFileApi implements ReferenceEntityMediaFileApiInterfac
      */
     private function extractCodeFromCreationResponse(ResponseInterface $response): string
     {
-        $headers = $response->getHeaders();
+        $header = $response->getHeader('Reference-entities-media-file-code');
 
-        if (!isset($headers['Reference-entities-media-file-code'][0])) {
+        if (empty($header)) {
             throw new RuntimeException('The response does not contain the code of the created media-file.');
         }
 
-        return (string) $headers['Reference-entities-media-file-code'][0];
+        return (string)$header[0];
     }
 }

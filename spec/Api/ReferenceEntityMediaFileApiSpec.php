@@ -47,14 +47,11 @@ class ReferenceEntityMediaFileApiSpec extends ObjectBehavior
             ]
         ];
 
-        $response->getHeaders()->willReturn([
-            'Location' => [
-                'http://localhost/api/rest/v1/reference-entities-media-files/0/f/b/f/0fbffddc95c3d610b39e3f3797b14c6c33e98a4f_starck.jpg'
-            ],
-            'Reference-entities-media-file-code' => [
+        $response->getHeader('Reference-entities-media-file-code')->shouldBeCalled()->willReturn(
+            [
                 '0/f/b/f/0fbffddc95c3d610b39e3f3797b14c6c33e98a4f_starck.jpg'
             ]
-        ]);
+        );
 
         $resourceClient
             ->createMultipartResource(ReferenceEntityMediaFileApi::MEDIA_FILE_CREATE_URI, [], $requestParts)
