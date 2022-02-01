@@ -18,7 +18,7 @@ For example, if your PIM is currently a v2.3, you can still use a 1.0 version of
 
 ## Requirements
 
-* PHP >= 7.1
+* PHP >= 7.4
 * Composer 
 
 ## Installation
