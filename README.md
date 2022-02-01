@@ -4,21 +4,23 @@ A simple PHP client to use the [Akeneo PIM API](https://api.akeneo.com/) with th
 
 Matrix compatibility:
 
-| PIM EE version(s)  | API PHP Client EE version  | End of life    | CI status                                                                                                                          |
-|--------------------|----------------------------|----------------|------------------------------------------------------------------------------------------------------------------------------------|
-| v2.0               | v1.0                       |  March 2019    | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=1.0)](https://travis-ci.org/akeneo/api-php-client-ee)   |
-| v2.1 - v2.2        | v2.0                       |  March 2019    | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=2.0)](https://travis-ci.org/akeneo/api-php-client-ee)   |
-| v2.3               | v3.0                       |  December 2019 | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=3.0)](https://travis-ci.org/akeneo/api-php-client-ee)   |
-| v3.0 - v3.1        | v4.0                       |  August 2020   | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=4.0)](https://travis-ci.org/akeneo/api-php-client-ee)   |
-| v3.2               | v5.0                       |  August 2020   | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=master)](https://travis-ci.org/akeneo/api-php-client-ee)   |
-| -                  | master                     |  -             | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=master)](https://travis-ci.org/akeneo/api-php-client-ee)|
+| PIM EE version(s) | API PHP Client EE version | CI status                                                                                                                           |
+|-------------------|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| v2.0              | v1.0                      | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=1.0)](https://travis-ci.org/akeneo/api-php-client-ee)    |
+| v2.1 - v2.2       | v2.0                      | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=2.0)](https://travis-ci.org/akeneo/api-php-client-ee)    |
+| v2.3              | v3.0                      | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=3.0)](https://travis-ci.org/akeneo/api-php-client-ee)    |
+| v3.0 - v3.1       | v4.0                      | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=4.0)](https://travis-ci.org/akeneo/api-php-client-ee)    |
+| v3.2 - v4.0       | v5.0                      | [![Build Status](https://travis-ci.org/akeneo/api-php-client-ee.svg?branch=master)](https://travis-ci.org/akeneo/api-php-client-ee) |
+| v5.0              | v6.0                      | -                                                                                                                                   |
+| v6.0              | v7.0                      | -                                                                                                                                   |
+| -                 | master                    | -                                                                                                                                   |
 
 Note that our PHP client is backward compatible.
 For example, if your PIM is currently a v2.3, you can still use a 1.0 version of the PHP client. The new endpoints available in v2.3 will not be available in the v1.0 of the PHP client.  
 
 ## Requirements
 
-* PHP >= 7.1
+* PHP >= 7.4
 * Composer 
 
 ## Installation
