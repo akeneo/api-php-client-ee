@@ -1,3 +1,35 @@
+# :warning: The Client project has moved :warning:
+
+TL;DR: Please use [api-php-client](https://github.com/akeneo/api-php-client) instead.
+
+This Enterprise Edition project is now merged into the main [api-php-client](https://github.com/akeneo/api-php-client) project.  
+This allows easier maintainability by avoiding many duplications.
+
+## Migrate to main package
+
+### Switch the dependency
+
+In `composer.json`, switch the dependency to the main `akeneo/api-php-client` package.  
+The version can remain the same since they are mirrored.
+```json
+{
+  "require": {
+    "akeneo/api-php-client": "^8.0.0"
+  }
+}
+```
+
+### Rename uses
+
+The only breaking change is the namespace uniformization that will break `use` statements:  
+`Akeneo\PimEnterprise` was renamed to `Akeneo\Pim`
+
+You can use this command to rename all your `use` statements in your project:
+```shell
+find -name '*.php' -exec sed -i 's/PimEnterprise/Pim/g' {} +
+# You can add a path as first argument
+```
+
 # PHP Akeneo PIM API
 
 A simple PHP client to use the [Akeneo PIM API](https://api.akeneo.com/) with the Enterprise Edition.
