@@ -10,7 +10,7 @@ This allows easier maintainability by avoiding many duplications.
 ### Switch the dependency
 
 In `composer.json`, switch the dependency to the main `akeneo/api-php-client` package.  
-The version can remain the same since they are mirrored.
+The main package start supporting EE features from v8.0.0.
 ```json
 {
   "require": {
