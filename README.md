@@ -9,7 +9,7 @@ This allows easier maintainability by avoiding many duplications.
 
 ### Switch the dependency
 
-In `composer.json`, switch the dependency to the main `akeneo/api-php-client` package.  
+In `composer.json`, switch the dependency to the main [`akeneo/api-php-client`](https://packagist.org/packages/akeneo/api-php-client) package.  
 The main package start supporting EE features from v8.0.0.
 ```json
 {
